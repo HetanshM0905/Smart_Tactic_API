@@ -1,0 +1,621 @@
+{
+  "metadata": {
+    "generated_at": "2025-08-29T12:30:48.227417Z",
+    "version": "v1.1-corrected+binary-groups",
+    "notes": "Synthetic mock data for SmartTactic."
+  },
+  "options": {
+    "categories": [
+      {
+        "id": "promote",
+        "label": "Promote",
+        "description": "Tactics that get your message in front of customers and partners"
+      },
+      {
+        "id": "build_manage",
+        "label": "Build & Manage",
+        "description": "Create and manage the content, assets, and tools you use for promotion"
+      },
+      {
+        "id": "vendors",
+        "label": "Vendors",
+        "description": "Tactics for vendors by Role Family and Role (Emporia)"
+      }
+    ],
+    "tactic_types": {
+      "promote": [
+        "Partner Co-op",
+        "Content & Asset Promotion",
+        "Email Nurture",
+        "Direct Mail",
+        "Events & Experiences",
+        "Outbound Prospecting",
+        "Brand Partnerships & Sponsorships",
+        "Partner PPF/MDF",
+        "Referral Programs"
+      ],
+      "build_manage": [
+        "Analytics",
+        "Research",
+        "Contact Enrichment",
+        "Web Development",
+        "Free Trial TI (technical infra)",
+        "Marketing Technology",
+        "Content & Asset Development",
+        "Localization & Translation",
+        "Learning & Development",
+        "Social Channel Management"
+      ],
+      "vendors": [
+        "Data, Analytics & Insights",
+        "Chief of Staff",
+        "Communications",
+        "Creative",
+        "E/ABP",
+        "Event Management",
+        "External Relationship Management",
+        "Leadership",
+        "Marketing Activation",
+        "Marketing Execution",
+        "Production"
+      ]
+    },
+    "event_kind": [
+      "Single",
+      "Multi"
+    ],
+    "aligned_to_multi_event": [
+      "Yes",
+      "No"
+    ],
+    "priority": [
+      "P0 - In budget",
+      "P1 - Nice to have"
+    ],
+    "event_date_confidence": [
+      "Low",
+      "Medium",
+      "High"
+    ],
+    "funding_status": [
+      "Fully Funded",
+      "Partially Funded",
+      "Not Funded",
+      "Unsure"
+    ],
+    "hosting_type": [
+      "Digital Event",
+      "Physical Event",
+      "Hybrid Event"
+    ],
+    "binary": {
+      "multi_event_alignment": [
+        "Yes",
+        "No"
+      ],
+      "leads_expected": [
+        "Yes",
+        "No"
+      ],
+      "has_spend": [
+        "Yes",
+        "No"
+      ],
+      "split_cost_center": [
+        "Yes",
+        "No"
+      ]
+    },
+    "event_rings": [
+      "Ring 1: Global 1st Party",
+      "Ring 2: Global 3rd Party",
+      "Ring 3: Global 1st Party Series",
+      "Ring 4: Regional / Local"
+    ],
+    "event_parties": [
+      "1st party event",
+      "3rd Party Event"
+    ],
+    "event_catalog": {
+      "Ring 1: Global 1st Party": {
+        "1st party event": [
+          {
+            "category": "Big Moment (Not Listed)"
+          },
+          {
+            "category": "Cyber Defense Summit"
+          },
+          {
+            "category": "Digital AI moments"
+          },
+          {
+            "category": "Google cloud next",
+            "subcategories": [
+              "Google cloud next '24",
+              "Google cloud next '25",
+              "Google cloud next '26"
+            ]
+          },
+          {
+            "category": "Google Executive events"
+          },
+          {
+            "category": "Google I/O"
+          },
+          {
+            "category": "Public Sector Summit"
+          },
+          {
+            "category": "Analyst",
+            "subcategories": [
+              "Gartner",
+              "Other (Not Listed)"
+            ]
+          },
+          {
+            "category": "Developer",
+            "subcategories": [
+              "3P Tentpole Developer Events",
+              "Other (Not Listed)"
+            ]
+          },
+          {
+            "category": "Digital Native / Startup",
+            "subcategories": [
+              "Data & AI",
+              "Energy & Utilities",
+              "Financial services",
+              "Healthcare & Life Sciences",
+              "Manufacturing & Industrial",
+              "Other (Not Listed)"
+            ]
+          },
+          {
+            "category": "Industry",
+            "subcategories": [
+              "Retail & CPG",
+              "Software & Internet",
+              "Telco, Media, Entertainment & Gaming"
+            ]
+          }
+        ]
+      },
+      "Ring 2: Global 3rd Party": {
+        "3rd Party Event": [
+          {
+            "category": "One Google 3P Executive Events",
+            "subcategories": [
+              "3P Tentpole Executive Events",
+              "Other (Not Listed)"
+            ]
+          },
+          {
+            "category": "Partner",
+            "subcategories": [
+              "GSI co-marketing",
+              "ISV co-marketing",
+              "To Partner"
+            ]
+          },
+          {
+            "category": "Public Sector",
+            "subcategories": [
+              "Defense",
+              "Federal Civilian",
+              "General",
+              "Healthcare & Life Sciences",
+              "Higher Education and Research",
+              "Law Enforcement",
+              "National Security and Intel",
+              "State/Provincial and Local Government",
+              "Supply Chain and Procurement"
+            ]
+          },
+          {
+            "category": "Security",
+            "subcategories": [
+              "ISAC",
+              "Other (Not Listed)"
+            ]
+          },
+          {
+            "category": "Solutions Programming (Incl Cloud onAir, Webinars, in-person activations)",
+            "subcategories": [
+              "Cloud OnBoard",
+              "Google Cloud Universe",
+              "AI",
+              "Cloud Study Jam",
+              "Cloud Technical Series",
+              "Data Cloud",
+              "Google Cloud Weeklies",
+              "GWS",
+              "Infra & App Mod",
+              "Other (Not Listed)",
+              "TechBytes"
+            ]
+          }
+        ]
+      },
+      "Ring 3: Global 1st Party Series": {
+        "1st party event": [
+          {
+            "category": "CMO AI Labs"
+          },
+          {
+            "category": "Digital Native / Startup",
+            "subcategories": [
+              "Startup School",
+              "Startup Summit",
+              "Other (Not Listed)"
+            ]
+          },
+          {
+            "category": "Digital Campaigns"
+          },
+          {
+            "category": "Digital Solution Summits"
+          },
+          {
+            "category": "Gen AI at Work"
+          },
+          {
+            "category": "I/O Connects"
+          },
+          {
+            "category": "Live + Labs"
+          },
+          {
+            "category": "Region Launch"
+          },
+          {
+            "category": "Regional Cloud Summits",
+            "subcategories": [
+              "Cloud Summit APAC",
+              "Cloud Summit EMEA",
+              "Cloud Summit JAPAN",
+              "Cloud Summit LATAM"
+            ]
+          },
+          {
+            "category": "Security",
+            "subcategories": [
+              "CISO Connect",
+              "CISO Program",
+              "Other (Not Listed)"
+            ]
+          },
+          {
+            "category": "SMB Traditional",
+            "subcategories": [
+              "Growth Tech Series",
+              "Scaling Up Series",
+              "Other (Not Listed)"
+            ]
+          },
+          {
+            "category": "Analyst",
+            "subcategories": [
+              "Gartner",
+              "Other (Not Listed)"
+            ]
+          }
+        ]
+      },
+      "Ring 4: Regional / Local": {
+        "1st party event": [
+          {
+            "category": "Analyst"
+          },
+          {
+            "category": "Best of Next / Next Ancillary Events"
+          },
+          {
+            "category": "Developer"
+          },
+          {
+            "category": "Digital Native / Startup"
+          },
+          {
+            "category": "Executive / CXO"
+          },
+          {
+            "category": "Industry"
+          },
+          {
+            "category": "Partner"
+          },
+          {
+            "category": "Public Sector"
+          },
+          {
+            "category": "Security"
+          },
+          {
+            "category": "Solutions Programming (Incl Cloud onAir, Webinars, in-person activations)"
+          }
+        ],
+        "3rd Party Event": [
+          {
+            "category": "Analyst"
+          },
+          {
+            "category": "Best of Next / Next Ancillary Events"
+          },
+          {
+            "category": "Developer"
+          },
+          {
+            "category": "Digital Native / Startup"
+          },
+          {
+            "category": "Executive / CXO"
+          },
+          {
+            "category": "Industry"
+          },
+          {
+            "category": "Partner"
+          },
+          {
+            "category": "Public Sector"
+          },
+          {
+            "category": "Security"
+          },
+          {
+            "category": "Solutions Programming (Incl Cloud onAir, Webinars, in-person activations)"
+          }
+        ]
+      }
+    },
+    "partner": {
+      "involvement": [
+        "Yes - Single Partner",
+        "Yes - Multiple Partners",
+        "No Partner Involvement"
+      ],
+      "responsibilities": [
+        "Partner Generated Thought Leadership (Whitepaper, Panelist)",
+        "Joint Messaging & Content Creation",
+        "Lead Nurture & Follow Up (Lead-to-Opp // Opp-to-Close)",
+        "Speak at Google / 3rd Party Roundtable, Forum",
+        "Host Event (Webinar, Townhall, Workshop, Demo)",
+        "Joint Customer Offer",
+        "Sales Leadership Customer Engagement",
+        "Other"
+      ],
+      "lead_follow_up": [
+        "Partner Only",
+        "Google Sales Only",
+        "Partner and Google together"
+      ],
+      "no_partner_reasons": [
+        "No qualified partner available",
+        "Qualified partner has insufficient bandwidth",
+        "Insufficient time to integrate for launch",
+        "Partner integration is not relevant"
+      ]
+    },
+    "alignment": {
+      "account_segments": [
+        "Enterprise",
+        "Corporate",
+        "SMB",
+        "Select",
+        "Startups"
+      ],
+      "account_segment_type": [
+        "Digital Natives",
+        "Traditional",
+        "ISV & SaaS"
+      ],
+      "buyer_segment_rollups": [
+        "Executive",
+        "Decision Maker",
+        "Practitioner",
+        "Partner",
+        "Line of Business Target Titles"
+      ],
+      "industries": [
+        "Retail",
+        "Health Care",
+        "Financial Services",
+        "Telco, Media & Gaming",
+        "Manufacturing",
+        "Public Sector"
+      ],
+      "products": [
+        "GCP",
+        "GWS"
+      ],
+      "customer_lifecycle": [
+        "Existing",
+        "Greenfield"
+      ],
+      "core_messaging": [
+        "AI",
+        "Core"
+      ]
+    },
+    "campaign_programs": [
+      "Tactic is not tied to any Global Campaign Program (this is rare)",
+      "AI - General",
+      "AI - AI For Marketing",
+      "AI - AI-powered Work",
+      "AI - AI-powered Customer Experiences",
+      "AI - Build with AI (Platform, Models)",
+      "AI - Responsible AI",
+      "AI - ROI of AI",
+      "AI - AI Trends",
+      "Data Cloud - General",
+      "Data Cloud - Data Analytics and AI Platform",
+      "Data Cloud - Database Modernization",
+      "Data Cloud - Business Intelligence (Looker)",
+      "Modern Infrastructure and Apps - General",
+      "Modern Infrastructure and Apps - Dev Productivity with Gen AI",
+      "Modern Infrastructure and Apps - Build Modern Apps",
+      "Modern Infrastructure and Apps - AI Infra",
+      "Modern Infrastructure and Apps - Infrastructure / Lift & Transform",
+      "Security - General",
+      "Security - Mandiant Expertise",
+      "Security - Transform Security Operations",
+      "Security - Cloud Security",
+      "Security - Google Threat Intelligence",
+      "Security - Fraud Protection Solutions",
+      "Security - CEP",
+      "Google Workspace - General",
+      "Google Workspace - Transform Work with Google AI",
+      "Google Workspace - Secure Alternative",
+      "Modernize IT: Cost Optimization, Employee Productivity"
+    ],
+    "adopt_adapt_invent": {
+      "when_not_tied": [
+        "Invent: No adoption/adaptations \u2014 completely new invention"
+      ],
+      "when_tied": [
+        "Adopt: Full adoption",
+        "Adapt: Partial adaptation"
+      ]
+    },
+    "users": [
+      "sujitha@google.com",
+      "demo_user@relanto.com",
+      "program_owner@relanto.com",
+      "owner2@relanto.com",
+      "owner3@relanto.com"
+    ],
+    "cities": [
+      "Bengaluru",
+      "Hyderabad",
+      "Delhi",
+      "Mumbai",
+      "Pune",
+      "Chennai"
+    ],
+    "countries": [
+      "India",
+      "United States",
+      "United Kingdom",
+      "Germany",
+      "Japan",
+      "Singapore"
+    ],
+    "cost_centers": [
+      "1Q1: EMEA - AR",
+      "CC-US",
+      "CC-EMEA",
+      "CC-APAC",
+      "CC-IN-BLR-MKT",
+      "CC-IN-NAT-MKT",
+      "CC-IN-ANL-MKT"
+    ]
+  },
+  "templates": {
+    "single_event_min": {
+      "category": "",
+      "tactic_type": "",
+      "event_kind": "Single",
+      "aligned_to_multi_event": false,
+      "basic": {
+        "event_name": "",
+        "description": "",
+        "priority": "",
+        "owner_email": "",
+        "start_date": "",
+        "end_date": "",
+        "event_date_confidence": "",
+        "leads_expected": false,
+        "no_of_inquiries": 0
+      },
+      "organization": {
+        "ring": "",
+        "party": "",
+        "category": "",
+        "subcategory": ""
+      },
+      "logistics": {
+        "funding_status": "",
+        "hosting_type": "",
+        "city": "",
+        "countries": []
+      },
+      "finance": {
+        "cloud_marketing_cost_center": "",
+        "has_spend": false,
+        "total_budget": 0,
+        "split_cost_center": false,
+        "cost_center_split": []
+      },
+      "extras": {
+        "venue": "",
+        "registration_link": "",
+        "sales_kit_link": ""
+      },
+      "partners": {
+        "partner_involved": "No Partner Involvement",
+        "partner_name": "",
+        "responsibilities": [],
+        "lead_followup": ""
+      },
+      "forecasts": {
+        "expected_registrations": 0,
+        "expected_attendees": 0
+      },
+      "campaign_program": {
+        "tied_to_program": false,
+        "program_splits": [],
+        "adopt_adapt_invent": ""
+      },
+      "alignments": {
+        "account_segment": [],
+        "account_segment_type": [],
+        "buyer_segment_rollups": [],
+        "industry": [],
+        "product": [],
+        "customer_lifecycle": [],
+        "core_messaging": []
+      },
+      "review": {
+        "status_basic": false,
+        "status_execution": false,
+        "ready_for_activation": false
+      }
+    }
+  },
+  "validation": {
+    "rules": [
+      {
+        "id": "sum_initiative_split",
+        "description": "If present, initiative_split percents must sum to 100."
+      },
+      {
+        "id": "sum_account_segment",
+        "description": "account_segment percents must sum to 100."
+      },
+      {
+        "id": "sum_product",
+        "description": "product percents must sum to 100."
+      },
+      {
+        "id": "sum_lifecycle",
+        "description": "customer_lifecycle percents must sum to 100."
+      },
+      {
+        "id": "sum_core_msg",
+        "description": "core_messaging percents must sum to 100."
+      },
+      {
+        "id": "sum_cost_center",
+        "description": "If split_cost_center is true, cost_center_split percents must sum to 100."
+      },
+      {
+        "id": "required_physical",
+        "description": "If hosting_type is Physical Event or Hybrid Event, city is required."
+      },
+      {
+        "id": "required_digital",
+        "description": "If hosting_type is Digital Event, countries must have at least one value."
+      }
+    ]
+  }
+}
