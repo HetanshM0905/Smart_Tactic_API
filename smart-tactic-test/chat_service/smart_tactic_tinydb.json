@@ -1,1 +1,1364 @@
-{"workflows": {"2": {"id": "workflow1", "name": "Event Planning Workflow", "formSchema": {"layout": {"type": "flex", "gap": "16px", "flexWrap": "wrap", "flexDirection": "column"}, "fields": [{"id": "f1", "name": "eventName", "fieldlabel": "Event name*", "fieldTitle": "", "fieldSubTitle": "", "placeholder": "", "type": "text", "class": "", "layout": {}}, {"id": "f2", "name": "eventDescription", "fieldlabel": "Event description", "fieldTitle": "Event description", "fieldSubTitle": "Provide a brief overview of the event\u2019s purpose, goals, and any relevant context", "placeholder": "Enter event description", "type": "textarea", "class": "", "rows": 3, "layout": {"margin_bottom": "0px"}}, {"id": "f7", "name": "priorityOwner", "layout": {"type": "flex", "display": "flex", "gap": "16px", "flexDirection": "row", "justifyContent": "flex-start"}, "subFields": [{"id": "f3", "name": "priority", "fieldlabel": "Priority", "fieldTitle": "Priority", "fieldSubTitle": "Select priority based on importance and budget impact", "type": "select", "placeholder": "Select priority", "options": [{"key": "1", "value": "High"}, {"key": "2", "value": "Medium"}, {"key": "3", "value": "Low"}], "layout": {"flex": "1", "margin_bottom": "0px"}}, {"id": "f4", "name": "owner", "fieldlabel": "Owner", "fieldTitle": "Owner", "fieldSubTitle": "Select the tactic\u2019s responsible person", "type": "select", "placeholder": "Select owner", "options": [{"key": "1", "value": "a@gmail.com"}, {"key": "2", "value": "b@gmail.com"}, {"key": "3", "value": "c@gmail.com"}], "layout": {"flex": "1"}}]}, {"id": "f9", "name": "eventDates", "label": "Let\u2019s more about your event", "layout": {"type": "flex", "display": "flex", "gap": "16px", "flexDirection": "row", "justifyContent": "flex-start"}, "subFields": [{"id": "f5", "name": "eventStartDate", "fieldTitle": "", "fieldSubTitle": "", "fieldlabel": "Event start date", "placeholder": "Select start event date", "type": "date", "minDate": "2025-01-01", "maxDate": "2025-12-31", "startView": "multi-year", "touchUi": true, "layout": {"flex": "1", "marginRight": "10px"}}, {"id": "f6", "name": "eventEndDate", "fieldTitle": "", "fieldSubTitle": "", "fieldlabel": "Event end date", "placeholder": "Select end event date", "type": "date", "minDate": "2025-01-01", "maxDate": "2025-12-31", "startView": "multi-year", "touchUi": true, "layout": {"flex": "1"}}]}, {"id": "", "name": "eventDateCon&expPer", "layout": {"type": "flex", "display": "flex", "gap": "16px", "flexDirection": "row", "justifyContent": "flex-start"}, "subFields": [{"id": "f7", "name": "EventDateConfidence", "fieldlabel": "Event date confidence*", "fieldTitle": "Choose how confident you are about the provided dates", "fieldSubTitle": "", "type": "select", "placeholder": "Select event date confidence", "options": [{"key": "1", "value": "High"}, {"key": "2", "value": "Medium"}, {"key": "3", "value": "Low"}], "layout": {"flex": "1", "margin_bottom": "5px"}}, {"id": "f8", "name": "expectedPerformance", "fieldlabel": "Will this tactic generate customer inquiries ?*", "fieldTitle": "Expected performance", "fieldSubTitle": "", "type": "select", "placeholder": "Select expected performance", "options": [{"key": "1", "value": "Yes"}, {"key": "2", "value": "No"}], "layout": {"flex": "1", "margin_bottom": "5px"}}]}, {"id": "", "label": "Event categorization", "subLabel": "Classify your tactic event by selecting the appropriate ring, type, category, and owner. These details help organize events for reporting, tracking, and team ownership.", "type": "grid", "layout": {"type": "grid", "columns": 1, "gap": "16px"}, "gridFields": [{"id": "f9", "name": "eventRing", "fieldlabel": "Event ring*", "type": "select", "placeholder": "Select owner", "options": [{"key": "r1", "value": "Ring 1: Global 1st Party"}, {"key": "r2", "value": "Ring 2: Global 3rd Party"}, {"key": "r3", "value": "Ring 3: Global 1st Party Series"}, {"key": "r4", "value": "Ring 4: Regional / Local"}], "layout": {"gridColumn": "1", "gridRow": "1"}}, {"id": "f10", "name": "eventOwner", "fieldlabel": "Is the event 1st party or the 3rd party ?*", "type": "select", "placeholder": "Select owner", "options": [], "dependsOn": "f9", "optionsMap": {"r1": [{"key": "p1", "value": "1st party event"}], "r2": [{"key": "p2", "value": "3rd Party Event"}], "r3": [{"key": "p3", "value": "Party C"}], "r4": [{"key": "p4", "value": "Party C"}]}, "layout": {"gridColumn": "2", "gridRow": "1"}}, {"id": "f11", "name": "eventCategory", "fieldlabel": "Event category*", "type": "select", "placeholder": "Select owner", "options": [], "layout": {"gridColumn": "1", "gridRow": "2"}, "dependsOn": "f9.f10", "optionsMap": {"R1.P1": [{"key": "C1", "value": "Category A"}], "R1.P2": [{"key": "C2", "value": "Category B"}], "R2.P3": [{"key": "C3", "value": "Category C"}]}}, {"id": "f12", "name": "eventCategoryOwner", "fieldlabel": "Event category owner*", "type": "select", "placeholder": "Select owner", "options": [], "layout": {"gridColumn": "2", "gridRow": "2"}, "dependsOn": "f9.f10.f11", "optionsMap": {"R1.P1.C1": [{"key": "CO1", "value": "Category owner A"}], "R1.P2.C2": [{"key": "CO2", "value": "Category owner B"}], "R2.P3.C3": [{"key": "CO3", "value": "Category owner C"}]}}, {"id": "f13", "name": "eventSubCategory", "fieldlabel": "Event sub category*", "type": "select", "placeholder": "Select owner", "options": [{"key": "1", "value": "a@gmail.com"}, {"key": "2", "value": "b@gmail.com"}, {"key": "3", "value": "c@gmail.com"}], "layout": {"gridColumn": "1", "gridRow": "3"}}, {"id": "f14", "name": "eventSubCategoryOwner", "fieldlabel": "Event sub category owner*", "type": "select", "placeholder": "Select owner", "options": [{"key": "1", "value": "a@gmail.com"}, {"key": "2", "value": "b@gmail.com"}, {"key": "3", "value": "c@gmail.com"}], "layout": {"gridColumn": "2", "gridRow": "3"}}, {"id": "f15", "name": "eventOrganizer", "fieldlabel": "Event organizer*", "type": "select", "placeholder": "Select owner", "options": [{"key": "1", "value": "a@gmail.com"}, {"key": "2", "value": "b@gmail.com"}, {"key": "3", "value": "c@gmail.com"}], "layout": {"gridColumn": "1", "gridRow": "4"}}, {"id": "f16", "name": "eventPointOfContact", "fieldlabel": "Event point of contact*", "type": "select", "placeholder": "Select owner", "options": [{"key": "1", "value": "a@gmail.com"}, {"key": "2", "value": "b@gmail.com"}, {"key": "3", "value": "c@gmail.com"}], "layout": {"gridColumn": "2", "gridRow": "4"}}, {"id": "f17", "name": "eventFundingStatus", "fieldlabel": "Funding status", "type": "select", "placeholder": "Select owner", "options": [{"key": "1", "value": "a@gmail.com"}, {"key": "2", "value": "b@gmail.com"}, {"key": "3", "value": "c@gmail.com"}], "layout": {"gridColumn": "1 / span 2", "gridRow": "5"}}]}, {"id": "f18", "name": "eventHost", "fieldlabel": "How is the event being hosted ?*", "fieldTitle": "Location details", "fieldSubTitle": "Specify how the event will be conducted to help align planning, logistics, and audience engagement strategies", "placeholder": "Enter event description", "type": "select", "options": [{"key": "1", "value": "a@gmail.com"}, {"key": "2", "value": "b@gmail.com"}, {"key": "3", "value": "c@gmail.com"}], "class": "", "rows": 3, "layout": {"margin_bottom": "0px"}}, {"id": "", "layout": {"type": "flex", "display": "flex", "gap": "16px", "flexDirection": "row", "justifyContent": "flex-start"}, "subFields": [{"id": "f19", "name": "region", "fieldlabel": "Select region*", "fieldTitle": "", "fieldSubTitle": "", "type": "select", "placeholder": "Select region*", "options": [{"key": "1", "value": "High"}, {"key": "2", "value": "Medium"}, {"key": "3", "value": "Low"}], "layout": {"flex": "1", "margin_bottom": "0px"}}, {"id": "f20", "name": "country", "fieldlabel": "Select country*", "type": "multiselect", "options": [{"key": "CA", "value": "Canada"}, {"key": "US", "value": "United States"}, {"key": "MX", "value": "Mexico"}, {"key": "PR", "value": "Puerto Rico"}], "layout": {"flex": "2", "margin_bottom": "0px"}}]}]}, "options": {"priorityOptions": ["P0 - In budget", "P1 - Nice to have"], "dateConfidenceOptions": ["Low", "Medium", "High"], "fundingOptions": ["Fully Funded", "Partially Funded", "Not Funded", "Unsure"], "hostingOptions": ["Digital Event", "Physical Event", "Hybrid Event"], "yesNoOptions": ["Yes", "No"], "initiativeOptions": ["Enterprise", "Corporate", "SMB", "Startups (P1A)", "SDR", "Direct Touched", "PPF/MDF", "ISV", "Others", "Partner", "Named", "Self-Serve", "GCP", "GWS", "Global Partner Programs", "Demand Gen Global Campaign Build", "NEXT", "Summits", "Events Global Build", "Global Events", "Security Demand Generation", "Security Product Marketing", "Developer Advocacy", "GCP AI Perception", "GWS AI Consideration", "Brand Global Build", "Developer Perception", "Regional Brand Campaign", "Global Brand Campaigns", "Brand Partnerships", "GWS Product Marketing", "GCP Product Marketing", "GCP Analyst Relations", "Customer Reference", "Mindshare / Thought Leadership", "Activation", "Demand Ops", "Systems & Data", "Strategy, Planning & Ops", "Marketer Enablement", "One Google", "GCM Reserve - Acquire Revenue", "GCM Reserve - Improve Efficiency", "GCM Reserve - Lift Mindshare", "GCM Reserve - Source Demand", "GCM Reserve", "DEI & Culture"], "campaignPrograms": ["Tactic is not tied...", "AI - General", "AI - AI For Marketing", "AI - AI-powered Work", "AI - AI-powered Customer Experiences", "AI - Build with AI", "AI - Responsible AI", "AI - ROI of AI", "AI - AI Trends", "Data Cloud - General", "Data Cloud - Data Analytics and AI Platform", "Data Cloud - Database Modernization", "Data Cloud - Business Intelligence (Looker)", "Modern Infrastructure and Apps - General", "Modern Infrastructure and Apps - Dev Productivity with Gen AI", "Modern Infrastructure and Apps - Build Modern Apps", "Modern Infrastructure and Apps - AI Infra", "Modern Infrastructure and Apps - Infrastructure / Lift & Transform", "Security - General", "Security - Mandiant Expertise", "Security - Transform Security Operations", "Security - Cloud Security", "Security - Google Threat Intelligence", "Security - Fraud Protection Solutions", "Security - CEP", "Google Workspace - General", "Google Workspace - Transform Work with Google AI", "Google Workspace - Secure Alternative", "Google Workspace - Modernize IT"], "adaptOptions": ["Adapt", "Adopt", "Invent"], "accountSegmentOptions": ["Enterprise", "Corporate", "SMB", "Select", "Startups"], "accountSegmentTypeOptions": ["Digital Natives", "Traditional", "ISV & Saas"], "buyerSegmentOptions": ["Executive", "Decision Maker", "Practitioner", "Partner", "Line of Business Target Titles"], "industryOptions": ["Retail", "Health Care", "Financial Services", "Telco, Media & Gaming", "Manufacturing", "Public Sector"], "productOptions": ["GCP", "GWS"], "lifecycleOptions": ["Existing", "Greenfield"], "coreMessagingOptions": ["AI", "Core"], "userList": ["user1@example.com", "user2@example.com"], "cityList": ["New York", "London", "Bangalore"], "countryList": ["USA", "UK", "India"], "ccList": ["CC1", "CC2", "CC3"], "adaptAdoptInvent": {"True": ["Adapt: Partial adaptation of Global Campaign asset - copy or content edits including translation for local re-use", "Adopt: Full adoption of Global Campaign asset - no content change, copy change, or localization"], "false": ["Invent: Completely new asset - no use of Global Campaign asset"]}, "multiPercentageOptions": {"accountSegmentAlignmentOptions": ["Enterprise", "Corporate", "SMB", "Select", "Startups"], "accountSegmentTypeOptions": ["Digital Natives", "Traditional", "ISV & Saas"], "buyerSegmentRollupsOptions": ["Executive", "Decision Maker", "Practitioner", "Partner", "Line of Business Target Titles"], "productAlignmentOptions": ["GCP", "GWS"], "customerLifecycleOptions": ["Existing", "Greenfield"], "coreMessagingOptions": ["AI", "Core"], "initiativeSplitOptions": {"Direct Touched": ["Direct Mail", "Email Marketing", "Telemarketing", "SMS/Text Marketing", "Direct-Response Advertising", "Door-to-Door Marketing"], "Partner": ["Affiliate Marketing", "Co-Branding", "Content Partnerships", "Referral Programs", "Joint Ventures", "Influencer Partnerships", "Channel Partnerships"], "Self-Serve": ["Self-Serve Advertising Platforms", "E-commerce", "Online Knowledge Bases/Help Centers", "Interactive Tools", "Webinars and Online Courses"]}}, "event_categorization": ["e1", "e2", "e3", "e4", "e5", "e6", "e7", "e8", "e9", "e10", "e11", "e12", "e13", "e14", "e15", "e16", "e17", "e18", "e19", "e20", "e21", "e22", "e23", "e24", "e25", "e26", "e27", "e28", "e29", "e30", "e31", "e32", "e33", "e34", "e35", "e36", "e37", "e38", "e39", "e40", "e41", "e42", "e43", "e44", "e45", "e46", "e47", "e48", "e49", "e50", "e51", "e52", "e53", "e54", "e55", "e56", "e57", "e58", "e59", "e60", "e61", "e62", "e63", "e64", "e65", "e66", "e67", "e68", "e69", "e70", "e71", "e72", "e73", "e74", "e75", "e76", "e77", "e78", "e79", "e80", "e81", "e82", "e83", "e84", "e85", "e86", "e87", "e88", "e89", "e90", "e91", "e92", "e93", "e94", "e95", "e96", "e97", "e98", "e99", "e100", "e101", "e102", "e103", "e104", "e105", "e106", "e107", "e108", "e109", "e110", "e111", "e112", "e113", "e114"], "f8": ["Yes", "No"], "f51": ["Yes - Single Partner", "Yes - Multiple Partners", "No Partner Involvement"], "f52": ["Partner Generated Thought Leadership", "Joint Messaging & Content Creation", "Lead Nurture & Follow Up", "Speak at Event", "Host Event"], "f53": ["Partner Only", "Google Sales Only", "Partner and Google together"], "f50": ["Partner Host", "Partner Involved", "No Partner Involvement"]}, "schema": {"f1": {"type": "string"}, "f2": {"type": "string"}, "f3": {"type": "number"}, "f4": {"type": "string"}, "f5": {"type": "string"}, "f6": {"type": "string"}, "f7": {"type": "string"}, "f8": {"type": "string"}}}}, "prompts": {"2": {"id": "prompt1", "text": "You are a Form assistant. You will suggest based on Data. You will have all context: form schema, field types, and options. You will also have chat history.\n\n{{FormObject}} {{chathistory}}\n\nUser Question: {{user_question}}\n\nSuggest based on this following Data {{data}}.\n\nInstructions to follow while suggesting:\n\n1. Do not give the entire form information at once. If the user asks for one field, give only that field information and suggestions.\n\n2. If the user gives a value for a field, update the formObject with this new value and suggest the next field to fill. Do not force prefilled data.\n\n3. When suggesting a value (e.g., event dates, priority, owner, etc.):\n   - Provide **exactly one `update` button** that contains a `field_data` object with the field id(s) and their value(s).\n   - Provide one or more `chat` buttons for corrections, alternatives, or asking again.\n\n   Example:\n   [Yes, keep this value](action:update:f4)\n   [No, change it](action:chat)\n   [I want another option](action:chat)\n\n4. Replace the field id (e.g., 'f4') with the respective form field id from the schema (e.g., 'priority').\n\n5. IMPORTANT: Your response MUST be a JSON object with three keys:\n   - 'response': the markdown string to display to the user (do not include button markdown links here)\n   - 'session_id': the active session identifier\n   - 'suggested_buttons': an array of button objects, each with:\n       - 'title': the button text\n       - 'action': the action type ('update' or 'chat')\n       - 'field_data': (only for the single update action) the object mapping field ids to values\n\nExample response:\n{\n  \"response\": \"What is the Priority of the event?\",\n  \"session_id\": \"default\",\n  \"suggested_buttons\": [\n    {\n      \"action\": \"update\",\n      \"title\": \"P0 - In budget\",\n      \"field_data\": {\n        \"f4\": \"P0 - In budget\"\n      }\n    },\n    {\n      \"action\": \"chat\",\n      \"title\": \"P1 - Nice to have\"\n    },\n    {\n      \"action\": \"chat\",\n      \"title\": \"Something else\"\n    }\n  ]\n}\n\nOnly output valid JSON in this format. Do not include any other text or explanation outside the JSON object."}}, "chat_history": {"1": {"id": "1234", "history": []}, "2": {"session_id": "deafult", "history": [{"role": "user", "content": "Can you fill all the fields at once", "timestamp": "2025-09-15T10:48:32.414272"}, {"role": "assistant", "content": "{\"markdown\": \"I can use the provided data to fill out the form for 'Innovate AI Summit 2024'. Shall I proceed?\", \"field_data\": {}, \"suggested_buttons\": [{\"title\": \"Yes, proceed\", \"action\": \"update\", \"field_data\": {\"f1\": \"Innovate AI Summit 2024\", \"f2\": \"A premier event focusing on the latest advancements in Artificial Intelligence and Machine Learning.\", \"f3\": 450, \"f4\": \"P0 - In budget\", \"f5\": \"user1@example.com\", \"f6\": \"2024-10-15\", \"f7\": \"2024-10-17\", \"f8\": \"Yes\"}}, {\"title\": \"No, let's do it step-by-step\", \"action\": \"chat\", \"field_data\": null}]}", "timestamp": "2025-09-15T10:48:32.416364"}, {"role": "user", "content": "Can you fill all the fields at once", "timestamp": "2025-09-15T11:14:27.222051"}, {"role": "assistant", "content": "{\"markdown\": \"I can use the provided data to fill out the form for 'Innovate AI Summit 2024'. Shall I proceed?\", \"field_data\": {}, \"suggested_buttons\": [{\"title\": \"Yes, proceed\", \"action\": \"update\", \"field_data\": {\"f1\": \"Innovate AI Summit 2024\", \"f2\": \"A premier event focusing on the latest advancements in Artificial Intelligence and Machine Learning.\", \"f3\": 450, \"f4\": \"P0 - In budget\", \"f5\": \"user1@example.com\", \"f6\": \"2024-10-15\", \"f7\": \"2024-10-17\", \"f8\": \"Yes\"}}, {\"title\": \"No, let's do it step-by-step\", \"action\": \"chat\", \"field_data\": {}}]}", "timestamp": "2025-09-15T11:14:27.223671"}, {"role": "user", "content": "Can you fill all the fields at once", "timestamp": "2025-09-15T11:33:53.244320"}, {"role": "assistant", "content": "{\"markdown\": \"I can use the provided data to fill out the form for 'Innovate AI Summit 2024'. Shall I proceed?\", \"field_data\": {}, \"suggested_buttons\": [{\"title\": \"Yes, proceed\", \"action\": \"update\", \"field_data\": {\"f1\": \"Innovate AI Summit 2024\", \"f2\": \"A premier event focusing on the latest advancements in Artificial Intelligence and Machine Learning.\", \"f3\": 450, \"f4\": \"P0 - In budget\", \"f5\": \"user1@example.com\", \"f6\": \"2024-10-15\", \"f7\": \"2024-10-17\", \"f8\": \"Yes\"}}, {\"title\": \"No, let's do it step-by-step\", \"action\": \"chat\", \"field_data\": {}}]}", "timestamp": "2025-09-15T11:33:53.247694"}]}}, "data": {"1": {"id": "1", "eventName": "Innovate AI Summit 2024", "eventDescription": "A premier event focusing on the latest advancements in Artificial Intelligence and Machine Learning.", "priority": "P0 - In budget", "owner": "user1@example.com", "startDate": "2024-10-15", "endDate": "2024-10-17", "eventDateConfidence": "High", "leads": "Yes", "numberOfInquiries": 450, "event_categorization": "e12", "eventOrganiser": "Tech Summits LLC", "eventPOC": "Alice Johnson", "fundingStatus": "Fully Funded", "eventHosting": "Hybrid Event", "city": "New York", "country": "USA", "venue": "Moscone Center", "registrationLink": "https://example.com/register/innovate-ai-2024", "salesKitLink": "https://example.com/sales/innovate-ai-2024", "cloudMarketingCostCenter": "CC1", "hasSpend": "Yes", "splitCostCenter": true, "inputCostCenterSplit": 50, "nonPrimaryOwners": "user2@example.com", "partnerRole": "Partner Involved", "partnerType": "Yes - Single Partner", "responsibilities": "Joint Messaging & Content Creation", "leadFollowUp": "Partner and Google together", "expectedRegistrations": 2500, "expectedAttendees": 1800, "campaignPrograms": [{"name": "AI - General", "percentage": 70}, {"name": "AI - Build with AI", "percentage": 30}], "adaptAdoptInvent": null, "accountSegmentAlignment": [{"name": "Enterprise", "percentage": 100}], "accountSegmentType": [{"name": "Traditional", "percentage": 100}], "buyerSegmentRollups": [{"name": "Executive", "percentage": 50}, {"name": "Decision Maker", "percentage": 50}], "industry": ["Financial Services", "Health Care"], "productAlignment": [{"name": "GCP", "percentage": 100}], "customerLifecycle": [{"name": "Greenfield", "percentage": 60}, {"name": "Existing", "percentage": 40}], "coreMessaging": [{"name": "AI", "percentage": 100}], "event_details": {"event_ring": "Ring 2: Global 3rd Party", "event_party": "3rd Party Event", "event_category": "Developer", "event_category_owner": "Developer Owner", "event_subcategory": "3P Tentpole Developer Events", "event_subcategory_owner": "3P Tentpole Developer Events Owner"}}}}
+{
+    "workflows": {
+        "2": {
+            "id": "workflow1",
+            "name": "Event Planning Workflow",
+            "form_schema": {
+                "layout": {
+                    "type": "flex",
+                    "gap": "16px",
+                    "flexWrap": "wrap",
+                    "flexDirection": "column"
+                },
+                "fields": [
+                    {
+                        "id": "f1",
+                        "name": "eventName",
+                        "fieldlabel": "Event name*",
+                        "fieldTitle": "",
+                        "fieldSubTitle": "",
+                        "placeholder": "",
+                        "type": "text",
+                        "class": "",
+                        "layout": {}
+                    },
+                    {
+                        "id": "f2",
+                        "name": "eventDescription",
+                        "fieldlabel": "Event description",
+                        "fieldTitle": "Event description",
+                        "fieldSubTitle": "Provide a brief overview of the event\u2019s purpose, goals, and any relevant context",
+                        "placeholder": "Enter event description",
+                        "type": "textarea",
+                        "class": "",
+                        "rows": 3,
+                        "layout": {
+                            "margin_bottom": "0px"
+                        }
+                    },
+                    {
+                        "id": "f7",
+                        "name": "priorityOwner",
+                        "layout": {
+                            "type": "flex",
+                            "display": "flex",
+                            "gap": "16px",
+                            "flexDirection": "row",
+                            "justifyContent": "flex-start"
+                        },
+                        "subFields": [
+                            {
+                                "id": "f3",
+                                "name": "priority",
+                                "fieldlabel": "Priority",
+                                "fieldTitle": "Priority",
+                                "fieldSubTitle": "Select priority based on importance and budget impact",
+                                "type": "select",
+                                "placeholder": "Select priority",
+                                "options": [
+                                    {
+                                        "key": "1",
+                                        "value": "High"
+                                    },
+                                    {
+                                        "key": "2",
+                                        "value": "Medium"
+                                    },
+                                    {
+                                        "key": "3",
+                                        "value": "Low"
+                                    }
+                                ],
+                                "layout": {
+                                    "flex": "1",
+                                    "margin_bottom": "0px"
+                                }
+                            },
+                            {
+                                "id": "f4",
+                                "name": "owner",
+                                "fieldlabel": "Owner",
+                                "fieldTitle": "Owner",
+                                "fieldSubTitle": "Select the tactic\u2019s responsible person",
+                                "type": "select",
+                                "placeholder": "Select owner",
+                                "options": [
+                                    {
+                                        "key": "1",
+                                        "value": "a@gmail.com"
+                                    },
+                                    {
+                                        "key": "2",
+                                        "value": "b@gmail.com"
+                                    },
+                                    {
+                                        "key": "3",
+                                        "value": "c@gmail.com"
+                                    }
+                                ],
+                                "layout": {
+                                    "flex": "1"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "id": "f9",
+                        "name": "eventDates",
+                        "label": "Let\u2019s more about your event",
+                        "layout": {
+                            "type": "flex",
+                            "display": "flex",
+                            "gap": "16px",
+                            "flexDirection": "row",
+                            "justifyContent": "flex-start"
+                        },
+                        "subFields": [
+                            {
+                                "id": "f5",
+                                "name": "eventStartDate",
+                                "fieldTitle": "",
+                                "fieldSubTitle": "",
+                                "fieldlabel": "Event start date",
+                                "placeholder": "Select start event date",
+                                "type": "date",
+                                "minDate": "2025-01-01",
+                                "maxDate": "2025-12-31",
+                                "startView": "multi-year",
+                                "touchUi": true,
+                                "layout": {
+                                    "flex": "1",
+                                    "marginRight": "10px"
+                                }
+                            },
+                            {
+                                "id": "f6",
+                                "name": "eventEndDate",
+                                "fieldTitle": "",
+                                "fieldSubTitle": "",
+                                "fieldlabel": "Event end date",
+                                "placeholder": "Select end event date",
+                                "type": "date",
+                                "minDate": "2025-01-01",
+                                "maxDate": "2025-12-31",
+                                "startView": "multi-year",
+                                "touchUi": true,
+                                "layout": {
+                                    "flex": "1"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "id": "",
+                        "name": "eventDateCon&expPer",
+                        "layout": {
+                            "type": "flex",
+                            "display": "flex",
+                            "gap": "16px",
+                            "flexDirection": "row",
+                            "justifyContent": "flex-start"
+                        },
+                        "subFields": [
+                            {
+                                "id": "f7",
+                                "name": "EventDateConfidence",
+                                "fieldlabel": "Event date confidence*",
+                                "fieldTitle": "Choose how confident you are about the provided dates",
+                                "fieldSubTitle": "",
+                                "type": "select",
+                                "placeholder": "Select event date confidence",
+                                "options": [
+                                    {
+                                        "key": "1",
+                                        "value": "High"
+                                    },
+                                    {
+                                        "key": "2",
+                                        "value": "Medium"
+                                    },
+                                    {
+                                        "key": "3",
+                                        "value": "Low"
+                                    }
+                                ],
+                                "layout": {
+                                    "flex": "1",
+                                    "margin_bottom": "5px"
+                                }
+                            },
+                            {
+                                "id": "f8",
+                                "name": "expectedPerformance",
+                                "fieldlabel": "Will this tactic generate customer inquiries ?*",
+                                "fieldTitle": "Expected performance",
+                                "fieldSubTitle": "",
+                                "type": "select",
+                                "placeholder": "Select expected performance",
+                                "options": [
+                                    {
+                                        "key": "1",
+                                        "value": "Yes"
+                                    },
+                                    {
+                                        "key": "2",
+                                        "value": "No"
+                                    }
+                                ],
+                                "layout": {
+                                    "flex": "1",
+                                    "margin_bottom": "5px"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "id": "",
+                        "label": "Event categorization",
+                        "subLabel": "Classify your tactic event by selecting the appropriate ring, type, category, and owner. These details help organize events for reporting, tracking, and team ownership.",
+                        "type": "grid",
+                        "layout": {
+                            "type": "grid",
+                            "columns": 1,
+                            "gap": "16px"
+                        },
+                        "gridFields": [
+                            {
+                                "id": "f9",
+                                "name": "eventRing",
+                                "fieldlabel": "Event ring*",
+                                "type": "select",
+                                "placeholder": "Select owner",
+                                "options": [
+                                    {
+                                        "key": "r1",
+                                        "value": "Ring 1: Global 1st Party"
+                                    },
+                                    {
+                                        "key": "r2",
+                                        "value": "Ring 2: Global 3rd Party"
+                                    },
+                                    {
+                                        "key": "r3",
+                                        "value": "Ring 3: Global 1st Party Series"
+                                    },
+                                    {
+                                        "key": "r4",
+                                        "value": "Ring 4: Regional / Local"
+                                    }
+                                ],
+                                "layout": {
+                                    "gridColumn": "1",
+                                    "gridRow": "1"
+                                }
+                            },
+                            {
+                                "id": "f10",
+                                "name": "eventOwner",
+                                "fieldlabel": "Is the event 1st party or the 3rd party ?*",
+                                "type": "select",
+                                "placeholder": "Select owner",
+                                "options": [],
+                                "dependsOn": "f9",
+                                "optionsMap": {
+                                    "r1": [
+                                        {
+                                            "key": "p1",
+                                            "value": "1st party event"
+                                        }
+                                    ],
+                                    "r2": [
+                                        {
+                                            "key": "p2",
+                                            "value": "3rd Party Event"
+                                        }
+                                    ],
+                                    "r3": [
+                                        {
+                                            "key": "p3",
+                                            "value": "Party C"
+                                        }
+                                    ],
+                                    "r4": [
+                                        {
+                                            "key": "p4",
+                                            "value": "Party C"
+                                        }
+                                    ]
+                                },
+                                "layout": {
+                                    "gridColumn": "2",
+                                    "gridRow": "1"
+                                }
+                            },
+                            {
+                                "id": "f11",
+                                "name": "eventCategory",
+                                "fieldlabel": "Event category*",
+                                "type": "select",
+                                "placeholder": "Select owner",
+                                "options": [],
+                                "layout": {
+                                    "gridColumn": "1",
+                                    "gridRow": "2"
+                                },
+                                "dependsOn": "f9.f10",
+                                "optionsMap": {
+                                    "R1.P1": [
+                                        {
+                                            "key": "C1",
+                                            "value": "Category A"
+                                        }
+                                    ],
+                                    "R1.P2": [
+                                        {
+                                            "key": "C2",
+                                            "value": "Category B"
+                                        }
+                                    ],
+                                    "R2.P3": [
+                                        {
+                                            "key": "C3",
+                                            "value": "Category C"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "id": "f12",
+                                "name": "eventCategoryOwner",
+                                "fieldlabel": "Event category owner*",
+                                "type": "select",
+                                "placeholder": "Select owner",
+                                "options": [],
+                                "layout": {
+                                    "gridColumn": "2",
+                                    "gridRow": "2"
+                                },
+                                "dependsOn": "f9.f10.f11",
+                                "optionsMap": {
+                                    "R1.P1.C1": [
+                                        {
+                                            "key": "CO1",
+                                            "value": "Category owner A"
+                                        }
+                                    ],
+                                    "R1.P2.C2": [
+                                        {
+                                            "key": "CO2",
+                                            "value": "Category owner B"
+                                        }
+                                    ],
+                                    "R2.P3.C3": [
+                                        {
+                                            "key": "CO3",
+                                            "value": "Category owner C"
+                                        }
+                                    ]
+                                }
+                            },
+                            {
+                                "id": "f13",
+                                "name": "eventSubCategory",
+                                "fieldlabel": "Event sub category*",
+                                "type": "select",
+                                "placeholder": "Select owner",
+                                "options": [
+                                    {
+                                        "key": "1",
+                                        "value": "a@gmail.com"
+                                    },
+                                    {
+                                        "key": "2",
+                                        "value": "b@gmail.com"
+                                    },
+                                    {
+                                        "key": "3",
+                                        "value": "c@gmail.com"
+                                    }
+                                ],
+                                "layout": {
+                                    "gridColumn": "1",
+                                    "gridRow": "3"
+                                }
+                            },
+                            {
+                                "id": "f14",
+                                "name": "eventSubCategoryOwner",
+                                "fieldlabel": "Event sub category owner*",
+                                "type": "select",
+                                "placeholder": "Select owner",
+                                "options": [
+                                    {
+                                        "key": "1",
+                                        "value": "a@gmail.com"
+                                    },
+                                    {
+                                        "key": "2",
+                                        "value": "b@gmail.com"
+                                    },
+                                    {
+                                        "key": "3",
+                                        "value": "c@gmail.com"
+                                    }
+                                ],
+                                "layout": {
+                                    "gridColumn": "2",
+                                    "gridRow": "3"
+                                }
+                            },
+                            {
+                                "id": "f15",
+                                "name": "eventOrganizer",
+                                "fieldlabel": "Event organizer*",
+                                "type": "select",
+                                "placeholder": "Select owner",
+                                "options": [
+                                    {
+                                        "key": "1",
+                                        "value": "a@gmail.com"
+                                    },
+                                    {
+                                        "key": "2",
+                                        "value": "b@gmail.com"
+                                    },
+                                    {
+                                        "key": "3",
+                                        "value": "c@gmail.com"
+                                    }
+                                ],
+                                "layout": {
+                                    "gridColumn": "1",
+                                    "gridRow": "4"
+                                }
+                            },
+                            {
+                                "id": "f16",
+                                "name": "eventPointOfContact",
+                                "fieldlabel": "Event point of contact*",
+                                "type": "select",
+                                "placeholder": "Select owner",
+                                "options": [
+                                    {
+                                        "key": "1",
+                                        "value": "a@gmail.com"
+                                    },
+                                    {
+                                        "key": "2",
+                                        "value": "b@gmail.com"
+                                    },
+                                    {
+                                        "key": "3",
+                                        "value": "c@gmail.com"
+                                    }
+                                ],
+                                "layout": {
+                                    "gridColumn": "2",
+                                    "gridRow": "4"
+                                }
+                            },
+                            {
+                                "id": "f17",
+                                "name": "eventFundingStatus",
+                                "fieldlabel": "Funding status",
+                                "type": "select",
+                                "placeholder": "Select owner",
+                                "options": [
+                                    {
+                                        "key": "1",
+                                        "value": "a@gmail.com"
+                                    },
+                                    {
+                                        "key": "2",
+                                        "value": "b@gmail.com"
+                                    },
+                                    {
+                                        "key": "3",
+                                        "value": "c@gmail.com"
+                                    }
+                                ],
+                                "layout": {
+                                    "gridColumn": "1 / span 2",
+                                    "gridRow": "5"
+                                }
+                            }
+                        ]
+                    },
+                    {
+                        "id": "f18",
+                        "name": "eventHost",
+                        "fieldlabel": "How is the event being hosted ?*",
+                        "fieldTitle": "Location details",
+                        "fieldSubTitle": "Specify how the event will be conducted to help align planning, logistics, and audience engagement strategies",
+                        "placeholder": "Enter event description",
+                        "type": "select",
+                        "options": [
+                            {
+                                "key": "1",
+                                "value": "a@gmail.com"
+                            },
+                            {
+                                "key": "2",
+                                "value": "b@gmail.com"
+                            },
+                            {
+                                "key": "3",
+                                "value": "c@gmail.com"
+                            }
+                        ],
+                        "class": "",
+                        "rows": 3,
+                        "layout": {
+                            "margin_bottom": "0px"
+                        }
+                    },
+                    {
+                        "id": "",
+                        "layout": {
+                            "type": "flex",
+                            "display": "flex",
+                            "gap": "16px",
+                            "flexDirection": "row",
+                            "justifyContent": "flex-start"
+                        },
+                        "subFields": [
+                            {
+                                "id": "f19",
+                                "name": "region",
+                                "fieldlabel": "Select region*",
+                                "fieldTitle": "",
+                                "fieldSubTitle": "",
+                                "type": "select",
+                                "placeholder": "Select region*",
+                                "options": [
+                                    {
+                                        "key": "1",
+                                        "value": "High"
+                                    },
+                                    {
+                                        "key": "2",
+                                        "value": "Medium"
+                                    },
+                                    {
+                                        "key": "3",
+                                        "value": "Low"
+                                    }
+                                ],
+                                "layout": {
+                                    "flex": "1",
+                                    "margin_bottom": "0px"
+                                }
+                            },
+                            {
+                                "id": "f20",
+                                "name": "country",
+                                "fieldlabel": "Select country*",
+                                "type": "multiselect",
+                                "options": [
+                                    {
+                                        "key": "CA",
+                                        "value": "Canada"
+                                    },
+                                    {
+                                        "key": "US",
+                                        "value": "United States"
+                                    },
+                                    {
+                                        "key": "MX",
+                                        "value": "Mexico"
+                                    },
+                                    {
+                                        "key": "PR",
+                                        "value": "Puerto Rico"
+                                    }
+                                ],
+                                "layout": {
+                                    "flex": "2",
+                                    "margin_bottom": "0px"
+                                }
+                            }
+                        ]
+                    }
+                ]
+            },
+            "options": {
+                "priorityOptions": [
+                    "P0 - In budget",
+                    "P1 - Nice to have"
+                ],
+                "dateConfidenceOptions": [
+                    "Low",
+                    "Medium",
+                    "High"
+                ],
+                "fundingOptions": [
+                    "Fully Funded",
+                    "Partially Funded",
+                    "Not Funded",
+                    "Unsure"
+                ],
+                "hostingOptions": [
+                    "Digital Event",
+                    "Physical Event",
+                    "Hybrid Event"
+                ],
+                "yesNoOptions": [
+                    "Yes",
+                    "No"
+                ],
+                "initiativeOptions": [
+                    "Enterprise",
+                    "Corporate",
+                    "SMB",
+                    "Startups (P1A)",
+                    "SDR",
+                    "Direct Touched",
+                    "PPF/MDF",
+                    "ISV",
+                    "Others",
+                    "Partner",
+                    "Named",
+                    "Self-Serve",
+                    "GCP",
+                    "GWS",
+                    "Global Partner Programs",
+                    "Demand Gen Global Campaign Build",
+                    "NEXT",
+                    "Summits",
+                    "Events Global Build",
+                    "Global Events",
+                    "Security Demand Generation",
+                    "Security Product Marketing",
+                    "Developer Advocacy",
+                    "GCP AI Perception",
+                    "GWS AI Consideration",
+                    "Brand Global Build",
+                    "Developer Perception",
+                    "Regional Brand Campaign",
+                    "Global Brand Campaigns",
+                    "Brand Partnerships",
+                    "GWS Product Marketing",
+                    "GCP Product Marketing",
+                    "GCP Analyst Relations",
+                    "Customer Reference",
+                    "Mindshare / Thought Leadership",
+                    "Activation",
+                    "Demand Ops",
+                    "Systems & Data",
+                    "Strategy, Planning & Ops",
+                    "Marketer Enablement",
+                    "One Google",
+                    "GCM Reserve - Acquire Revenue",
+                    "GCM Reserve - Improve Efficiency",
+                    "GCM Reserve - Lift Mindshare",
+                    "GCM Reserve - Source Demand",
+                    "GCM Reserve",
+                    "DEI & Culture"
+                ],
+                "campaignPrograms": [
+                    "Tactic is not tied...",
+                    "AI - General",
+                    "AI - AI For Marketing",
+                    "AI - AI-powered Work",
+                    "AI - AI-powered Customer Experiences",
+                    "AI - Build with AI",
+                    "AI - Responsible AI",
+                    "AI - ROI of AI",
+                    "AI - AI Trends",
+                    "Data Cloud - General",
+                    "Data Cloud - Data Analytics and AI Platform",
+                    "Data Cloud - Database Modernization",
+                    "Data Cloud - Business Intelligence (Looker)",
+                    "Modern Infrastructure and Apps - General",
+                    "Modern Infrastructure and Apps - Dev Productivity with Gen AI",
+                    "Modern Infrastructure and Apps - Build Modern Apps",
+                    "Modern Infrastructure and Apps - AI Infra",
+                    "Modern Infrastructure and Apps - Infrastructure / Lift & Transform",
+                    "Security - General",
+                    "Security - Mandiant Expertise",
+                    "Security - Transform Security Operations",
+                    "Security - Cloud Security",
+                    "Security - Google Threat Intelligence",
+                    "Security - Fraud Protection Solutions",
+                    "Security - CEP",
+                    "Google Workspace - General",
+                    "Google Workspace - Transform Work with Google AI",
+                    "Google Workspace - Secure Alternative",
+                    "Google Workspace - Modernize IT"
+                ],
+                "adaptOptions": [
+                    "Adapt",
+                    "Adopt",
+                    "Invent"
+                ],
+                "accountSegmentOptions": [
+                    "Enterprise",
+                    "Corporate",
+                    "SMB",
+                    "Select",
+                    "Startups"
+                ],
+                "accountSegmentTypeOptions": [
+                    "Digital Natives",
+                    "Traditional",
+                    "ISV & Saas"
+                ],
+                "buyerSegmentOptions": [
+                    "Executive",
+                    "Decision Maker",
+                    "Practitioner",
+                    "Partner",
+                    "Line of Business Target Titles"
+                ],
+                "industryOptions": [
+                    "Retail",
+                    "Health Care",
+                    "Financial Services",
+                    "Telco, Media & Gaming",
+                    "Manufacturing",
+                    "Public Sector"
+                ],
+                "productOptions": [
+                    "GCP",
+                    "GWS"
+                ],
+                "lifecycleOptions": [
+                    "Existing",
+                    "Greenfield"
+                ],
+                "coreMessagingOptions": [
+                    "AI",
+                    "Core"
+                ],
+                "userList": [
+                    "user1@example.com",
+                    "user2@example.com"
+                ],
+                "cityList": [
+                    "New York",
+                    "London",
+                    "Bangalore"
+                ],
+                "countryList": [
+                    "USA",
+                    "UK",
+                    "India"
+                ],
+                "ccList": [
+                    "CC1",
+                    "CC2",
+                    "CC3"
+                ],
+                "adaptAdoptInvent": {
+                    "True": [
+                        "Adapt: Partial adaptation of Global Campaign asset - copy or content edits including translation for local re-use",
+                        "Adopt: Full adoption of Global Campaign asset - no content change, copy change, or localization"
+                    ],
+                    "false": [
+                        "Invent: Completely new asset - no use of Global Campaign asset"
+                    ]
+                },
+                "multiPercentageOptions": {
+                    "accountSegmentAlignmentOptions": [
+                        "Enterprise",
+                        "Corporate",
+                        "SMB",
+                        "Select",
+                        "Startups"
+                    ],
+                    "accountSegmentTypeOptions": [
+                        "Digital Natives",
+                        "Traditional",
+                        "ISV & Saas"
+                    ],
+                    "buyerSegmentRollupsOptions": [
+                        "Executive",
+                        "Decision Maker",
+                        "Practitioner",
+                        "Partner",
+                        "Line of Business Target Titles"
+                    ],
+                    "productAlignmentOptions": [
+                        "GCP",
+                        "GWS"
+                    ],
+                    "customerLifecycleOptions": [
+                        "Existing",
+                        "Greenfield"
+                    ],
+                    "coreMessagingOptions": [
+                        "AI",
+                        "Core"
+                    ],
+                    "initiativeSplitOptions": {
+                        "Direct Touched": [
+                            "Direct Mail",
+                            "Email Marketing",
+                            "Telemarketing",
+                            "SMS/Text Marketing",
+                            "Direct-Response Advertising",
+                            "Door-to-Door Marketing"
+                        ],
+                        "Partner": [
+                            "Affiliate Marketing",
+                            "Co-Branding",
+                            "Content Partnerships",
+                            "Referral Programs",
+                            "Joint Ventures",
+                            "Influencer Partnerships",
+                            "Channel Partnerships"
+                        ],
+                        "Self-Serve": [
+                            "Self-Serve Advertising Platforms",
+                            "E-commerce",
+                            "Online Knowledge Bases/Help Centers",
+                            "Interactive Tools",
+                            "Webinars and Online Courses"
+                        ]
+                    }
+                },
+                "event_categorization": [
+                    "e1",
+                    "e2",
+                    "e3",
+                    "e4",
+                    "e5",
+                    "e6",
+                    "e7",
+                    "e8",
+                    "e9",
+                    "e10",
+                    "e11",
+                    "e12",
+                    "e13",
+                    "e14",
+                    "e15",
+                    "e16",
+                    "e17",
+                    "e18",
+                    "e19",
+                    "e20",
+                    "e21",
+                    "e22",
+                    "e23",
+                    "e24",
+                    "e25",
+                    "e26",
+                    "e27",
+                    "e28",
+                    "e29",
+                    "e30",
+                    "e31",
+                    "e32",
+                    "e33",
+                    "e34",
+                    "e35",
+                    "e36",
+                    "e37",
+                    "e38",
+                    "e39",
+                    "e40",
+                    "e41",
+                    "e42",
+                    "e43",
+                    "e44",
+                    "e45",
+                    "e46",
+                    "e47",
+                    "e48",
+                    "e49",
+                    "e50",
+                    "e51",
+                    "e52",
+                    "e53",
+                    "e54",
+                    "e55",
+                    "e56",
+                    "e57",
+                    "e58",
+                    "e59",
+                    "e60",
+                    "e61",
+                    "e62",
+                    "e63",
+                    "e64",
+                    "e65",
+                    "e66",
+                    "e67",
+                    "e68",
+                    "e69",
+                    "e70",
+                    "e71",
+                    "e72",
+                    "e73",
+                    "e74",
+                    "e75",
+                    "e76",
+                    "e77",
+                    "e78",
+                    "e79",
+                    "e80",
+                    "e81",
+                    "e82",
+                    "e83",
+                    "e84",
+                    "e85",
+                    "e86",
+                    "e87",
+                    "e88",
+                    "e89",
+                    "e90",
+                    "e91",
+                    "e92",
+                    "e93",
+                    "e94",
+                    "e95",
+                    "e96",
+                    "e97",
+                    "e98",
+                    "e99",
+                    "e100",
+                    "e101",
+                    "e102",
+                    "e103",
+                    "e104",
+                    "e105",
+                    "e106",
+                    "e107",
+                    "e108",
+                    "e109",
+                    "e110",
+                    "e111",
+                    "e112",
+                    "e113",
+                    "e114"
+                ],
+                "f8": [
+                    "Yes",
+                    "No"
+                ],
+                "f51": [
+                    "Yes - Single Partner",
+                    "Yes - Multiple Partners",
+                    "No Partner Involvement"
+                ],
+                "f52": [
+                    "Partner Generated Thought Leadership",
+                    "Joint Messaging & Content Creation",
+                    "Lead Nurture & Follow Up",
+                    "Speak at Event",
+                    "Host Event"
+                ],
+                "f53": [
+                    "Partner Only",
+                    "Google Sales Only",
+                    "Partner and Google together"
+                ],
+                "f50": [
+                    "Partner Host",
+                    "Partner Involved",
+                    "No Partner Involvement"
+                ]
+            },
+            "schema": {
+                "f1": {
+                    "type": "string"
+                },
+                "f2": {
+                    "type": "string"
+                },
+                "f3": {
+                    "type": "number"
+                },
+                "f4": {
+                    "type": "string"
+                },
+                "f5": {
+                    "type": "string"
+                },
+                "f6": {
+                    "type": "string"
+                },
+                "f7": {
+                    "type": "string"
+                },
+                "f8": {
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "prompts": {
+        "2": {
+            "id": "prompt1",
+            "text": "You are a Form assistant. You will suggest based on Data. You will have all context: form schema, field types, and options.This is the current state of form {{state}}. Based on current state, user question, with suggested data, answer or suggest the fields. You will also have chat history.\n\n{{FormObject}} {{chathistory}}\n\nUser Question: {{user_question}}\n\nSuggest based on this following Data {{data}}.\n\nInstructions to follow while suggesting:\n\n1. Do not suggest fields that already have values in {{state}} unless the user explicitly asks to change them.\n\n2. Only suggest the next empty field in the schema.\n\n3. Do not give the entire form information at once. If the user asks for one field, give only that field information and suggestions.\n\n4. If the user gives a value for a field, update the formObject with this new value and suggest the next field to fill. Do not force prefilled data.\n\n5. When suggesting a value (e.g., event dates, priority, owner, etc.):\n   - Provide **exactly one `update` button** that contains a `field_data` object with the field id(s) and their value(s).\n   - Provide one or more `chat` buttons for corrections, alternatives, or asking again.\n\n   Example:\n   [Yes, keep this value](action:update:f4)\n   [No, change it](action:chat)\n   [I want another option](action:chat)\n\n6. Replace the field id (e.g., 'f4') with the respective form field id from the schema (e.g., 'priority').\n\n7. IMPORTANT: Your response MUST be a JSON object with three keys:\n   - 'response': the markdown string to display to the user (do not include button markdown links here)\n   - 'session_id': the active session identifier\n   - 'suggested_buttons': an array of button objects, each with:\n       - 'title': the button text\n       - 'action': the action type ('update' or 'chat')\n       - 'field_data': (only for the single update action) the object mapping field ids to values\n\nExample response:\n{\n  \"response\": \"What is the Priority of the event?\",\n  \"session_id\": \"default\",\n  \"suggested_buttons\": [\n    {\n      \"action\": \"update\",\n      \"title\": \"P0 - In budget\",\n      \"field_data\": {\n        \"f4\": \"P0 - In budget\"\n      }\n    },\n    {\n      \"action\": \"chat\",\n      \"title\": \"P1 - Nice to have\"\n    },\n    {\n      \"action\": \"chat\",\n      \"title\": \"Something else\"\n    }\n  ]\n}\n\nOnly output valid JSON in this format. Do not include any other text or explanation outside the JSON object."
+        }
+    },
+    "chat_history": {
+        "1": {
+            "id": "1234",
+            "history": []
+        },
+        "2": {
+            "session_id": "deafult",
+            "history": [
+                {
+                    "role": "user",
+                    "content": "Can you help me with this form",
+                    "timestamp": "2025-09-16T14:56:10.027570"
+                },
+                {
+                    "role": "assistant",
+                    "content": "{\"markdown\": \"Of course. Let's start with the event name. Is it 'Innovate AI Summit 2024'?\", \"field_data\": {\"f1\": \"AI cloud\"}, \"suggested_buttons\": [{\"title\": \"Yes, confirm event name\", \"action\": \"update\", \"field_data\": {\"f1\": \"Innovate AI Summit 2024\"}}, {\"title\": \"No, I'll enter a different name\", \"action\": \"chat\", \"field_data\": null}]}",
+                    "timestamp": "2025-09-16T14:56:10.030540"
+                },
+                {
+                    "role": "user",
+                    "content": "Can you help me with this form",
+                    "timestamp": "2025-09-16T15:01:10.589348"
+                },
+                {
+                    "role": "assistant",
+                    "content": "{\"markdown\": \"I can help with that. Based on the data, the event is named 'Innovate AI Summit 2024'. Would you like to use this name?\", \"field_data\": {\"f1\": \"AI cloud\"}, \"suggested_buttons\": [{\"title\": \"Yes, use 'Innovate AI Summit 2024'\", \"action\": \"update\", \"field_data\": {\"f1\": \"Innovate AI Summit 2024\"}}, {\"title\": \"No, I'll enter a different name\", \"action\": \"chat\", \"field_data\": null}]}",
+                    "timestamp": "2025-09-16T15:01:10.591083"
+                },
+                {
+                    "role": "user",
+                    "content": "Can you help me with this form",
+                    "timestamp": "2025-09-16T15:05:25.969983"
+                },
+                {
+                    "role": "assistant",
+                    "content": "{\"markdown\": \"Of course. Let's start with the event name. Is it 'Innovate AI Summit 2024'?\", \"field_data\": {\"f1\": \"AI cloud\"}, \"suggested_buttons\": [{\"title\": \"Yes, confirm event name\", \"action\": \"update\", \"field_data\": {\"f1\": \"Innovate AI Summit 2024\"}}, {\"title\": \"No, I'll enter a different name\", \"action\": \"chat\", \"field_data\": null}]}",
+                    "timestamp": "2025-09-16T15:05:25.972679"
+                },
+                {
+                    "role": "user",
+                    "content": "Can you help me with this form",
+                    "timestamp": "2025-09-16T15:19:11.655104"
+                },
+                {
+                    "role": "assistant",
+                    "content": "{\"markdown\": \"I can help with that. Let's move to the event description. Based on the data, I can suggest the following: 'A premier event focusing on the latest advancements in Artificial Intelligence and Machine Learning.' Would you like to use this?\", \"field_data\": {\"f1\": \"AI cloud\"}, \"suggested_buttons\": [{\"title\": \"Yes, use this description\", \"action\": \"update\", \"field_data\": {\"f2\": \"A premier event focusing on the latest advancements in Artificial Intelligence and Machine Learning.\"}}, {\"title\": \"No, I'll provide a different one\", \"action\": \"chat\", \"field_data\": null}]}",
+                    "timestamp": "2025-09-16T15:19:11.657757"
+                },
+                {
+                    "role": "user",
+                    "content": "Can you help me with this form",
+                    "timestamp": "2025-09-16T16:17:55.066698"
+                },
+                {
+                    "role": "assistant",
+                    "content": "{\"markdown\": \"What is the event name?\", \"field_data\": {}, \"suggested_buttons\": [{\"title\": \"Innovate AI Summit 2024\", \"action\": \"update\", \"field_data\": {\"f1\": \"Innovate AI Summit 2024\"}}, {\"title\": \"Other\", \"action\": \"chat\", \"field_data\": null}]}",
+                    "timestamp": "2025-09-16T16:17:55.068367"
+                },
+                {
+                    "role": "user",
+                    "content": "Can you help me with this form",
+                    "timestamp": "2025-09-16T16:26:17.547195"
+                },
+                {
+                    "role": "assistant",
+                    "content": "{\"markdown\": \"What is the event description?\", \"field_data\": {\"f1\": \"AI cloud\"}, \"suggested_buttons\": [{\"title\": \"A premier event focusing on the latest advancements in Artificial Intelligence and Machine Learning.\", \"action\": \"update\", \"field_data\": {\"f2\": \"A premier event focusing on the latest advancements in Artificial Intelligence and Machine Learning.\"}}, {\"title\": \"Other\", \"action\": \"chat\", \"field_data\": {}}]}",
+                    "timestamp": "2025-09-16T16:26:17.549121"
+                },
+                {
+                    "role": "user",
+                    "content": "Can you help me with this form",
+                    "timestamp": "2025-09-16T16:31:20.202050"
+                },
+                {
+                    "role": "assistant",
+                    "content": "{\"markdown\": \"What is the event name?\", \"field_data\": {}, \"suggested_buttons\": [{\"title\": \"Innovate AI Summit 2024\", \"action\": \"update\", \"field_data\": {\"f1\": \"Innovate AI Summit 2024\"}}, {\"title\": \"Other\", \"action\": \"chat\", \"field_data\": {}}]}",
+                    "timestamp": "2025-09-16T16:31:20.204377"
+                },
+                {
+                    "role": "user",
+                    "content": "Can you help me with this form",
+                    "timestamp": "2025-09-16T16:35:48.026507"
+                },
+                {
+                    "role": "assistant",
+                    "content": "{\"markdown\": \"What is the event description?\", \"field_data\": {\"f1\": \"AI cloud\"}, \"suggested_buttons\": [{\"title\": \"A premier event focusing on the latest advancements in Artificial Intelligence and Machine Learning.\", \"action\": \"update\", \"field_data\": {\"f2\": \"A premier event focusing on the latest advancements in Artificial Intelligence and Machine Learning.\"}}, {\"title\": \"Other\", \"action\": \"chat\", \"field_data\": {}}]}",
+                    "timestamp": "2025-09-16T16:35:48.030655"
+                },
+                {
+                    "role": "user",
+                    "content": "Can you help me with this form",
+                    "timestamp": "2025-09-16T16:41:02.293721"
+                },
+                {
+                    "role": "assistant",
+                    "content": "{\"markdown\": \"What is the event name?\", \"field_data\": {}, \"suggested_buttons\": [{\"title\": \"Innovate AI Summit 2024\", \"action\": \"update\", \"field_data\": {\"f1\": \"Innovate AI Summit 2024\"}}, {\"title\": \"Other\", \"action\": \"chat\", \"field_data\": {}}]}",
+                    "timestamp": "2025-09-16T16:41:02.295981"
+                },
+                {
+                    "role": "user",
+                    "content": "Can you help me with this form",
+                    "timestamp": "2025-09-16T16:47:03.364126"
+                },
+                {
+                    "role": "assistant",
+                    "content": "{\"markdown\": \"What is the event name?\", \"field_data\": {}, \"suggested_buttons\": [{\"title\": \"Innovate AI Summit 2024\", \"action\": \"update\", \"field_data\": {\"f1\": \"Innovate AI Summit 2024\"}}, {\"title\": \"Other\", \"action\": \"chat\", \"field_data\": {}}]}",
+                    "timestamp": "2025-09-16T16:47:03.366345"
+                },
+                {
+                    "role": "user",
+                    "content": "Can you help me with this form",
+                    "timestamp": "2025-09-16T17:32:05.940428"
+                },
+                {
+                    "role": "assistant",
+                    "content": "{\"markdown\": \"What is the event name?\", \"field_data\": {}, \"suggested_buttons\": [{\"title\": \"Innovate AI Summit 2024\", \"action\": \"update\", \"field_data\": {\"f1\": \"Innovate AI Summit 2024\"}}, {\"title\": \"Other\", \"action\": \"chat\", \"field_data\": {}}]}",
+                    "timestamp": "2025-09-16T17:32:05.942171"
+                },
+                {
+                    "role": "user",
+                    "content": "Can you help me with this form",
+                    "timestamp": "2025-09-16T19:13:58.929538"
+                },
+                {
+                    "role": "assistant",
+                    "content": "{\"markdown\": \"What is the event name?\", \"field_data\": {}, \"suggested_buttons\": [{\"title\": \"Innovate AI Summit 2024\", \"action\": \"update\", \"field_data\": {\"f1\": \"Innovate AI Summit 2024\"}}, {\"title\": \"Other\", \"action\": \"chat\", \"field_data\": {}}]}",
+                    "timestamp": "2025-09-16T19:13:58.931383"
+                }
+            ]
+        },
+        "3": {
+            "session_id": "XYZ",
+            "history": [
+                {
+                    "role": "user",
+                    "content": "Can you help me with this form",
+                    "timestamp": "2025-09-16T20:41:03.240008"
+                },
+                {
+                    "role": "assistant",
+                    "content": "{\"markdown\": \"What is the event name?\", \"field_data\": {}, \"suggested_buttons\": [{\"title\": \"Innovate AI Summit 2024\", \"action\": \"update\", \"field_data\": {\"f2\": \"Innovate AI Summit 2024\"}}, {\"title\": \"Other\", \"action\": \"chat\", \"field_data\": null}]}",
+                    "timestamp": "2025-09-16T20:41:03.242281"
+                },
+                {
+                    "role": "user",
+                    "content": "Can you suggest priority",
+                    "timestamp": "2025-09-16T21:09:39.191791"
+                },
+                {
+                    "role": "assistant",
+                    "content": "{\"markdown\": \"What is the priority of this event?\", \"field_data\": {}, \"suggested_buttons\": [{\"title\": \"P0 - In budget\", \"action\": \"update\", \"field_data\": {\"f4\": \"P0 - In budget\"}}, {\"title\": \"P1 - Nice to have\", \"action\": \"update\", \"field_data\": {\"f4\": \"P1 - Nice to have\"}}, {\"title\": \"Other\", \"action\": \"chat\", \"field_data\": null}]}",
+                    "timestamp": "2025-09-16T21:09:39.193551"
+                }
+            ]
+        },
+        "4": {
+            "session_id": "1",
+            "history": [
+                {
+                    "role": "user",
+                    "content": "Can you help me with this form",
+                    "timestamp": "2025-09-18T00:39:21.176700"
+                },
+                {
+                    "role": "assistant",
+                    "content": "{\"markdown\": \"What is the event name?\", \"field_data\": {}, \"suggested_buttons\": [{\"title\": \"Innovate AI Summit 2024\", \"action\": \"update\", \"field_data\": {\"f1\": \"Innovate AI Summit 2024\"}}, {\"title\": \"Other\", \"action\": \"chat\", \"field_data\": null}]}",
+                    "timestamp": "2025-09-18T00:39:21.177903"
+                },
+                {
+                    "role": "user",
+                    "content": "updated",
+                    "timestamp": "2025-09-18T00:43:45.123994"
+                },
+                {
+                    "role": "assistant",
+                    "content": "{\"markdown\": \"What is the event description?\", \"field_data\": {}, \"suggested_buttons\": [{\"title\": \"A premier event focusing on the latest advancements in Artificial Intelligence and Machine Learning.\", \"action\": \"update\", \"field_data\": {\"f2\": \"A premier event focusing on the latest advancements in Artificial Intelligence and Machine Learning.\"}}, {\"title\": \"Other\", \"action\": \"chat\", \"field_data\": {}}]}",
+                    "timestamp": "2025-09-18T00:43:45.125306"
+                },
+                {
+                    "role": "user",
+                    "content": "updated",
+                    "timestamp": "2025-09-18T00:46:46.954391"
+                },
+                {
+                    "role": "assistant",
+                    "content": "{\"markdown\": \"What is the event's priority?\", \"field_data\": {}, \"suggested_buttons\": [{\"title\": \"P0 - In budget\", \"action\": \"update\", \"field_data\": {\"f4\": \"P0 - In budget\"}}, {\"title\": \"P1 - Nice to have\", \"action\": \"update\", \"field_data\": {\"f4\": \"P1 - Nice to have\"}}, {\"title\": \"Other\", \"action\": \"chat\", \"field_data\": {}}]}",
+                    "timestamp": "2025-09-18T00:46:46.956224"
+                }
+            ]
+        },
+        "5": {
+            "session_id": "2",
+            "history": [
+                {
+                    "role": "user",
+                    "content": "help me with this form",
+                    "timestamp": "2025-09-18T09:34:33.167690"
+                },
+                {
+                    "role": "assistant",
+                    "content": "{\"markdown\": \"What is the event name?\", \"field_data\": {}, \"suggested_buttons\": [{\"title\": \"Innovate AI Summit 2024\", \"action\": \"update\", \"field_data\": {\"f1\": \"Innovate AI Summit 2024\"}}, {\"title\": \"Suggest other names\", \"action\": \"chat\", \"field_data\": null}]}",
+                    "timestamp": "2025-09-18T09:34:33.170283"
+                },
+                {
+                    "role": "user",
+                    "content": "help me with this form",
+                    "timestamp": "2025-09-18T09:46:38.151102"
+                },
+                {
+                    "role": "user",
+                    "content": "help me with this form",
+                    "timestamp": "2025-09-18T09:50:22.793385"
+                },
+                {
+                    "role": "user",
+                    "content": "help me with this form",
+                    "timestamp": "2025-09-18T09:52:29.035491"
+                },
+                {
+                    "role": "assistant",
+                    "content": "{\"markdown\": \"What is the event name?\", \"field_data\": {}, \"suggested_buttons\": [{\"title\": \"Innovate AI Summit 2024\", \"action\": \"update\", \"field_data\": {\"f1\": \"Innovate AI Summit 2024\"}}, {\"title\": \"Another event name\", \"action\": \"chat\", \"field_data\": null}]}",
+                    "timestamp": "2025-09-18T09:52:35.934685"
+                }
+            ]
+        },
+        "6": {
+            "session_id": "3",
+            "history": [
+                {
+                    "role": "user",
+                    "content": "help me with this form",
+                    "timestamp": "2025-09-18T09:55:12.490351"
+                }
+            ]
+        }
+    },
+    "data": {
+        "1": {
+            "id": "1",
+            "eventName": "Innovate AI Summit 2024",
+            "eventDescription": "A premier event focusing on the latest advancements in Artificial Intelligence and Machine Learning.",
+            "priority": "P0 - In budget",
+            "owner": "user1@example.com",
+            "startDate": "2024-10-15",
+            "endDate": "2024-10-17",
+            "eventDateConfidence": "High",
+            "leads": "Yes",
+            "numberOfInquiries": 450,
+            "event_categorization": "e12",
+            "eventOrganiser": "Tech Summits LLC",
+            "eventPOC": "Alice Johnson",
+            "fundingStatus": "Fully Funded",
+            "eventHosting": "Hybrid Event",
+            "city": "New York",
+            "country": "USA",
+            "venue": "Moscone Center",
+            "registrationLink": "https://example.com/register/innovate-ai-2024",
+            "salesKitLink": "https://example.com/sales/innovate-ai-2024",
+            "cloudMarketingCostCenter": "CC1",
+            "hasSpend": "Yes",
+            "splitCostCenter": true,
+            "inputCostCenterSplit": 50,
+            "nonPrimaryOwners": "user2@example.com",
+            "partnerRole": "Partner Involved",
+            "partnerType": "Yes - Single Partner",
+            "responsibilities": "Joint Messaging & Content Creation",
+            "leadFollowUp": "Partner and Google together",
+            "expectedRegistrations": 2500,
+            "expectedAttendees": 1800,
+            "campaignPrograms": [
+                {
+                    "name": "AI - General",
+                    "percentage": 70
+                },
+                {
+                    "name": "AI - Build with AI",
+                    "percentage": 30
+                }
+            ],
+            "adaptAdoptInvent": null,
+            "accountSegmentAlignment": [
+                {
+                    "name": "Enterprise",
+                    "percentage": 100
+                }
+            ],
+            "accountSegmentType": [
+                {
+                    "name": "Traditional",
+                    "percentage": 100
+                }
+            ],
+            "buyerSegmentRollups": [
+                {
+                    "name": "Executive",
+                    "percentage": 50
+                },
+                {
+                    "name": "Decision Maker",
+                    "percentage": 50
+                }
+            ],
+            "industry": [
+                "Financial Services",
+                "Health Care"
+            ],
+            "productAlignment": [
+                {
+                    "name": "GCP",
+                    "percentage": 100
+                }
+            ],
+            "customerLifecycle": [
+                {
+                    "name": "Greenfield",
+                    "percentage": 60
+                },
+                {
+                    "name": "Existing",
+                    "percentage": 40
+                }
+            ],
+            "coreMessaging": [
+                {
+                    "name": "AI",
+                    "percentage": 100
+                }
+            ],
+            "event_details": {
+                "event_ring": "Ring 2: Global 3rd Party",
+                "event_party": "3rd Party Event",
+                "event_category": "Developer",
+                "event_category_owner": "Developer Owner",
+                "event_subcategory": "3P Tentpole Developer Events",
+                "event_subcategory_owner": "3P Tentpole Developer Events Owner"
+            }
+        }
+    },
+    "state_management": {
+        "3": {
+            "id": "deafult",
+            "state": {
+                "f1": "AI cloud"
+            }
+        },
+        "4": {
+            "id": "XYZ",
+            "state": {
+                "f1": "AI cloud"
+            }
+        },
+        "5": {
+            "id": "1",
+            "state": {
+                "f1": "Innovate AI Summit 2024",
+                "f2": "A premier event focusing on the latest advancements in Artificial Intelligence and Machine Learning."
+            }
+        },
+        "6": {
+            "id": "2",
+            "state": {}
+        },
+        "7": {
+            "id": "3",
+            "state": {}
+        }
+    }
+}

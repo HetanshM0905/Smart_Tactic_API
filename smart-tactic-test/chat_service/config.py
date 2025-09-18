@@ -26,6 +26,15 @@ class LLMConfig:
 
 
 @dataclass
+class LangfuseConfig:
+    """Langfuse configuration settings"""
+    public_key: Optional[str] = None
+    secret_key: Optional[str] = None
+    host: str = "https://cloud.langfuse.com"
+    enabled: bool = False
+
+
+@dataclass
 class AppConfig:
     """Application configuration settings"""
     debug: bool = False
@@ -52,6 +61,13 @@ class Config:
             max_tokens=int(os.getenv('GEMINI_MAX_TOKENS', '8192')),
             temperature=float(os.getenv('GEMINI_TEMPERATURE', '0.7')),
             timeout=int(os.getenv('GEMINI_TIMEOUT', '30'))
+        )
+        
+        self.langfuse = LangfuseConfig(
+            public_key=os.getenv('LANGFUSE_PUBLIC_KEY'),
+            secret_key=os.getenv('LANGFUSE_SECRET_KEY'),
+            host=os.getenv('LANGFUSE_HOST', 'https://cloud.langfuse.com'),
+            enabled=bool(os.getenv('LANGFUSE_PUBLIC_KEY') and os.getenv('LANGFUSE_SECRET_KEY'))
         )
         
         self.app = AppConfig(

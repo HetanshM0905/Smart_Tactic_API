@@ -3,8 +3,8 @@ from typing import Any, Dict, List, Optional
 import os
 from datetime import datetime
 
-from repositories.base import ChatRepository, WorkflowRepository, PromptRepository, DataRepository
-from models.schemas import ChatHistory, WorkflowSchema, PromptTemplate, ChatMessage
+from repositories.base import ChatRepository, WorkflowRepository, PromptRepository, DataRepository, StateRepository
+from models.schemas import ChatHistory, WorkflowSchema, PromptTemplate, ChatMessage, State  
 from exceptions import DatabaseException
 from utils.logger import logger
 from config import config
@@ -307,6 +307,68 @@ class TinyDBDataRepository(DataRepository):
             raise DatabaseException(f"Failed to get data record: {e}")
 
 
+class TinyDBStateRepository(StateRepository):
+    """TinyDB implementation of state repository"""
+    
+    def __init__(self, db: TinyDB):
+        self.db = db
+        self.table = db.table('state_management')
+    
+    def get_by_id(self, id: str) -> Optional[State]:
+        return self.get_state(id)
+    
+    def create(self, entity: State) -> State:
+        try:
+            data = entity.dict()
+            self.table.insert(data)
+            logger.info(f"Created state: {entity.id}")
+            return entity
+        except Exception as e:
+            logger.error(f"Failed to create state: {e}")
+            raise DatabaseException(f"Failed to create state: {e}")
+    
+    def update(self, id: str, entity: Dict[str, Any]) -> Optional[State]:
+        try:
+            State = Query()
+            self.table.upsert(entity, State.id == id)
+            logger.info(f"Updated state: {id}")
+            return entity
+        except Exception as e:
+            logger.error(f"Failed to update state: {e}")
+            raise DatabaseException(f"Failed to update state: {e}")
+    
+    def delete(self, id: str) -> bool:
+        try:
+            State = Query()
+            result = self.table.remove(State.id == id)
+            success = len(result) > 0
+            if success:
+                logger.info(f"Deleted state: {id}")
+            return success
+        except Exception as e:
+            logger.error(f"Failed to delete state: {e}")
+            raise DatabaseException(f"Failed to delete state: {e}")
+    
+    def list_all(self) -> List[State]:
+        try:
+            records = self.table.all()
+            return [State(**record) for record in records]
+        except Exception as e:
+            logger.error(f"Failed to list states: {e}")
+            raise DatabaseException(f"Failed to list states: {e}")
+    
+    def get_state(self, state_id: str) -> Optional[State]:
+        try:
+            StateQuery = Query()
+            record = self.table.get(StateQuery.id == state_id)
+            if record:
+                return State(**record)
+            return None
+        except Exception as e:
+            logger.error(f"Failed to get state {state_id}: {e}")
+            raise DatabaseException(f"Failed to get state: {e}")
+
+
 class DatabaseManager:
     """Database manager that provides repository instances"""
     
@@ -319,6 +381,7 @@ class DatabaseManager:
         self.workflow_repo = TinyDBWorkflowRepository(self.db)
         self.prompt_repo = TinyDBPromptRepository(self.db)
         self.data_repo = TinyDBDataRepository(self.db)
+        self.state_repo = TinyDBStateRepository(self.db)
         
         logger.info(f"Database initialized at: {db_path}")
     

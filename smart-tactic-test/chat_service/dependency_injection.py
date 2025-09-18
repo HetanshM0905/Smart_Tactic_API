@@ -1,8 +1,11 @@
 """Dependency injection container for the chat service"""
 
 from repositories.tinydb_repository import DatabaseManager
-from services.llm_service import GeminiLLMService, MockLLMService
 from services.chat_service import ChatService
+from services.async_chat_service import AsyncChatService
+from services.state_service import StateService
+from services.langfuse_service import LangfuseService
+from services.llm_service import GeminiLLMService
 from utils.logger import logger
 from config import config
 import os
@@ -28,13 +31,24 @@ class DIContainer:
         self._instances['workflow_repo'] = db_manager.workflow_repo
         self._instances['prompt_repo'] = db_manager.prompt_repo
         self._instances['data_repo'] = db_manager.data_repo
+        self._instances['state_repo'] = db_manager.state_repo
         
         # LLM Service
         try:
             self._instances['llm_service'] = GeminiLLMService()
+            logger.info("Initialized Gemini LLM service")
         except Exception as e:
-            logger.warning(f"Failed to initialize Gemini service, using mock: {e}")
-            self._instances['llm_service'] = MockLLMService()
+            logger.error(f"Failed to initialize LLM service: {e}")
+            raise
+        
+        # State Service
+        from services.state_service import StateService
+        self._instances['state_service'] = StateService(
+            state_repo=self._instances['state_repo']
+        )
+        
+        # Langfuse Service
+        self._instances['langfuse_service'] = LangfuseService()
         
         # Chat Service
         self._instances['chat_service'] = ChatService(
@@ -42,7 +56,21 @@ class DIContainer:
             workflow_repo=self._instances['workflow_repo'],
             prompt_repo=self._instances['prompt_repo'],
             data_repo=self._instances['data_repo'],
-            llm_service=self._instances['llm_service']
+            state_service=self._instances['state_service'],
+            llm_service=self._instances['llm_service'],
+            langfuse_service=self._instances['langfuse_service']
+        )
+        
+        # Async Chat Service
+        from services.async_chat_service import AsyncChatService
+        self._instances['async_chat_service'] = AsyncChatService(
+            chat_repo=self._instances['chat_repo'],
+            workflow_repo=self._instances['workflow_repo'],
+            prompt_repo=self._instances['prompt_repo'],
+            data_repo=self._instances['data_repo'],
+            state_service=self._instances['state_service'],
+            llm_service=self._instances['llm_service'],
+            langfuse_service=self._instances['langfuse_service']
         )
         
         logger.info("Dependency injection container setup complete")

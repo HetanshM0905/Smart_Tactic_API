@@ -1,10 +1,13 @@
 import asyncio
 from typing import Optional, Dict, Any
 import json
+from services.context_cache_service import ContextCacheService
 
-from models.schemas import ChatRequest, ChatResponse, GeminiResponse
+from models.schemas import ChatRequest, ChatResponse
 from repositories.base import ChatRepository, WorkflowRepository, PromptRepository, DataRepository
 from services.llm_service import LLMService
+from services.state_service import StateService
+from services.langfuse_service import LangfuseService
 from exceptions import ValidationException, DatabaseException, LLMException
 from utils.logger import logger
 
@@ -18,13 +21,18 @@ class AsyncChatService:
         workflow_repo: WorkflowRepository,
         prompt_repo: PromptRepository,
         data_repo: DataRepository,
-        llm_service: LLMService
+        state_service: StateService,
+        llm_service: LLMService,
+        langfuse_service=None
     ):
         self.chat_repo = chat_repo
         self.workflow_repo = workflow_repo
         self.prompt_repo = prompt_repo
         self.data_repo = data_repo
+        self.context_cache = ContextCacheService()
+        self.state_service = state_service
         self.llm_service = llm_service
+        self.langfuse_service = langfuse_service
         logger.info("AsyncChatService initialized")
     
     async def process_chat(self, request: ChatRequest) -> ChatResponse:
@@ -38,6 +46,7 @@ class AsyncChatService:
             suggested_data_task = asyncio.create_task(self._get_suggested_data_async())
             prompt_template_task = asyncio.create_task(self._get_prompt_template_async())
             
+
             # Wait for all database operations to complete
             form_object, chat_history, suggested_data, prompt_template = await asyncio.gather(
                 form_object_task,
@@ -45,17 +54,24 @@ class AsyncChatService:
                 suggested_data_task,
                 prompt_template_task
             )
-            
+
+            # Extract form_schema from form_object
+            form_schema = form_object.get('schema', {})
+
+            # Update state using StateService
+            state = await self._update_state_service_async(request.session_id, request.state)
+            logger.debug(f"Updated state: {state}")
+
             # Build prompt
-            prompt = self._build_prompt(prompt_template, form_object, chat_history, suggested_data, request.question)
+            prompt = self._build_prompt(prompt_template, form_object, chat_history, suggested_data, request.question, state)
             logger.debug(f"Built prompt async: {prompt}")
-            
+
             # Save user message to chat history
             await self._save_message_async(request.session_id, 'user', request.question)
-            
-            # Get LLM response (this could also be made async if the LLM service supports it)
-            llm_response = await self._get_llm_response_async(prompt)
-            
+
+            # Get LLM response with Langfuse tracing
+            llm_response = await self._get_llm_response_async(prompt, form_schema, request)
+
             # Save AI response to chat history (including suggested buttons)
             ai_response_content = {
                 "markdown": llm_response.markdown,
@@ -63,7 +79,7 @@ class AsyncChatService:
                 "suggested_buttons": [btn.dict() for btn in llm_response.suggested_buttons]
             }
             await self._save_message_async(request.session_id, 'assistant', json.dumps(ai_response_content))
-            
+
             # Build response
             response = ChatResponse(
                 response=llm_response.markdown,
@@ -71,7 +87,7 @@ class AsyncChatService:
                 suggested_buttons=llm_response.suggested_buttons,
                 session_id=request.session_id
             )
-            
+
             logger.info(f"Successfully processed async chat request for session: {request.session_id}")
             return response
             
@@ -128,16 +144,110 @@ class AsyncChatService:
             logger.warning(f"Failed to get prompt template: {e}")
             return ""
     
-    async def _get_llm_response_async(self, prompt: str) -> GeminiResponse:
-        """Get LLM response asynchronously"""
+    async def _get_llm_response_async(self, prompt: str, form_schema: Dict[str, Any], request: ChatRequest):
+        """Get LLM response asynchronously with comprehensive Langfuse tracing"""
         try:
-            # Run LLM call in thread pool since it's synchronous
-            loop = asyncio.get_event_loop()
-            response = await loop.run_in_executor(None, self.llm_service.get_response, prompt)
-            return response
+            if self.langfuse_service and self.langfuse_service.is_enabled():
+                # Get all context data for comprehensive tracking
+                workflow = await self._get_form_object_async(request.workflow_id)
+                chat_history = await self._get_chat_history_async(request.session_id)
+                suggested_data = await self._get_suggested_data_async()
+
+                # Use context cache to optimize prompt context
+                context_info = self.context_cache.get_optimized_prompt_context(
+                    request.session_id, workflow
+                )
+
+                # Create comprehensive trace with all context
+                trace_id = self.langfuse_service.create_request_trace(
+                    session_id=request.session_id,
+                    user_question=request.question,
+                    workflow_data=workflow,
+                    current_state=request.state,
+                    chat_history=chat_history
+                )
+
+                # Prepare prompt variables for tracking
+                if context_info['include_full_workflow']:
+                    prompt_variables = {
+                        'state': request.state,
+                        'FormObject': workflow,
+                        'chathistory': chat_history,
+                        'user_question': request.question,
+                        'data': suggested_data
+                    }
+                else:
+                    prompt_variables = {
+                        'state': request.state,
+                        'FormObject': context_info['context_reference'],
+                        'chathistory': chat_history,
+                        'user_question': request.question,
+                        'data': suggested_data
+                    }
+
+                # Get prompt from Langfuse or fallback to local
+                loop = asyncio.get_event_loop()
+                langfuse_prompt = await loop.run_in_executor(
+                    None, self.langfuse_service.get_prompt, "smart_tactic_form_assistant",2
+                )
+
+                if langfuse_prompt:
+                    prompt_template = langfuse_prompt['prompt']
+                    prompt_version = langfuse_prompt['version']
+
+                    # Compile prompt with variables
+                    compiled_prompt = await loop.run_in_executor(
+                        None, self.langfuse_service.compile_prompt, prompt_template, prompt_variables
+                    )
+
+                    # Log prompt usage
+                    self.langfuse_service.log_prompt_usage(
+                        trace_id=trace_id,
+                        prompt_name="smart_tactic_form_assistant",
+                        prompt_version=prompt_version,
+                        variables=prompt_variables,
+                        compiled_prompt=compiled_prompt
+                    )
+
+                    # Use compiled prompt for LLM
+                    final_prompt = compiled_prompt
+                else:
+                    # Fallback to local prompt template
+                    prompt_template = await self._get_prompt_template_async()
+                    final_prompt = prompt
+                    prompt_version = 1
+
+                # Log LLM generation with full context
+                llm_response = self.langfuse_service.log_llm_generation_with_context(
+                    trace_id=trace_id,
+                    name="chat_completion",
+                    model=getattr(self.llm_service, 'model_name', 'gemini-1.5-pro-latest'),
+                    input_prompt=final_prompt,
+                    prompt_template=prompt_template,
+                    prompt_variables=prompt_variables,
+                    llm_service=self.llm_service,
+                    form_schema=form_schema
+                )
+
+                # Log state update if field_data is returned
+                if hasattr(llm_response, 'field_data') and llm_response.field_data:
+                    self.langfuse_service.log_state_update(
+                        trace_id=trace_id,
+                        field_updates=llm_response.field_data,
+                        session_id=request.session_id
+                    )
+            else:
+                # Run LLM call without Langfuse tracing
+                loop = asyncio.get_event_loop()
+                llm_response = await loop.run_in_executor(
+                    None, self.llm_service.get_response, prompt, form_schema
+                )
+            
+            logger.debug(f"LLM response: {llm_response}")
+            return llm_response
         except Exception as e:
-            logger.error(f"Async LLM request failed: {e}")
-            raise LLMException(f"Async LLM request failed: {e}")
+            logger.error(f"LLM service error: {e}")
+            raise LLMException(f"Failed to get LLM response: {e}")
     
     async def _save_message_async(self, session_id: str, role: str, content: str) -> None:
         """Save message to chat history asynchronously"""
@@ -148,13 +258,25 @@ class AsyncChatService:
         except Exception as e:
             logger.error(f"Failed to save message: {e}")
 
+    async def _update_state_service_async(self, session_id: str, state: Dict[str, Any]) -> Dict[str, Any]:
+        """Update state using StateService asynchronously"""
+        try:
+            loop = asyncio.get_event_loop()
+            result = await loop.run_in_executor(None, self.state_service.update_state, session_id, state)
+            logger.debug(f"Updated state for session: {session_id}")
+            return result
+        except Exception as e:
+            logger.error(f"Failed to update state: {e}")
+            return state
+
     def _build_prompt(
         self, 
         template: str, 
         form_object: Dict[str, Any], 
         chat_history: Dict[str, Any], 
         suggested_data: Dict[str, Any],
-        user_question: str = ""
+        user_question: str = "",
+        state: Dict[str, Any] = {}
     ) -> str:
         """Build final prompt from template and data"""
         try:
@@ -166,6 +288,7 @@ class AsyncChatService:
             prompt = prompt.replace('{{chathistory}}', json.dumps(chat_history))
             prompt = prompt.replace('{{data}}', json.dumps(suggested_data))
             prompt = prompt.replace('{{user_question}}', user_question)
+            prompt = prompt.replace('{{state}}', json.dumps(state))
             
             return prompt
         except Exception as e:

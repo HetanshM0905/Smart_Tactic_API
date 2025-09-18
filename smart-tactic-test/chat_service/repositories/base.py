@@ -78,3 +78,11 @@ class DataRepository(BaseRepository[Dict[str, Any]]):
     def get_suggested_data(self, id: str) -> Optional[Dict[str, Any]]:
         """Get suggested data by ID"""
         pass
+
+class StateRepository(BaseRepository[Dict[str, Any]]):
+    """Repository interface for state operations"""
+    
+    @abstractmethod
+    def get_state(self, state_id: str) -> Optional[Dict[str, Any]]:
+        """Get state by ID"""
+        pass

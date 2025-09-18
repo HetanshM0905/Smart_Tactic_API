@@ -5,6 +5,7 @@ from models.schemas import ChatRequest, ChatResponse
 from dependency_injection import container
 from exceptions import ValidationException, ChatServiceException
 from utils.logger import logger
+import asyncio
 
 chatbot_api = Blueprint('chatbot_api', __name__)
 
@@ -12,7 +13,7 @@ chatbot_api = Blueprint('chatbot_api', __name__)
 def ai_chat():
     """AI chat endpoint with proper error handling and validation"""
     try:
-        # Get chat service from DI container
+    # Get async chat service from DI container
         chat_service = container.get('chat_service')
         
         # Validate request data
@@ -26,9 +27,9 @@ def ai_chat():
         except ValidationError as e:
             raise ValidationException(f"Invalid request data: {e}")
         
-        # Process chat request
+    # Process chat request asynchronously
+        # response = asyncio.run(async_chat_service.process_chat(chat_request))
         response = chat_service.process_chat(chat_request)
-        
         # Return response
         return jsonify(response.dict())
         

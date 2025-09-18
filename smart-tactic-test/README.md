@@ -632,6 +632,143 @@ for collection in collections:
     print(f"{collection.id}: {count} documents")
 ```
 
+## LLM Observability with Langfuse
+
+The Smart Tactic API includes integrated LLM observability and monitoring through Langfuse, providing comprehensive insights into AI assistant performance, user interactions, and system behavior.
+
+### Features
+
+- **LLM Tracing**: Automatic tracing of all LLM calls with input/output logging
+- **Session Management**: Track user sessions and conversation flows
+- **Performance Metrics**: Monitor response times, token usage, and model performance
+- **User Feedback**: Capture and analyze user feedback on AI responses
+- **State Monitoring**: Track form state changes and completion rates
+- **Error Tracking**: Log validation errors and system issues
+- **Analytics Dashboard**: Comprehensive insights and reporting
+
+### Setup
+
+1. **Install Dependencies**:
+   ```bash
+   pip install langfuse>=2.0.0
+   ```
+
+2. **Configure Environment Variables**:
+   ```bash
+   # Copy example environment file
+   cp .env.example .env
+   
+   # Add your Langfuse credentials
+   LANGFUSE_PUBLIC_KEY=pk_your_public_key_here
+   LANGFUSE_SECRET_KEY=sk_your_secret_key_here
+   LANGFUSE_HOST=https://cloud.langfuse.com  # Optional, defaults to cloud
+   ```
+
+3. **Langfuse is automatically enabled** when both public and secret keys are provided.
+
+### Configuration
+
+The Langfuse integration is configured in `config.py`:
+
+```python
+@dataclass
+class LangfuseConfig:
+    public_key: Optional[str] = None
+    secret_key: Optional[str] = None
+    host: str = "https://cloud.langfuse.com"
+    enabled: bool = False  # Auto-enabled when keys are provided
+```
+
+### What Gets Tracked
+
+#### LLM Generations
+- **Input Prompt**: Complete prompt sent to the LLM
+- **Model**: Model name and version (e.g., gemini-1.5-pro-latest)
+- **Output**: Full LLM response including markdown and field data
+- **Metadata**: Session ID, workflow ID, user question
+- **Performance**: Response time, token usage, cost estimation
+
+#### User Sessions
+- **Session Traces**: Complete conversation flows
+- **User Questions**: All user inputs and questions
+- **State Changes**: Form field updates and completions
+- **Validation Events**: Field validation results and errors
+
+#### System Events
+- **Form Completions**: Track when forms are fully completed
+- **State Updates**: Monitor form state changes over time
+- **Error Events**: Capture and categorize system errors
+- **User Feedback**: Collect user ratings and feedback
+
+### Usage Examples
+
+#### Viewing Traces in Langfuse Dashboard
+
+1. **Navigate to your Langfuse project**
+2. **View Traces**: See all conversation sessions
+3. **Analyze Performance**: Monitor response times and costs
+4. **Review Conversations**: Examine user interactions and AI responses
+
+#### Custom Analytics Queries
+
+```python
+# Example: Get completion rates by workflow
+from services.langfuse_service import LangfuseService
+
+langfuse = LangfuseService()
+completion_metrics = langfuse.get_form_completion_analytics(
+    workflow_id="workflow_123",
+    date_range="last_30_days"
+)
+```
+
+### Integration Architecture
+
+The Langfuse integration is implemented through:
+
+1. **LangfuseService**: Core service handling all Langfuse operations
+2. **ChatService Integration**: Automatic tracing in synchronous chat processing
+3. **AsyncChatService Integration**: Async-compatible tracing for concurrent operations
+4. **Dependency Injection**: Seamless integration through the DI container
+
+### Privacy and Security
+
+- **Data Encryption**: All data transmitted to Langfuse is encrypted in transit
+- **Configurable Logging**: Control what data gets logged (disable PII if needed)
+- **Optional Integration**: Langfuse can be completely disabled by not providing keys
+- **Local Development**: Works offline when Langfuse is disabled
+
+### Monitoring Best Practices
+
+1. **Set Up Alerts**: Configure alerts for high error rates or slow responses
+2. **Regular Reviews**: Weekly review of conversation quality and completion rates
+3. **Performance Optimization**: Use metrics to identify and fix bottlenecks
+4. **User Feedback**: Actively collect and analyze user feedback for improvements
+
+### Troubleshooting
+
+#### Common Issues
+
+**Langfuse Not Connecting**:
+```bash
+# Check environment variables
+echo $LANGFUSE_PUBLIC_KEY
+echo $LANGFUSE_SECRET_KEY
+
+# Verify network connectivity
+curl -I https://cloud.langfuse.com
+```
+
+**Missing Traces**:
+- Ensure both public and secret keys are set
+- Check that `langfuse_service.is_enabled()` returns `True`
+- Verify no network connectivity issues
+
+**Performance Impact**:
+- Langfuse calls are made asynchronously to minimize impact
+- Consider disabling in high-throughput scenarios if needed
+- Monitor application performance metrics
+
 ## Support
 
 ### Documentation Links
@@ -640,6 +777,7 @@ for collection in collections:
 - **Firestore**: [Firestore Documentation](https://firebase.google.com/docs/firestore)
 - **TinyDB**: [TinyDB Documentation](https://tinydb.readthedocs.io/)
 - **Flask**: [Flask Documentation](https://flask.palletsprojects.com/)
+- **Langfuse**: [Langfuse Documentation](https://langfuse.com/docs)
 
 ### Getting Help
 

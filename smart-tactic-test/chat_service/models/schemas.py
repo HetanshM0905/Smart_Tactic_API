@@ -24,6 +24,7 @@ class ChatRequest(BaseModel):
     session_id: str = Field(default="default", min_length=1, max_length=100)
     question: str = Field(..., min_length=1, max_length=1000)
     workflow_id: str = Field(default="workflow1", min_length=1, max_length=50)
+    state: Dict[str, Any] = Field(default_factory=dict)
     
     @validator('question')
     def validate_question(cls, v):
@@ -79,3 +80,8 @@ class PromptTemplate(BaseModel):
     text: str
     variables: List[str] = Field(default_factory=list)
     metadata: Dict[str, Any] = Field(default_factory=dict)
+
+class State(BaseModel):
+    """Model for state"""
+    id: str
+    state: Dict[str, Any] = Field(default_factory=dict)
