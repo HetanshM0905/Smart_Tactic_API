@@ -133,7 +133,7 @@ class ChatService:
     def _get_prompt_template(self) -> str:
         """Get prompt template"""
         try:
-            prompt = self.prompt_repo.get_prompt("smart_tactic_form_assistant", 2)
+            prompt = self.prompt_repo.get_prompt("smart_tactic_form_assistant")
             if prompt:
                 return prompt.text
             return ""
