@@ -2,8 +2,7 @@ from typing import Dict, Any, Optional
 import json
 from datetime import datetime
 
-from models.schemas import State
-from repositories.base import StateRepository
+from repositories.base import SessionRepository
 from exceptions import ValidationException, DatabaseException
 from utils.logger import logger
 
@@ -11,47 +10,41 @@ from utils.logger import logger
 class StateService:
     """Service for managing form state operations"""
     
-    def __init__(self, state_repo: StateRepository):
-        self.state_repo = state_repo
+    def __init__(self, session_repo: SessionRepository):
+        self.session_repo = session_repo
         logger.info("StateService initialized")
     
     def get_state(self, session_id: str) -> Dict[str, Any]:
-        """Get current state for session"""
+        """Get current state for a session from the user session."""
         try:
-            state = self.state_repo.get_state(session_id)
-            if state:
-                return state.state
+            user_session = self.session_repo.get_session(session_id)
+            if user_session:
+                return user_session.state
             return {}
         except Exception as e:
             logger.error(f"Failed to get state for session {session_id}: {e}")
             return {}
     
     def update_state(self, session_id: str, updates: Dict[str, Any]) -> Dict[str, Any]:
-        """Update state with new field values"""
+        """Update state with new field values and save it to the user session."""
         try:
-            # Get current state
             current_state = self.get_state(session_id)
-            
-            # Merge updates
             updated_state = {**current_state, **updates}
-            
-            # Create state object
-            state_obj = State(id=session_id, state=updated_state)
-            
-            # Save to database
-            result = self.state_repo.update(session_id, state_obj.dict())
-            
+
+            self.session_repo.save_state(session_id, updated_state)
+
             logger.info(f"Updated state for session {session_id}: {list(updates.keys())}")
             return updated_state
-            
         except Exception as e:
             logger.error(f"Failed to update state for session {session_id}: {e}")
             raise DatabaseException(f"Failed to update state: {e}")
     
     def clear_state(self, session_id: str) -> bool:
-        """Clear all state for session"""
+        """Clear the state for a given session."""
         try:
-            return self.state_repo.delete(session_id)
+            self.session_repo.save_state(session_id, {})
+            logger.info(f"Cleared state for session: {session_id}")
+            return True
         except Exception as e:
             logger.error(f"Failed to clear state for session {session_id}: {e}")
             return False

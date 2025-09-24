@@ -2,7 +2,7 @@ from typing import Optional, Dict, Any
 import json
 
 from models.schemas import ChatRequest, ChatResponse, SuggestedButton
-from repositories.base import ChatRepository, WorkflowRepository, PromptRepository, DataRepository
+from repositories.base import SessionRepository, WorkflowRepository, PromptRepository, DataRepository
 from .langfuse_service import LangfuseService
 from .state_service import StateService
 from .context_cache_service import ContextCacheService
@@ -16,7 +16,7 @@ class ChatService:
     
     def __init__(
         self,
-        chat_repo: ChatRepository,
+        session_repo: SessionRepository,
         workflow_repo: WorkflowRepository,
         prompt_repo: PromptRepository,
         data_repo: DataRepository,
@@ -24,7 +24,7 @@ class ChatService:
         llm_service: LLMService,
         langfuse_service: LangfuseService = None
     ):
-        self.chat_repo = chat_repo
+        self.session_repo = session_repo
         self.workflow_repo = workflow_repo
         self.prompt_repo = prompt_repo
         self.data_repo = data_repo
@@ -43,7 +43,7 @@ class ChatService:
             form_object = self._get_form_object(request.workflow_id)
             logger.debug(f"form_object: {form_object}")
             form_schema = form_object.get('schema', {})
-            chat_history = self._get_chat_history(request.session_id)
+            chat_history = self._get_chat_history(request.session_id, request.current_section)
             suggested_data = self._get_suggested_data()
             prompt_template = self._get_prompt_template()
             
@@ -69,21 +69,19 @@ class ChatService:
             logger.debug(f"chat_history: {chat_history}")
             logger.debug(f"schema: {form_schema}")
             llm_response = self._get_llm_response(prompt, form_schema, request)
-            self.chat_repo.save_message(request.session_id, 'user', request.question)
+            self.session_repo.save_message(request.session_id, request.current_section, 'user', request.question)
 
             
             # Save AI response to chat history (including suggested buttons)
             ai_response_content = {
                 "markdown": llm_response.markdown,
-                "field_data": llm_response.field_data,
                 "suggested_buttons": [btn.dict() for btn in llm_response.suggested_buttons]
             }
-            self.chat_repo.save_message(request.session_id, 'assistant', json.dumps(ai_response_content))
+            self.session_repo.save_message(request.session_id, request.current_section, 'assistant', json.dumps(ai_response_content))
             
             # Build response
             response = ChatResponse(
                 response=llm_response.markdown,
-                field_data=llm_response.field_data,
                 suggested_buttons=llm_response.suggested_buttons,
                 session_id=request.session_id
             )
@@ -108,16 +106,15 @@ class ChatService:
             logger.warning(f"Failed to get form object for workflow {workflow_id}: {e}")
             return {}
     
-    def _get_chat_history(self, session_id: str) -> Dict[str, Any]:
-        """Get chat history for session"""
+    def _get_chat_history(self, session_id: str, section: str) -> Dict[str, Any]:
+        """Get chat history for a specific section of a session."""
         try:
-            # Using hardcoded session for now - can be made dynamic
-            chat_history = self.chat_repo.get_chat_history(session_id)
-            if chat_history:
-                return chat_history.dict()
+            user_session = self.session_repo.get_session(session_id)
+            if user_session and section in user_session.history_by_section:
+                return {"history": user_session.history_by_section[section]}
             return {}
         except Exception as e:
-            logger.warning(f"Failed to get chat history for session {session_id}: {e}")
+            logger.warning(f"Failed to get chat history for session {session_id}, section {section}: {e}")
             return {}
     
     def _get_suggested_data(self) -> Dict[str, Any]:
@@ -149,7 +146,7 @@ class ChatService:
                 logger.debug("Langfuse is enabled - tracing LLM response")
                 # Get context data with caching optimization
                 workflow = self._get_form_object(request.workflow_id)
-                chat_history = self._get_chat_history(request.session_id)
+                chat_history = self._get_chat_history(request.session_id, request.current_section)
                 suggested_data = self._get_suggested_data()
                 
                 # Check if we should send full workflow context or use cached reference
@@ -235,17 +232,11 @@ class ChatService:
                     form_schema=form_schema
                 )
                 
-                # Log state update if field_data is returned
-                if hasattr(llm_response, 'field_data') and llm_response.field_data:
-                    self.langfuse_service.log_state_update(
-                        trace_id=trace_id,
-                        field_updates=llm_response.field_data,
-                        session_id=request.session_id
-                    )
+                # Note: field_data logging removed as field_data is no longer part of GeminiResponse
             else:
                 # Build prompt locally when Langfuse is not available
                 workflow = self._get_form_object(request.workflow_id)
-                chat_history = self._get_chat_history(request.session_id)
+                chat_history = self._get_chat_history(request.session_id, request.current_section)
                 suggested_data = self._get_suggested_data()
                 prompt_template = self._get_prompt_template()
                 

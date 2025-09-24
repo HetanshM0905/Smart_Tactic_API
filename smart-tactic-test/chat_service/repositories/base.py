@@ -1,6 +1,6 @@
 from abc import ABC, abstractmethod
 from typing import Any, Dict, List, Optional, TypeVar, Generic
-from models.schemas import ChatHistory, WorkflowSchema, PromptTemplate
+from models.schemas import UserSession, WorkflowSchema, PromptTemplate
 
 T = TypeVar('T')
 
@@ -34,22 +34,22 @@ class BaseRepository(ABC, Generic[T]):
         pass
 
 
-class ChatRepository(BaseRepository[ChatHistory]):
-    """Repository interface for chat operations"""
-    
+class SessionRepository(BaseRepository[UserSession]):
+    """Repository interface for user session operations"""
+
     @abstractmethod
-    def get_chat_history(self, session_id: str) -> Optional[ChatHistory]:
-        """Get chat history by session ID"""
+    def get_session(self, session_id: str) -> Optional[UserSession]:
+        """Get user session by session ID"""
         pass
-    
+
     @abstractmethod
-    def save_message(self, session_id: str, role: str, content: str) -> None:
-        """Save a message to chat history"""
+    def save_message(self, session_id: str, section: str, role: str, content: str) -> None:
+        """Save a message to a specific section of the chat history"""
         pass
-    
+
     @abstractmethod
-    def save_form_object(self, session_id: str, form_object: Dict[str, Any]) -> None:
-        """Save form object to session"""
+    def save_state(self, session_id: str, state: Dict[str, Any]) -> None:
+        """Save form state to the user session"""
         pass
 
 
@@ -79,10 +79,3 @@ class DataRepository(BaseRepository[Dict[str, Any]]):
         """Get suggested data by ID"""
         pass
 
-class StateRepository(BaseRepository[Dict[str, Any]]):
-    """Repository interface for state operations"""
-    
-    @abstractmethod
-    def get_state(self, state_id: str) -> Optional[Dict[str, Any]]:
-        """Get state by ID"""
-        pass

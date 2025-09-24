@@ -48,16 +48,6 @@ class GeminiLLMService(LLMService):
                         "type": "object",
                         "properties": {
                             "markdown": {"type": "string"},
-                            "field_data": {
-                                "type": "object",
-                                "properties": {
-                                    "f1": {"type": "string"},
-                                    "f2": {"type": "string"},
-                                    "f3": {"type": "string"},
-                                    "f4": {"type": "string"},
-                                    "f5": {"type": "string"}
-                                },
-                            },
                             "suggested_buttons": {
                                 "type": "array",
                                 "items": {
@@ -71,7 +61,7 @@ class GeminiLLMService(LLMService):
                                 }
                             }
                         },
-                        "required": ["markdown", "field_data", "suggested_buttons"]
+                        "required": ["markdown", "suggested_buttons"]
                     },
                     "max_output_tokens": config.llm.max_tokens,
                     "temperature": config.llm.temperature
@@ -88,7 +78,6 @@ class GeminiLLMService(LLMService):
             # Convert to GeminiResponse model
             gemini_response = GeminiResponse(
                 markdown=response_data.get('markdown', ''),
-                field_data=response_data.get('field_data', {}),
                 suggested_buttons=[
                     SuggestedButton(**button) 
                     for button in response_data.get('suggested_buttons', [])
@@ -115,9 +104,8 @@ class MockLLMService(LLMService):
         
         return GeminiResponse(
             markdown="I can help with that. Based on the information I have, the event is named 'Innovate AI Summit 2024'. Is that correct?",
-            field_data={"f1": "Innovate AI Summit 2024"},
             suggested_buttons=[
-                SuggestedButton(title="Yes, that's correct", action="confirm", id="f1"),
-                SuggestedButton(title="No, I want to change it", action="chat", id="chat1")
+                SuggestedButton(title="Yes, that's correct", action="update", field_data={"f1": "Innovate AI Summit 2024"}),
+                SuggestedButton(title="No, I want to change it", action="chat", field_data=None)
             ]
         )

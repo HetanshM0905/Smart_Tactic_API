@@ -24,6 +24,7 @@ class ChatRequest(BaseModel):
     session_id: str = Field(default="default", min_length=1, max_length=100)
     question: str = Field(..., min_length=1, max_length=1000)
     workflow_id: str = Field(default="workflow1", min_length=1, max_length=50)
+    current_section: str = Field(default="introduction", min_length=1, max_length=100)
     state: Dict[str, Any] = Field(default_factory=dict)
     
     @validator('question')
@@ -48,7 +49,6 @@ class ChatResponse(BaseModel):
 class GeminiResponse(BaseModel):
     """Model for Gemini LLM response"""
     markdown: str
-    field_data: Dict[str, Any] = Field(default_factory=dict)
     suggested_buttons: List[SuggestedButton] = Field(default_factory=list)
 
 
@@ -59,10 +59,11 @@ class ChatMessage(BaseModel):
     timestamp: Optional[str] = None
 
 
-class ChatHistory(BaseModel):
-    """Model for chat history"""
+class UserSession(BaseModel):
+    """Model for user session, including chat history and form state"""
     session_id: str
-    history: List[ChatMessage] = Field(default_factory=list)
+    history_by_section: Dict[str, List[ChatMessage]] = Field(default_factory=dict)
+    state: Dict[str, Any] = Field(default_factory=dict)
 
 
 class WorkflowSchema(BaseModel):

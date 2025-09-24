@@ -57,6 +57,115 @@ def ai_chat():
             'error_code': 'INTERNAL_ERROR'
         }), 500
 
+@chatbot_api.route('/api/chat-history/<session_id>/<section>', methods=['GET'])
+def get_chat_history(session_id, section):
+    """Get chat history for a specific session and section"""
+    try:
+        # Get session repository from DI container
+        session_repo = container.get('session_repo')
+        
+        # Validate input parameters
+        if not session_id or not session_id.strip():
+            raise ValidationException("Session ID is required")
+        
+        if not section or not section.strip():
+            raise ValidationException("Section is required")
+        
+        # Get the user session
+        user_session = session_repo.get_session(session_id.strip())
+        
+        if not user_session:
+            return jsonify({
+                'session_id': session_id,
+                'section': section,
+                'chat_history': [],
+                'message': 'Session not found'
+            }), 404
+        
+        # Get chat history for the specific section
+        section_history = user_session.history_by_section.get(section.strip(), [])
+        
+        # Convert ChatMessage objects to dictionaries for JSON serialization
+        chat_history = [message.dict() for message in section_history]
+        
+        logger.info(f"Retrieved chat history for session {session_id}, section {section}: {len(chat_history)} messages")
+        
+        return jsonify({
+            'session_id': session_id,
+            'section': section,
+            'chat_history': chat_history,
+            'message_count': len(chat_history),
+            'state': user_session.state
+        }), 200
+        
+    except ValidationException as e:
+        logger.warning(f"Validation error in get_chat_history: {e.message}")
+        return jsonify({
+            'error': 'Validation Error',
+            'message': e.message,
+            'error_code': e.error_code or 'VALIDATION_ERROR'
+        }), 400
+        
+    except Exception as e:
+        logger.error(f"Unexpected error in get_chat_history: {e}")
+        return jsonify({
+            'error': 'Internal Server Error',
+            'message': 'An unexpected error occurred while retrieving chat history',
+            'error_code': 'INTERNAL_ERROR'
+        }), 500
+
+@chatbot_api.route('/api/session/<session_id>', methods=['GET'])
+def get_session_info(session_id):
+    """Get complete session information including all sections and state"""
+    try:
+        # Get session repository from DI container
+        session_repo = container.get('session_repo')
+        
+        # Validate input parameters
+        if not session_id or not session_id.strip():
+            raise ValidationException("Session ID is required")
+        
+        # Get the user session
+        user_session = session_repo.get_session(session_id.strip())
+        
+        if not user_session:
+            return jsonify({
+                'session_id': session_id,
+                'message': 'Session not found'
+            }), 404
+        
+        # Convert the entire session to a dictionary
+        session_data = user_session.dict()
+        
+        # Add some metadata
+        sections = list(session_data['history_by_section'].keys())
+        total_messages = sum(len(messages) for messages in session_data['history_by_section'].values())
+        
+        logger.info(f"Retrieved complete session info for {session_id}: {len(sections)} sections, {total_messages} total messages")
+        
+        return jsonify({
+            'session_id': session_id,
+            'sections': sections,
+            'total_messages': total_messages,
+            'session_data': session_data
+        }), 200
+        
+    except ValidationException as e:
+        logger.warning(f"Validation error in get_session_info: {e.message}")
+        return jsonify({
+            'error': 'Validation Error',
+            'message': e.message,
+            'error_code': e.error_code or 'VALIDATION_ERROR'
+        }), 400
+        
+    except Exception as e:
+        logger.error(f"Unexpected error in get_session_info: {e}")
+        return jsonify({
+            'error': 'Internal Server Error',
+            'message': 'An unexpected error occurred while retrieving session info',
+            'error_code': 'INTERNAL_ERROR'
+        }), 500
+
 @chatbot_api.errorhandler(404)
 def not_found(error):
     """Handle 404 errors"""

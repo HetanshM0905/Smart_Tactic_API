@@ -4,7 +4,7 @@ import json
 from services.context_cache_service import ContextCacheService
 
 from models.schemas import ChatRequest, ChatResponse
-from repositories.base import ChatRepository, WorkflowRepository, PromptRepository, DataRepository
+from repositories.base import SessionRepository, WorkflowRepository, PromptRepository, DataRepository
 from services.llm_service import LLMService
 from services.state_service import StateService
 from services.langfuse_service import LangfuseService
@@ -17,7 +17,7 @@ class AsyncChatService:
     
     def __init__(
         self,
-        chat_repo: ChatRepository,
+        session_repo: SessionRepository,
         workflow_repo: WorkflowRepository,
         prompt_repo: PromptRepository,
         data_repo: DataRepository,
@@ -25,7 +25,7 @@ class AsyncChatService:
         llm_service: LLMService,
         langfuse_service=None
     ):
-        self.chat_repo = chat_repo
+        self.session_repo = session_repo
         self.workflow_repo = workflow_repo
         self.prompt_repo = prompt_repo
         self.data_repo = data_repo
@@ -42,7 +42,7 @@ class AsyncChatService:
             
             # Run database operations concurrently
             form_object_task = asyncio.create_task(self._get_form_object_async(request.workflow_id))
-            chat_history_task = asyncio.create_task(self._get_chat_history_async(request.session_id))
+            chat_history_task = asyncio.create_task(self._get_chat_history_async(request.session_id, request.current_section))
             suggested_data_task = asyncio.create_task(self._get_suggested_data_async())
             prompt_template_task = asyncio.create_task(self._get_prompt_template_async())
             
@@ -67,7 +67,7 @@ class AsyncChatService:
             logger.debug(f"Built prompt async: {prompt}")
 
             # Save user message to chat history
-            await self._save_message_async(request.session_id, 'user', request.question)
+            await self._save_message_async(request.session_id, request.current_section, 'user', request.question)
 
             # Get LLM response with Langfuse tracing
             llm_response = await self._get_llm_response_async(prompt, form_schema, request)
@@ -75,15 +75,13 @@ class AsyncChatService:
             # Save AI response to chat history (including suggested buttons)
             ai_response_content = {
                 "markdown": llm_response.markdown,
-                "field_data": llm_response.field_data,
                 "suggested_buttons": [btn.dict() for btn in llm_response.suggested_buttons]
             }
-            await self._save_message_async(request.session_id, 'assistant', json.dumps(ai_response_content))
+            await self._save_message_async(request.session_id, request.current_section, 'assistant', json.dumps(ai_response_content))
 
             # Build response
             response = ChatResponse(
                 response=llm_response.markdown,
-                field_data=llm_response.field_data,
                 suggested_buttons=llm_response.suggested_buttons,
                 session_id=request.session_id
             )
@@ -110,16 +108,16 @@ class AsyncChatService:
             logger.warning(f"Failed to get form object for workflow {workflow_id}: {e}")
             return {}
     
-    async def _get_chat_history_async(self, session_id: str) -> Dict[str, Any]:
-        """Get chat history asynchronously"""
+    async def _get_chat_history_async(self, session_id: str, section: str) -> Dict[str, Any]:
+        """Get chat history for a specific section asynchronously"""
         try:
             loop = asyncio.get_event_loop()
-            chat_history = await loop.run_in_executor(None, self.chat_repo.get_chat_history, '1234')
-            if chat_history:
-                return chat_history.dict()
+            user_session = await loop.run_in_executor(None, self.session_repo.get_session, session_id)
+            if user_session and section in user_session.history_by_section:
+                return {"history": user_session.history_by_section[section]}
             return {}
         except Exception as e:
-            logger.warning(f"Failed to get chat history for session {session_id}: {e}")
+            logger.warning(f"Failed to get chat history for session {session_id}, section {section}: {e}")
             return {}
     
     async def _get_suggested_data_async(self) -> Dict[str, Any]:
@@ -150,7 +148,7 @@ class AsyncChatService:
             if self.langfuse_service and self.langfuse_service.is_enabled():
                 # Get all context data for comprehensive tracking
                 workflow = await self._get_form_object_async(request.workflow_id)
-                chat_history = await self._get_chat_history_async(request.session_id)
+                chat_history = await self._get_chat_history_async(request.session_id, request.current_section)
                 suggested_data = await self._get_suggested_data_async()
 
                 # Use context cache to optimize prompt context
@@ -229,13 +227,7 @@ class AsyncChatService:
                     form_schema=form_schema
                 )
 
-                # Log state update if field_data is returned
-                if hasattr(llm_response, 'field_data') and llm_response.field_data:
-                    self.langfuse_service.log_state_update(
-                        trace_id=trace_id,
-                        field_updates=llm_response.field_data,
-                        session_id=request.session_id
-                    )
+                # Note: field_data logging removed as field_data is no longer part of GeminiResponse
             else:
                 # Run LLM call without Langfuse tracing
                 loop = asyncio.get_event_loop()
@@ -249,12 +241,12 @@ class AsyncChatService:
             logger.error(f"LLM service error: {e}")
             raise LLMException(f"Failed to get LLM response: {e}")
     
-    async def _save_message_async(self, session_id: str, role: str, content: str) -> None:
-        """Save message to chat history asynchronously"""
+    async def _save_message_async(self, session_id: str, section: str, role: str, content: str) -> None:
+        """Save message to a specific section of chat history asynchronously"""
         try:
             loop = asyncio.get_event_loop()
-            await loop.run_in_executor(None, self.chat_repo.save_message, session_id, role, content)
-            logger.debug(f"Saved {role} message for session: {session_id}")
+            await loop.run_in_executor(None, self.session_repo.save_message, session_id, section, role, content)
+            logger.debug(f"Saved {role} message for session: {session_id} in section: {section}")
         except Exception as e:
             logger.error(f"Failed to save message: {e}")
 

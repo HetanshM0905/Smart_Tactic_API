@@ -27,11 +27,10 @@ class DIContainer:
         
         # Repositories
         db_manager = self._instances['db_manager']
-        self._instances['chat_repo'] = db_manager.chat_repo
+        self._instances['session_repo'] = db_manager.session_repo
         self._instances['workflow_repo'] = db_manager.workflow_repo
         self._instances['prompt_repo'] = db_manager.prompt_repo
         self._instances['data_repo'] = db_manager.data_repo
-        self._instances['state_repo'] = db_manager.state_repo
         
         # LLM Service
         try:
@@ -44,7 +43,7 @@ class DIContainer:
         # State Service
         from services.state_service import StateService
         self._instances['state_service'] = StateService(
-            state_repo=self._instances['state_repo']
+            session_repo=self._instances['session_repo']
         )
         
         # Langfuse Service
@@ -52,7 +51,7 @@ class DIContainer:
         
         # Chat Service
         self._instances['chat_service'] = ChatService(
-            chat_repo=self._instances['chat_repo'],
+            session_repo=self._instances['session_repo'],
             workflow_repo=self._instances['workflow_repo'],
             prompt_repo=self._instances['prompt_repo'],
             data_repo=self._instances['data_repo'],
@@ -64,7 +63,7 @@ class DIContainer:
         # Async Chat Service
         from services.async_chat_service import AsyncChatService
         self._instances['async_chat_service'] = AsyncChatService(
-            chat_repo=self._instances['chat_repo'],
+            session_repo=self._instances['session_repo'],
             workflow_repo=self._instances['workflow_repo'],
             prompt_repo=self._instances['prompt_repo'],
             data_repo=self._instances['data_repo'],
