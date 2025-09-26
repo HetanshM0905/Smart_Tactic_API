@@ -1,0 +1,10 @@
+# Essential packages only - install individually to avoid conflicts
+Flask
+flask-cors
+flask-limiter
+google-generativeai
+tinydb
+pydantic
+python-dotenv
+requests
+langfuse

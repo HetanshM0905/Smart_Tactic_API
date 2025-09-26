@@ -2,7 +2,8 @@
     "workflows": {
         "2": {
             "id": "workflow1",
-            "formSchema": {
+            "name": "Event Planning Workflow",
+            "form_schema": {
                 "layout": {
                     "type": "flex",
                     "gap": "16px",
@@ -959,20 +960,274 @@
                     "No Partner Involvement"
                 ]
             },
-            "schema" :{"f1": {"type": "string"}, "f2": {"type": "string"}, "f3": {"type": "number"}, "f4": {"type": "string"}, "f5": {"type": "string"}, "f6": {"type": "string"}, "f7": {"type": "string"}, "f8": {"type": "string"}}
-
+            "schema": {
+                "f1": {
+                    "type": "string"
+                },
+                "f2": {
+                    "type": "string"
+                },
+                "f3": {
+                    "type": "number"
+                },
+                "f4": {
+                    "type": "string"
+                },
+                "f5": {
+                    "type": "string"
+                },
+                "f6": {
+                    "type": "string"
+                },
+                "f7": {
+                    "type": "string"
+                },
+                "f8": {
+                    "type": "string"
+                }
+            }
         }
     },
     "prompts": {
         "2": {
             "id": "prompt1",
-            "text": "You are a Form assistant. You will suggest based on Data. You will have all context formschema and options.\nSo you will know fields and options. And also you will have chat history.\n{{FormObject}} {{chathistory}}\nSuggest based on this following Data {{data}}.\n\nInstructions to follow while suggesting.\n    1. You no need to give entire form information at once. If he asks for one field, give only that field information and suggestion.\n    2. If user gives different field value, update the form information and suggest next field to fill. No need to force this prefilled data.\n    3. When suggesting a value (e.g., event dates), always present confirmation and correction options as Markdown links:\n      [Yes, these dates are correct](action:confirm:eventName)\n      [No, change them](action:chat:eventName)\n      Only update the form if the user clicks the confirmation link.\n\n    4. Replace 'eventName' with the respective form field id from the form schema (e.g., 'eventName', 'eventStartDate').\n      Replace the link text (e.g., Yes, that's correct) as appropriate.\n      For confirmation links (e.g., 'Yes, that's correct'), use 'confirm' as ACTION_TYPE.\n      For all other links (e.g., 'No, I want to change it'), use 'chat' as ACTION_TYPE.\n\n    5. IMPORTANT: Your response MUST be a JSON object with three keys:\n      - 'response': the markdown string to display to the user (do not include button markdown links here)\n      - 'field_data': an object mapping field ids or button keys to the value that should be set if the user clicks a confirmation or other button\n      - 'suggested_buttons': an array of button objects, each with:\n          - 'title': the button text\n          - 'action': the action type (e.g., 'confirm', 'chat')\n          - 'id': the field id for suggestions, or a unique key like 'chat1' for other actions\n\n      Example response:\n      {\n        'response': 'I can help with that. Based on the information I have, the event is named 'Innovate AI Summit 2024'. Is that correct?',\n        'field_data': { 'f1': 'Innovate AI Summit 2024' },\n        'suggested_buttons': [\n          { 'title': 'Yes, that's correct', 'action': 'confirm', 'id': 'f1' },\n          { 'title': 'No, I want to change it', 'action': 'chat', 'id': 'chat1' }\n        ]\n      }\n\n    Only output valid JSON in this format. Do not include any other text or explanation outside the JSON object.\""
+            "text": "You are a Form assistant. You will suggest based on Data. You will have all context: form schema, field types, and options.This is the current state of form {{state}}. Based on current state, user question, with suggested data, answer or suggest the fields. You will also have chat history.\n\n{{FormObject}} {{chathistory}}\n\nUser Question: {{user_question}}\n\nSuggest based on this following Data {{data}}.\n\nInstructions to follow while suggesting:\n\n1. Do not suggest fields that already have values in {{state}} unless the user explicitly asks to change them.\n\n2. Only suggest the next empty field in the schema.\n\n3. Do not give the entire form information at once. If the user asks for one field, give only that field information and suggestions.\n\n4. If the user gives a value for a field, update the formObject with this new value and suggest the next field to fill. Do not force prefilled data.\n\n5. When suggesting a value (e.g., event dates, priority, owner, etc.):\n   - Provide **exactly one `update` button** that contains a `field_data` object with the field id(s) and their value(s).\n   - Provide one or more `chat` buttons for corrections, alternatives, or asking again.\n\n   Example:\n   [Yes, keep this value](action:update:f4)\n   [No, change it](action:chat)\n   [I want another option](action:chat)\n\n6. Replace the field id (e.g., 'f4') with the respective form field id from the schema (e.g., 'priority').\n\n7. IMPORTANT: Your response MUST be a JSON object with three keys:\n   - 'response': the markdown string to display to the user (do not include button markdown links here)\n   - 'session_id': the active session identifier\n   - 'suggested_buttons': an array of button objects, each with:\n       - 'title': the button text\n       - 'action': the action type ('update' or 'chat')\n       - 'field_data': (only for the single update action) the object mapping field ids to values\n\nExample response:\n{\n  \"response\": \"What is the Priority of the event?\",\n  \"session_id\": \"default\",\n  \"suggested_buttons\": [\n    {\n      \"action\": \"update\",\n      \"title\": \"P0 - In budget\",\n      \"field_data\": {\n        \"f4\": \"P0 - In budget\"\n      }\n    },\n    {\n      \"action\": \"chat\",\n      \"title\": \"P1 - Nice to have\"\n    },\n    {\n      \"action\": \"chat\",\n      \"title\": \"Something else\"\n    }\n  ]\n}\n\nOnly output valid JSON in this format. Do not include any other text or explanation outside the JSON object."
         }
     },
     "chat_history": {
         "1": {
             "id": "1234",
             "history": []
+        },
+        "2": {
+            "session_id": "deafult",
+            "history": [
+                {
+                    "role": "user",
+                    "content": "Can you help me with this form",
+                    "timestamp": "2025-09-16T14:56:10.027570"
+                },
+                {
+                    "role": "assistant",
+                    "content": "{\"markdown\": \"Of course. Let's start with the event name. Is it 'Innovate AI Summit 2024'?\", \"field_data\": {\"f1\": \"AI cloud\"}, \"suggested_buttons\": [{\"title\": \"Yes, confirm event name\", \"action\": \"update\", \"field_data\": {\"f1\": \"Innovate AI Summit 2024\"}}, {\"title\": \"No, I'll enter a different name\", \"action\": \"chat\", \"field_data\": null}]}",
+                    "timestamp": "2025-09-16T14:56:10.030540"
+                },
+                {
+                    "role": "user",
+                    "content": "Can you help me with this form",
+                    "timestamp": "2025-09-16T15:01:10.589348"
+                },
+                {
+                    "role": "assistant",
+                    "content": "{\"markdown\": \"I can help with that. Based on the data, the event is named 'Innovate AI Summit 2024'. Would you like to use this name?\", \"field_data\": {\"f1\": \"AI cloud\"}, \"suggested_buttons\": [{\"title\": \"Yes, use 'Innovate AI Summit 2024'\", \"action\": \"update\", \"field_data\": {\"f1\": \"Innovate AI Summit 2024\"}}, {\"title\": \"No, I'll enter a different name\", \"action\": \"chat\", \"field_data\": null}]}",
+                    "timestamp": "2025-09-16T15:01:10.591083"
+                },
+                {
+                    "role": "user",
+                    "content": "Can you help me with this form",
+                    "timestamp": "2025-09-16T15:05:25.969983"
+                },
+                {
+                    "role": "assistant",
+                    "content": "{\"markdown\": \"Of course. Let's start with the event name. Is it 'Innovate AI Summit 2024'?\", \"field_data\": {\"f1\": \"AI cloud\"}, \"suggested_buttons\": [{\"title\": \"Yes, confirm event name\", \"action\": \"update\", \"field_data\": {\"f1\": \"Innovate AI Summit 2024\"}}, {\"title\": \"No, I'll enter a different name\", \"action\": \"chat\", \"field_data\": null}]}",
+                    "timestamp": "2025-09-16T15:05:25.972679"
+                },
+                {
+                    "role": "user",
+                    "content": "Can you help me with this form",
+                    "timestamp": "2025-09-16T15:19:11.655104"
+                },
+                {
+                    "role": "assistant",
+                    "content": "{\"markdown\": \"I can help with that. Let's move to the event description. Based on the data, I can suggest the following: 'A premier event focusing on the latest advancements in Artificial Intelligence and Machine Learning.' Would you like to use this?\", \"field_data\": {\"f1\": \"AI cloud\"}, \"suggested_buttons\": [{\"title\": \"Yes, use this description\", \"action\": \"update\", \"field_data\": {\"f2\": \"A premier event focusing on the latest advancements in Artificial Intelligence and Machine Learning.\"}}, {\"title\": \"No, I'll provide a different one\", \"action\": \"chat\", \"field_data\": null}]}",
+                    "timestamp": "2025-09-16T15:19:11.657757"
+                },
+                {
+                    "role": "user",
+                    "content": "Can you help me with this form",
+                    "timestamp": "2025-09-16T16:17:55.066698"
+                },
+                {
+                    "role": "assistant",
+                    "content": "{\"markdown\": \"What is the event name?\", \"field_data\": {}, \"suggested_buttons\": [{\"title\": \"Innovate AI Summit 2024\", \"action\": \"update\", \"field_data\": {\"f1\": \"Innovate AI Summit 2024\"}}, {\"title\": \"Other\", \"action\": \"chat\", \"field_data\": null}]}",
+                    "timestamp": "2025-09-16T16:17:55.068367"
+                },
+                {
+                    "role": "user",
+                    "content": "Can you help me with this form",
+                    "timestamp": "2025-09-16T16:26:17.547195"
+                },
+                {
+                    "role": "assistant",
+                    "content": "{\"markdown\": \"What is the event description?\", \"field_data\": {\"f1\": \"AI cloud\"}, \"suggested_buttons\": [{\"title\": \"A premier event focusing on the latest advancements in Artificial Intelligence and Machine Learning.\", \"action\": \"update\", \"field_data\": {\"f2\": \"A premier event focusing on the latest advancements in Artificial Intelligence and Machine Learning.\"}}, {\"title\": \"Other\", \"action\": \"chat\", \"field_data\": {}}]}",
+                    "timestamp": "2025-09-16T16:26:17.549121"
+                },
+                {
+                    "role": "user",
+                    "content": "Can you help me with this form",
+                    "timestamp": "2025-09-16T16:31:20.202050"
+                },
+                {
+                    "role": "assistant",
+                    "content": "{\"markdown\": \"What is the event name?\", \"field_data\": {}, \"suggested_buttons\": [{\"title\": \"Innovate AI Summit 2024\", \"action\": \"update\", \"field_data\": {\"f1\": \"Innovate AI Summit 2024\"}}, {\"title\": \"Other\", \"action\": \"chat\", \"field_data\": {}}]}",
+                    "timestamp": "2025-09-16T16:31:20.204377"
+                },
+                {
+                    "role": "user",
+                    "content": "Can you help me with this form",
+                    "timestamp": "2025-09-16T16:35:48.026507"
+                },
+                {
+                    "role": "assistant",
+                    "content": "{\"markdown\": \"What is the event description?\", \"field_data\": {\"f1\": \"AI cloud\"}, \"suggested_buttons\": [{\"title\": \"A premier event focusing on the latest advancements in Artificial Intelligence and Machine Learning.\", \"action\": \"update\", \"field_data\": {\"f2\": \"A premier event focusing on the latest advancements in Artificial Intelligence and Machine Learning.\"}}, {\"title\": \"Other\", \"action\": \"chat\", \"field_data\": {}}]}",
+                    "timestamp": "2025-09-16T16:35:48.030655"
+                },
+                {
+                    "role": "user",
+                    "content": "Can you help me with this form",
+                    "timestamp": "2025-09-16T16:41:02.293721"
+                },
+                {
+                    "role": "assistant",
+                    "content": "{\"markdown\": \"What is the event name?\", \"field_data\": {}, \"suggested_buttons\": [{\"title\": \"Innovate AI Summit 2024\", \"action\": \"update\", \"field_data\": {\"f1\": \"Innovate AI Summit 2024\"}}, {\"title\": \"Other\", \"action\": \"chat\", \"field_data\": {}}]}",
+                    "timestamp": "2025-09-16T16:41:02.295981"
+                },
+                {
+                    "role": "user",
+                    "content": "Can you help me with this form",
+                    "timestamp": "2025-09-16T16:47:03.364126"
+                },
+                {
+                    "role": "assistant",
+                    "content": "{\"markdown\": \"What is the event name?\", \"field_data\": {}, \"suggested_buttons\": [{\"title\": \"Innovate AI Summit 2024\", \"action\": \"update\", \"field_data\": {\"f1\": \"Innovate AI Summit 2024\"}}, {\"title\": \"Other\", \"action\": \"chat\", \"field_data\": {}}]}",
+                    "timestamp": "2025-09-16T16:47:03.366345"
+                },
+                {
+                    "role": "user",
+                    "content": "Can you help me with this form",
+                    "timestamp": "2025-09-16T17:32:05.940428"
+                },
+                {
+                    "role": "assistant",
+                    "content": "{\"markdown\": \"What is the event name?\", \"field_data\": {}, \"suggested_buttons\": [{\"title\": \"Innovate AI Summit 2024\", \"action\": \"update\", \"field_data\": {\"f1\": \"Innovate AI Summit 2024\"}}, {\"title\": \"Other\", \"action\": \"chat\", \"field_data\": {}}]}",
+                    "timestamp": "2025-09-16T17:32:05.942171"
+                },
+                {
+                    "role": "user",
+                    "content": "Can you help me with this form",
+                    "timestamp": "2025-09-16T19:13:58.929538"
+                },
+                {
+                    "role": "assistant",
+                    "content": "{\"markdown\": \"What is the event name?\", \"field_data\": {}, \"suggested_buttons\": [{\"title\": \"Innovate AI Summit 2024\", \"action\": \"update\", \"field_data\": {\"f1\": \"Innovate AI Summit 2024\"}}, {\"title\": \"Other\", \"action\": \"chat\", \"field_data\": {}}]}",
+                    "timestamp": "2025-09-16T19:13:58.931383"
+                }
+            ]
+        },
+        "3": {
+            "session_id": "XYZ",
+            "history": [
+                {
+                    "role": "user",
+                    "content": "Can you help me with this form",
+                    "timestamp": "2025-09-16T20:41:03.240008"
+                },
+                {
+                    "role": "assistant",
+                    "content": "{\"markdown\": \"What is the event name?\", \"field_data\": {}, \"suggested_buttons\": [{\"title\": \"Innovate AI Summit 2024\", \"action\": \"update\", \"field_data\": {\"f2\": \"Innovate AI Summit 2024\"}}, {\"title\": \"Other\", \"action\": \"chat\", \"field_data\": null}]}",
+                    "timestamp": "2025-09-16T20:41:03.242281"
+                },
+                {
+                    "role": "user",
+                    "content": "Can you suggest priority",
+                    "timestamp": "2025-09-16T21:09:39.191791"
+                },
+                {
+                    "role": "assistant",
+                    "content": "{\"markdown\": \"What is the priority of this event?\", \"field_data\": {}, \"suggested_buttons\": [{\"title\": \"P0 - In budget\", \"action\": \"update\", \"field_data\": {\"f4\": \"P0 - In budget\"}}, {\"title\": \"P1 - Nice to have\", \"action\": \"update\", \"field_data\": {\"f4\": \"P1 - Nice to have\"}}, {\"title\": \"Other\", \"action\": \"chat\", \"field_data\": null}]}",
+                    "timestamp": "2025-09-16T21:09:39.193551"
+                }
+            ]
+        },
+        "4": {
+            "session_id": "1",
+            "history": [
+                {
+                    "role": "user",
+                    "content": "Can you help me with this form",
+                    "timestamp": "2025-09-18T00:39:21.176700"
+                },
+                {
+                    "role": "assistant",
+                    "content": "{\"markdown\": \"What is the event name?\", \"field_data\": {}, \"suggested_buttons\": [{\"title\": \"Innovate AI Summit 2024\", \"action\": \"update\", \"field_data\": {\"f1\": \"Innovate AI Summit 2024\"}}, {\"title\": \"Other\", \"action\": \"chat\", \"field_data\": null}]}",
+                    "timestamp": "2025-09-18T00:39:21.177903"
+                },
+                {
+                    "role": "user",
+                    "content": "updated",
+                    "timestamp": "2025-09-18T00:43:45.123994"
+                },
+                {
+                    "role": "assistant",
+                    "content": "{\"markdown\": \"What is the event description?\", \"field_data\": {}, \"suggested_buttons\": [{\"title\": \"A premier event focusing on the latest advancements in Artificial Intelligence and Machine Learning.\", \"action\": \"update\", \"field_data\": {\"f2\": \"A premier event focusing on the latest advancements in Artificial Intelligence and Machine Learning.\"}}, {\"title\": \"Other\", \"action\": \"chat\", \"field_data\": {}}]}",
+                    "timestamp": "2025-09-18T00:43:45.125306"
+                },
+                {
+                    "role": "user",
+                    "content": "updated",
+                    "timestamp": "2025-09-18T00:46:46.954391"
+                },
+                {
+                    "role": "assistant",
+                    "content": "{\"markdown\": \"What is the event's priority?\", \"field_data\": {}, \"suggested_buttons\": [{\"title\": \"P0 - In budget\", \"action\": \"update\", \"field_data\": {\"f4\": \"P0 - In budget\"}}, {\"title\": \"P1 - Nice to have\", \"action\": \"update\", \"field_data\": {\"f4\": \"P1 - Nice to have\"}}, {\"title\": \"Other\", \"action\": \"chat\", \"field_data\": {}}]}",
+                    "timestamp": "2025-09-18T00:46:46.956224"
+                }
+            ]
+        },
+        "5": {
+            "session_id": "2",
+            "history": [
+                {
+                    "role": "user",
+                    "content": "help me with this form",
+                    "timestamp": "2025-09-18T09:34:33.167690"
+                },
+                {
+                    "role": "assistant",
+                    "content": "{\"markdown\": \"What is the event name?\", \"field_data\": {}, \"suggested_buttons\": [{\"title\": \"Innovate AI Summit 2024\", \"action\": \"update\", \"field_data\": {\"f1\": \"Innovate AI Summit 2024\"}}, {\"title\": \"Suggest other names\", \"action\": \"chat\", \"field_data\": null}]}",
+                    "timestamp": "2025-09-18T09:34:33.170283"
+                },
+                {
+                    "role": "user",
+                    "content": "help me with this form",
+                    "timestamp": "2025-09-18T09:46:38.151102"
+                },
+                {
+                    "role": "user",
+                    "content": "help me with this form",
+                    "timestamp": "2025-09-18T09:50:22.793385"
+                },
+                {
+                    "role": "user",
+                    "content": "help me with this form",
+                    "timestamp": "2025-09-18T09:52:29.035491"
+                },
+                {
+                    "role": "assistant",
+                    "content": "{\"markdown\": \"What is the event name?\", \"field_data\": {}, \"suggested_buttons\": [{\"title\": \"Innovate AI Summit 2024\", \"action\": \"update\", \"field_data\": {\"f1\": \"Innovate AI Summit 2024\"}}, {\"title\": \"Another event name\", \"action\": \"chat\", \"field_data\": null}]}",
+                    "timestamp": "2025-09-18T09:52:35.934685"
+                }
+            ]
+        },
+        "6": {
+            "session_id": "3",
+            "history": [
+                {
+                    "role": "user",
+                    "content": "help me with this form",
+                    "timestamp": "2025-09-18T09:55:12.490351"
+                }
+            ]
         }
     },
     "data": {
@@ -1075,6 +1330,35 @@
                 "event_subcategory": "3P Tentpole Developer Events",
                 "event_subcategory_owner": "3P Tentpole Developer Events Owner"
             }
+        }
+    },
+    "state_management": {
+        "3": {
+            "id": "deafult",
+            "state": {
+                "f1": "AI cloud"
+            }
+        },
+        "4": {
+            "id": "XYZ",
+            "state": {
+                "f1": "AI cloud"
+            }
+        },
+        "5": {
+            "id": "1",
+            "state": {
+                "f1": "Innovate AI Summit 2024",
+                "f2": "A premier event focusing on the latest advancements in Artificial Intelligence and Machine Learning."
+            }
+        },
+        "6": {
+            "id": "2",
+            "state": {}
+        },
+        "7": {
+            "id": "3",
+            "state": {}
         }
     }
 }

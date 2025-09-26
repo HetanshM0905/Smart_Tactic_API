@@ -1,3 +1,5 @@
+# For Gemini Pro LLM
+google-generativeai
 Flask==2.3.3
 Werkzeug==2.3.7
 google-cloud-firestore==2.11.1
@@ -6,3 +8,9 @@ google-auth-oauthlib==1.1.0
 google-auth-httplib2==0.1.1
 tinydb==4.8.2
 requests==2.32.4
+# For LLM observability and monitoring
+langfuse>=2.0.0
+# For data validation
+pydantic>=2.0.0
+# For environment variables
+python-dotenv>=1.0.0

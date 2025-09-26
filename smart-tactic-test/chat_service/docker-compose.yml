@@ -1,0 +1,25 @@
+version: '3.8'
+
+services:
+  chat-service:
+    build: .
+    ports:
+      - "5001:5001"
+    environment:
+      - GEMINI_API_KEY=${GEMINI_API_KEY}
+      - DB_PATH=smart_tactic_tinydb.json
+      - PORT=5001
+      - HOST=0.0.0.0
+      - LOG_LEVEL=INFO
+      - FLASK_DEBUG=false
+      - CORS_ENABLED=true
+      - RATE_LIMIT_PER_MINUTE=60
+    volumes:
+      - ./data:/app/data
+    restart: unless-stopped
+    healthcheck:
+      test: ["CMD", "curl", "-f", "http://localhost:5001/health"]
+      interval: 30s
+      timeout: 10s
+      retries: 3
+      start_period: 40s
