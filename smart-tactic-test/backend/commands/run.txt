@@ -1,0 +1,23 @@
+# On macOS 
+source venv/bin/activate
+
+
+
+#Set Up the Database
+python backend/database_setup.py
+
+#Run the Flask Server
+
+python backend/app.py
+
+#urls to check
+
+http://127.0.0.1:5000/api/form-structure
+
+http://127.0.0.1:5000/api/form-options
+
+http://127.0.0.1:5000/api/form-config
+
+#python backend/verify_db.py
+
+# pip install -r requirements.txt

@@ -1,0 +1,4540 @@
+{
+  "pages": [
+      {
+          "workflowName": "Create Tactic",
+          "pageId": 1,
+          "pageLabel": "Create Tactic",
+          "pageSubLabel": "Tell us what youre planning, and well help you identify the tactic type. Be sure to select the right category to make sure your requests are being seen by the right people",
+          "layout": {},
+          "fields": [
+              {
+                  "id": "category",
+                  "fieldLabel": "Category",
+                  "fieldTitle": "",
+                  "fieldSubtitle": "",
+                  "type": "select",
+                  "optionsLookup": "categoryOptions",
+                  "value": null,
+                  "isVisible": true,
+                  "style": {},
+                  "validators": [
+                      {
+                          "required": true,
+                          "message": ""
+                      },
+                      {
+                          "min": "",
+                          "message": ""
+                      },
+                      {
+                          "max": "",
+                          "message": ""
+                      },
+                      {
+                          "pattern": "",
+                          "message": ""
+                      }
+                  ],
+                  "ui": {
+                      "className": "input-highlight"
+                  }
+              },
+              {
+                  "id": "tacticType",
+                  "fieldLabel": "Tactic Type",
+                  "fieldTitle": "",
+                  "fieldSubtitle": "",
+                  "type": "select",
+                  "optionsLookup": "tacticTypeOptions",
+                  "value": null,
+                  "isVisible": false,
+                  "style": {},
+                  "validators": [
+                      {
+                          "required": true,
+                          "message": ""
+                      },
+                      {
+                          "min": "",
+                          "message": ""
+                      },
+                      {
+                          "max": "",
+                          "message": ""
+                      },
+                      {
+                          "pattern": "",
+                          "message": ""
+                      }
+                  ],
+                  "ui": {
+                      "className": "label-warning"
+                  }
+              },
+              {
+                  "id": "eventType",
+                  "fieldLabel": "What type of event do you want to create?",
+                  "fieldTitle": "",
+                  "fieldSubtitle": "",
+                  "type": "selectionCards",
+                  "optionsLookup": "eventTypeOptions",
+                  "value": null,
+                  "isVisible": false,
+                  "style": {},
+                  "validators": [
+                      {
+                          "required": true,
+                          "message": ""
+                      },
+                      {
+                          "min": "",
+                          "message": ""
+                      },
+                      {
+                          "max": "",
+                          "message": ""
+                      },
+                      {
+                          "pattern": "",
+                          "message": ""
+                      }
+                  ]
+              },
+              {
+                  "id": "isAlignedToMultiEvent",
+                  "fieldLabel": "Is your tactic aligned to a multi-event?",
+                  "fieldTitle": "",
+                  "fieldSubtitle": "",
+                  "type": "select",
+                  "optionsLookup": "singleEventYesNoOptions",
+                  "value": null,
+                  "isVisible": false,
+                  "readOnly": false,
+                  "style": {},
+                  "validators": [
+                      {
+                          "required": true,
+                          "message": ""
+                      },
+                      {
+                          "min": "",
+                          "message": ""
+                      },
+                      {
+                          "max": "",
+                          "message": ""
+                      },
+                      {
+                          "pattern": "",
+                          "message": ""
+                      }
+                  ]
+              }
+          ]
+      },
+      {
+          "workflowName": "",
+          "pageId": 2,
+          "pageLabel": "Create Smart Tactic",
+          "pageSubLabel": "Tell us what youre planning, and well help you identify the tactic type.",
+          "layout": {},
+          "fields": [
+              {
+                  "id": "eventType",
+                  "fieldLabel": "What type of event do you want to create?",
+                  "fieldTitle": "",
+                  "fieldSubtitle": "",
+                  "type": "selectionCards",
+                  "optionsLookup": "eventTypeOptions",
+                  "value": null,
+                  "isVisible": false,
+                  "style": {},
+                  "validators": [
+                      {
+                          "required": true,
+                          "message": ""
+                      },
+                      {
+                          "min": "",
+                          "message": ""
+                      },
+                      {
+                          "max": "",
+                          "message": ""
+                      },
+                      {
+                          "pattern": "",
+                          "message": ""
+                      }
+                  ]
+              },
+              {
+                  "id": "isAlignedToMultiEvent",
+                  "fieldLabel": "Is your tactic aligned to a multi-event?",
+                  "fieldTitle": "",
+                  "fieldSubtitle": "",
+                  "type": "select",
+                  "optionsLookup": "singleEventYesNoOptions",
+                  "value": null,
+                  "isVisible": false,
+                  "readOnly": false,
+                  "style": {},
+                  "validators": [
+                      {
+                          "required": true,
+                          "message": ""
+                      },
+                      {
+                          "min": "",
+                          "message": ""
+                      },
+                      {
+                          "max": "",
+                          "message": ""
+                      },
+                      {
+                          "pattern": "",
+                          "message": ""
+                      }
+                  ]
+              }
+          ]
+      },
+      {
+          "workflowName": "",
+          "pageId": 3,
+          "pageLabel": "Create Smart Tactic",
+          "pageSubLabel": "Tell us what youre planning, and well help you identify the tactic type.",
+          "layout": {},
+          "fields": [
+              {
+                  "id": "isAlignedToMultiEventToggleBtn",
+                  "type": "toggle",
+                  "fieldLabel": "Is your tactic aligned to a multi-event?",
+                  "fieldTitle": "",
+                  "fieldSubtitle": "",
+                  "value": false,
+                  "style": {},
+                  "validators": [
+                      {
+                          "required": true,
+                          "message": ""
+                      },
+                      {
+                          "min": "",
+                          "message": ""
+                      },
+                      {
+                          "max": "",
+                          "message": ""
+                      },
+                      {
+                          "pattern": "",
+                          "message": ""
+                      }
+                  ]
+              },
+              {
+                  "id": "isAlignedToMultiEvent",
+                  "fieldLabel": "Is your tactic aligned to a multi-event?",
+                  "fieldTitle": "",
+                  "fieldSubtitle": "",
+                  "type": "select",
+                  "optionsLookup": "singleEventYesNoOptions",
+                  "value": null,
+                  "isVisible": false,
+                  "readOnly": false,
+                  "style": {},
+                  "validators": [
+                      {
+                          "required": true,
+                          "message": ""
+                      },
+                      {
+                          "min": "",
+                          "message": ""
+                      },
+                      {
+                          "max": "",
+                          "message": ""
+                      },
+                      {
+                          "pattern": "",
+                          "message": ""
+                      }
+                  ]
+              }
+          ]
+      },
+      {
+          "singleEventWithoutMultiple": {
+              "workflowName": "Tactic Creation Workflow — Single (No Multi Event)",
+              "sections": [
+                  {
+                      "sectionId": 1,
+                      "sectionName": "Basic Details",
+                      "layout": {},
+                      "fields": [
+                          {
+                              "id": "eventName",
+                              "fieldLabel": "Event name",
+                              "fieldTitle": "",
+                              "fieldSubtitle": "",
+                              "type": "textField",
+                              "value": null,
+                              "required": true,
+                              "layout": {},
+                              "style": {},
+                              "validators": [
+                                  {
+                                      "required": true,
+                                      "message": ""
+                                  },
+                                  {
+                                      "min": "",
+                                      "message": ""
+                                  },
+                                  {
+                                      "max": "",
+                                      "message": ""
+                                  },
+                                  {
+                                      "pattern": "",
+                                      "message": ""
+                                  }
+                              ]
+                          },
+                          {
+                              "id": "description",
+                              "fieldLabel": "Description",
+                              "fieldTitle": "",
+                              "fieldSubtitle": "",
+                              "type": "textArea",
+                              "value": null,
+                              "layout": {},
+                              "style": {},
+                              "validators": [
+                                  {
+                                      "required": true,
+                                      "message": ""
+                                  },
+                                  {
+                                      "min": "",
+                                      "message": ""
+                                  },
+                                  {
+                                      "max": "",
+                                      "message": ""
+                                  },
+                                  {
+                                      "pattern": "",
+                                      "message": ""
+                                  }
+                              ]
+                          },
+                          {
+                              "id": "priorityOwnerGroup",
+                              "type": "fieldGroup",
+                              "layout": {},
+                              "subfields": [
+                                  {
+                                      "id": "priority",
+                                      "fieldLabel": "Priority",
+                                      "fieldTitle": "",
+                                      "fieldSubtitle": "",
+                                      "type": "select",
+                                      "optionsLookup": "priorityOptions",
+                                      "value": null,
+                                      "style": {},
+                                      "validators": [
+                                          {
+                                              "required": true,
+                                              "message": ""
+                                          },
+                                          {
+                                              "min": "",
+                                              "message": ""
+                                          },
+                                          {
+                                              "max": "",
+                                              "message": ""
+                                          },
+                                          {
+                                              "pattern": "",
+                                              "message": ""
+                                          }
+                                      ]
+                                  },
+                                  {
+                                      "id": "owner",
+                                      "fieldLabel": "Owner",
+                                      "fieldTitle": "",
+                                      "fieldSubtitle": "",
+                                      "type": "select",
+                                      "guidanceText": "Search for user by email",
+                                      "value": null,
+                                      "style": {},
+                                      "validators": [
+                                          {
+                                              "required": true,
+                                              "message": ""
+                                          },
+                                          {
+                                              "min": "",
+                                              "message": ""
+                                          },
+                                          {
+                                              "max": "",
+                                              "message": ""
+                                          },
+                                          {
+                                              "pattern": "",
+                                              "message": ""
+                                          }
+                                      ]
+                                  }
+                              ]
+                          },
+                          {
+                              "id": "dateGroup",
+                              "type": "fieldGroup",
+                              "layout": {},
+                              "subfields": [
+                                  {
+                                      "id": "startDate",
+                                      "fieldLabel": "Start date",
+                                      "fieldTitle": "",
+                                      "fieldSubtitle": "",
+                                      "type": "datePicker",
+                                      "value": null,
+                                      "style": {},
+                                      "validators": [
+                                          {
+                                              "required": true,
+                                              "message": ""
+                                          },
+                                          {
+                                              "min": "",
+                                              "message": ""
+                                          },
+                                          {
+                                              "max": "",
+                                              "message": ""
+                                          },
+                                          {
+                                              "pattern": "",
+                                              "message": ""
+                                          }
+                                      ]
+                                  },
+                                  {
+                                      "id": "endDate",
+                                      "fieldLabel": "End date",
+                                      "fieldTitle": "",
+                                      "fieldSubtitle": "",
+                                      "type": "datePicker",
+                                      "value": null,
+                                      "style": {},
+                                      "validators": [
+                                          {
+                                              "required": true,
+                                              "message": ""
+                                          },
+                                          {
+                                              "min": "",
+                                              "message": ""
+                                          },
+                                          {
+                                              "max": "",
+                                              "message": ""
+                                          },
+                                          {
+                                              "pattern": "",
+                                              "message": ""
+                                          }
+                                      ]
+                                  }
+                              ]
+                          },
+                          {
+                              "id": "eventDateConfidence",
+                              "fieldLabel": "Event date confidence",
+                              "fieldTitle": "",
+                              "fieldSubtitle": "",
+                              "type": "select",
+                              "optionsLookup": "confidenceOptions",
+                              "value": null,
+                              "style": {},
+                              "validators": [
+                                  {
+                                      "required": true,
+                                      "message": ""
+                                  },
+                                  {
+                                      "min": "",
+                                      "message": ""
+                                  },
+                                  {
+                                      "max": "",
+                                      "message": ""
+                                  },
+                                  {
+                                      "pattern": "",
+                                      "message": ""
+                                  }
+                              ]
+                          },
+                          {
+                              "id": "willGenerateLeads",
+                              "fieldLabel": "Will this tactic generate customer inquiries/leads?",
+                              "fieldTitle": "",
+                              "fieldSubtitle": "",
+                              "type": "toggle",
+                              "value": null,
+                              "style": {},
+                              "validators": [
+                                  {
+                                      "required": true,
+                                      "message": ""
+                                  },
+                                  {
+                                      "min": "",
+                                      "message": ""
+                                  },
+                                  {
+                                      "max": "",
+                                      "message": ""
+                                  },
+                                  {
+                                      "pattern": "",
+                                      "message": ""
+                                  }
+                              ]
+                          },
+                          {
+                              "id": "numberOfInquiries",
+                              "fieldLabel": "Number of inquiries",
+                              "fieldTitle": "",
+                              "fieldSubtitle": "",
+                              "type": "text",
+                              "guidanceText": "Applicable only if the above answer is Yes",
+                              "value": null,
+                              "isVisible": false,
+                              "min": 1,
+                              "dependsOn": "willGenerateLeads",                                
+                              "style": {},
+                              "validators": [
+                                  {
+                                      "required": true,
+                                      "message": ""
+                                  },
+                                  {
+                                      "min": "",
+                                      "message": ""
+                                  },
+                                  {
+                                      "max": "",
+                                      "message": ""
+                                  },
+                                  {
+                                      "pattern": "",
+                                      "message": ""
+                                  }
+                              ]
+                          }
+                      ]
+                  },
+                  {
+                      "sectionId": 2,
+                      "sectionName": "Event Categorisation",
+                      "layout": {},
+                      "gridFields": [
+                          {
+                              "id": "eventRing",
+                              "fieldLabel": "Event Ring",
+                              "fieldTitle": "",
+                              "fieldSubtitle": "",
+                              "type": "select",
+                              "optionsLookup": "eventRingOptions",
+                              "value": null,                                
+                              "style": {"grid-column": "1", "grid-row": "1"},
+                              "validators": [
+                                  {
+                                      "required": true,
+                                      "message": ""
+                                  },
+                                  {
+                                      "min": "",
+                                      "message": ""
+                                  },
+                                  {
+                                      "max": "",
+                                      "message": ""
+                                  },
+                                  {
+                                      "pattern": "",
+                                      "message": ""
+                                  }
+                              ]
+                          },
+                          {
+                              "id": "firstPartyOrThirdPartyEvent",
+                              "fieldLabel": "First party or third party event",
+                              "fieldTitle": "",
+                              "fieldSubtitle": "",
+                              "type": "select",
+                              "optionsLookup": "firstPartyThirdPartyOptions",
+                              "value": null,                                
+                              "style": {},
+                              "validators": [
+                                  {
+                                      "required": true,
+                                      "message": ""
+                                  },
+                                  {
+                                      "min": "",
+                                      "message": ""
+                                  },
+                                  {
+                                      "max": "",
+                                      "message": ""
+                                  },
+                                  {
+                                      "pattern": "",
+                                      "message": ""
+                                  }
+                              ]
+                          },
+                          {
+                              "id": "eventCategory",
+                              "fieldLabel": "Event Category",
+                              "fieldTitle": "",
+                              "fieldSubtitle": "",
+                              "type": "select",
+                              "optionsLookup": "eventCategoryOptions",
+                              "value": null,                               
+                              "style": {},
+                              "validators": [
+                                  {
+                                      "required": true,
+                                      "message": ""
+                                  },
+                                  {
+                                      "min": "",
+                                      "message": ""
+                                  },
+                                  {
+                                      "max": "",
+                                      "message": ""
+                                  },
+                                  {
+                                      "pattern": "",
+                                      "message": ""
+                                  }
+                              ]
+                          },
+                          {
+                              "id": "eventCategoryOwner",
+                              "fieldLabel": "Event Category Owner",
+                              "fieldTitle": "",
+                              "fieldSubtitle": "",
+                              "type": "asyncSearchList",
+                              "guidanceText": "Search for user by email",
+                              "value": null,                                
+                              "style": {},
+                              "validators": [
+                                  {
+                                      "required": true,
+                                      "message": ""
+                                  },
+                                  {
+                                      "min": "",
+                                      "message": ""
+                                  },
+                                  {
+                                      "max": "",
+                                      "message": ""
+                                  },
+                                  {
+                                      "pattern": "",
+                                      "message": ""
+                                  }
+                              ]
+                          },
+                          {
+                              "id": "eventSubCategory",
+                              "fieldLabel": "Event sub Category",
+                              "fieldTitle": "",
+                              "fieldSubtitle": "",
+                              "type": "select",
+                              "optionsLookup": "eventSubCategoryOptions",
+                              "value": null,                                
+                              "style": {},
+                              "validators": [
+                                  {
+                                      "required": true,
+                                      "message": ""
+                                  },
+                                  {
+                                      "min": "",
+                                      "message": ""
+                                  },
+                                  {
+                                      "max": "",
+                                      "message": ""
+                                  },
+                                  {
+                                      "pattern": "",
+                                      "message": ""
+                                  }
+                              ]
+                          },
+                          {
+                              "id": "eventSubCategoryOwner",
+                              "fieldLabel": "Event sub Category Owner",
+                              "fieldTitle": "",
+                              "fieldSubtitle": "",
+                              "type": "asyncSearchList",
+                              "guidanceText": "Search for user by email",
+                              "value": null,                                
+                              "style": {},
+                              "validators": [
+                                  {
+                                      "required": true,
+                                      "message": ""
+                                  },
+                                  {
+                                      "min": "",
+                                      "message": ""
+                                  },
+                                  {
+                                      "max": "",
+                                      "message": ""
+                                  },
+                                  {
+                                      "pattern": "",
+                                      "message": ""
+                                  }
+                              ]
+                          },
+                          {
+                              "id": "eventOrganiser",
+                              "fieldLabel": "Event Organiser",
+                              "fieldTitle": "",
+                              "fieldSubtitle": "",
+                              "type": "asyncSearchList",
+                              "guidanceText": "Search for user by email",
+                              "value": null,                                
+                              "style": {},
+                              "validators": [
+                                  {
+                                      "required": true,
+                                      "message": ""
+                                  },
+                                  {
+                                      "min": "",
+                                      "message": ""
+                                  },
+                                  {
+                                      "max": "",
+                                      "message": ""
+                                  },
+                                  {
+                                      "pattern": "",
+                                      "message": ""
+                                  }
+                              ]
+                          },
+                          {
+                              "id": "eventPointOfContact",
+                              "fieldLabel": "Event Point of Contact",
+                              "fieldTitle": "",
+                              "fieldSubtitle": "",
+                              "type": "asyncSearchList",
+                              "guidanceText": "Search for user by email",
+                              "value": null,                                
+                              "style": {},
+                              "validators": [
+                                  {
+                                      "required": true,
+                                      "message": ""
+                                  },
+                                  {
+                                      "min": "",
+                                      "message": ""
+                                  },
+                                  {
+                                      "max": "",
+                                      "message": ""
+                                  },
+                                  {
+                                      "pattern": "",
+                                      "message": ""
+                                  }
+                              ]
+                          },
+                          {
+                              "id": "fundingStatus",
+                              "fieldLabel": "Funding status",
+                              "fieldTitle": "",
+                              "fieldSubtitle": "",
+                              "type": "select",
+                              "optionsLookup": "fundingStatusOptions",
+                              "value": null,                              
+                              "style": {"grid-column": "1 / span 2", "grid-row": "5"},
+                              "validators": [
+                                  {
+                                      "required": true,
+                                      "message": ""
+                                  },
+                                  {
+                                      "min": "",
+                                      "message": ""
+                                  },
+                                  {
+                                      "max": "",
+                                      "message": ""
+                                  },
+                                  {
+                                      "pattern": "",
+                                      "message": ""
+                                  }
+                              ]
+                          }
+                      ]
+                  },
+                  {
+                      "sectionId": 3,
+                      "sectionName": "Location Details",
+                      "layout": {},
+                      "fields": [
+                          {
+                              "id": "HowisEventHosted",
+                              "fieldLabel": "How is the event hosted?",
+                              "fieldTitle": "",
+                              "fieldSubtitle": "",
+                              "type": "select",
+                              "optionsLookup": "fundingStatusOptions",
+                              "value": null,                                
+                              "style": {},
+                              "validators": [
+                                  {
+                                      "required": true,
+                                      "message": ""
+                                  },
+                                  {
+                                      "min": "",
+                                      "message": ""
+                                  },
+                                  {
+                                      "max": "",
+                                      "message": ""
+                                  },
+                                  {
+                                      "pattern": "",
+                                      "message": ""
+                                  }
+                              ]
+                          },
+                          {
+                              "id": "businessRegion",
+                              "fieldLabel": "Business Region",
+                              "fieldTitle": "",
+                              "fieldSubtitle": "",
+                              "type": "select",
+                              "optionsLookup": "businessRegionOptions",
+                              "value": null,                                
+                              "style": {},
+                              "validators": [
+                                  {
+                                      "required": true,
+                                      "message": ""
+                                  },
+                                  {
+                                      "min": "",
+                                      "message": ""
+                                  },
+                                  {
+                                      "max": "",
+                                      "message": ""
+                                  },
+                                  {
+                                      "pattern": "",
+                                      "message": ""
+                                  }
+                              ]
+                          },
+                          {
+                              "id": "Country",
+                              "fieldLabel": "Country",
+                              "fieldTitle": "",
+                              "fieldSubtitle": "",
+                              "type": "select",
+                              "optionsLookup": "countryOptions",
+                              "value": null,                                
+                              "style": {},
+                              "validators": [
+                                  {
+                                      "required": true,
+                                      "message": ""
+                                  },
+                                  {
+                                      "min": "",
+                                      "message": ""
+                                  },
+                                  {
+                                      "max": "",
+                                      "message": ""
+                                  },
+                                  {
+                                      "pattern": "",
+                                      "message": ""
+                                  }
+                              ]
+                          }
+                      ]
+                  },
+                  {
+                      "sectionId": 4,
+                      "sectionName": "Budget Details",
+                      "layout": {},
+                      "fields": [
+                          {
+                              "id": "budgetHierarchy",
+                              "label": "Budget Hierarchy",
+                              "type": "hierarchicalDropdown",
+                              "levels": [
+                                  {
+                                      "id": "level1",
+                                      "fieldLabel": "Level 1",
+                                      "fieldTitle": "",
+                                      "fieldSubtitle": "",
+                                      "placeholder": "Select Level 1 (GCM Cost Centre)",
+                                      "optionsLookup": "budgetLevel1Options",                                        
+                                      "style": {},
+                                      "validators": [
+                                          {
+                                              "required": true,
+                                              "message": ""
+                                          },
+                                          {
+                                              "min": "",
+                                              "message": ""
+                                          },
+                                          {
+                                              "max": "",
+                                              "message": ""
+                                          },
+                                          {
+                                              "pattern": "",
+                                              "message": ""
+                                          }
+                                      ]
+                                  },
+                                  {
+                                      "id": "level2",
+                                      "fieldLabel": "Level 2",
+                                      "fieldTitle": "",
+                                      "fieldSubtitle": "",
+                                      "placeholder": "Select Level 2",
+                                      "dependsOn": "level1",
+                                      "optionsLookup": "budgetLevel2Options",                                        
+                                      "style": {},
+                                      "validators": [
+                                          {
+                                              "required": true,
+                                              "message": ""
+                                          },
+                                          {
+                                              "min": "",
+                                              "message": ""
+                                          },
+                                          {
+                                              "max": "",
+                                              "message": ""
+                                          },
+                                          {
+                                              "pattern": "",
+                                              "message": ""
+                                          }
+                                      ]
+                                  },
+                                  {
+                                      "id": "level3",
+                                      "fieldLabel": "Level 3",
+                                      "fieldTitle": "",
+                                      "fieldSubtitle": "",
+                                      "placeholder": "Select Level 3",
+                                      "dependsOn": "level2",
+                                      "optionsLookup": "budgetLevel3Options",                                        
+                                      "style": {},
+                                      "validators": [
+                                          {
+                                              "required": true,
+                                              "message": ""
+                                          },
+                                          {
+                                              "min": "",
+                                              "message": ""
+                                          },
+                                          {
+                                              "max": "",
+                                              "message": ""
+                                          },
+                                          {
+                                              "pattern": "",
+                                              "message": ""
+                                          }
+                                      ]
+                                  },
+                                  {
+                                      "id": "level4",
+                                      "fieldLabel": "Level 4",
+                                      "fieldTitle": "",
+                                      "fieldSubtitle": "",
+                                      "placeholder": "Select Level 4",
+                                      "dependsOn": "level3",
+                                      "optionsLookup": "budgetLevel4Options",
+                                      "layout": {},
+                                      "style": {},
+                                      "validators": [
+                                          {
+                                              "required": true,
+                                              "message": ""
+                                          },
+                                          {
+                                              "min": "",
+                                              "message": ""
+                                          },
+                                          {
+                                              "max": "",
+                                              "message": ""
+                                          },
+                                          {
+                                              "pattern": "",
+                                              "message": ""
+                                          }
+                                      ]
+                                  }
+                              ],
+                              "value": {
+                                  "level1": null,
+                                  "level2": null,
+                                  "level3": null,
+                                  "level4": null
+                              },
+                              "layout": {
+                                  "type": "hierarchical",
+                                  "showSelectedPath": true,
+                                  "expandable": true,
+                                  "showFullPath": true
+                              },
+                              "style": {}
+                          }
+                      ]
+                  },
+                  {
+                      "sectionId": 5,
+                      "sectionName": "Initiative Details",
+                      "layout": {},
+                      "fields": [
+                          {
+                              "id": "initiativeDetails",
+                              "fieldLabel": "All Initiatives",
+                              "fieldTitle": "",
+                              "fieldSubtitle": "",
+                              "type": "select",
+                              "optionsLookup": "initiativeOptions",
+                              "value": null,
+                              "layout": {
+                                  "type": "grid",
+                                  "columns": 2,
+                                  "gapRow": "16px",
+                                  "gapColumn": "16px"
+                              },
+                              "style": {},
+                              "validators": [
+                                  {
+                                      "required": true,
+                                      "message": ""
+                                  },
+                                  {
+                                      "min": "",
+                                      "message": ""
+                                  },
+                                  {
+                                      "max": "",
+                                      "message": ""
+                                  },
+                                  {
+                                      "pattern": "",
+                                      "message": ""
+                                  }
+                              ]
+                          }
+                      ]
+                  },
+                  {
+                      "sectionId": 6,
+                      "sectionName": "Execution Details 1",
+                      "layout": {},
+                      "fields": [
+                          {
+                              "id": "eventVenue",
+                              "fieldLabel": "Event Venue",
+                              "fieldTitle": "",
+                              "fieldSubtitle": "",
+                              "type": "textField",
+                              "value": null,
+                              "layout": {},
+                              "style": {},
+                              "validators": [
+                                  {
+                                      "required": true,
+                                      "message": ""
+                                  },
+                                  {
+                                      "min": "",
+                                      "message": ""
+                                  },
+                                  {
+                                      "max": "",
+                                      "message": ""
+                                  },
+                                  {
+                                      "pattern": "",
+                                      "message": ""
+                                  }
+                              ]
+                          },
+                          {
+                              "id": "registrationLink",
+                              "fieldLabel": "Registration Link",
+                              "fieldTitle": "",
+                              "fieldSubtitle": "",
+                              "type": "textField",
+                              "value": null,
+                              "layout": {},
+                              "style": {},
+                              "validators": [
+                                  {
+                                      "required": true,
+                                      "message": ""
+                                  },
+                                  {
+                                      "min": "",
+                                      "message": ""
+                                  },
+                                  {
+                                      "max": "",
+                                      "message": ""
+                                  },
+                                  {
+                                      "pattern": "",
+                                      "message": ""
+                                  }
+                              ]
+                          },
+                          {
+                              "id": "salesKitLink",
+                              "fieldLabel": "Sales Kit Link",
+                              "fieldTitle": "",
+                              "fieldSubtitle": "",
+                              "type": "textField",
+                              "value": null,
+                              "layout": {},
+                              "style": {},
+                              "validators": [
+                                  {
+                                      "required": true,
+                                      "message": ""
+                                  },
+                                  {
+                                      "min": "",
+                                      "message": ""
+                                  },
+                                  {
+                                      "max": "",
+                                      "message": ""
+                                  },
+                                  {
+                                      "pattern": "",
+                                      "message": ""
+                                  }
+                              ]
+                          }
+                      ]
+                  },
+                  {
+                      "sectionId": 7,
+                      "sectionName": "Execution Details 2",
+                      "layout": {},
+                      "fields": [
+                          {
+                              "id": "expectedRegistrations",
+                              "fieldLabel": "Expected no. of Registrations",
+                              "fieldTitle": "",
+                              "fieldSubtitle": "",
+                              "type": "text",
+                              "value": null,
+                              "layout": {},
+                              "style": {},
+                              "validators": [
+                                  {
+                                      "required": true,
+                                      "message": ""
+                                  },
+                                  {
+                                      "min": "",
+                                      "message": ""
+                                  },
+                                  {
+                                      "max": "",
+                                      "message": ""
+                                  },
+                                  {
+                                      "pattern": "",
+                                      "message": ""
+                                  }
+                              ]
+                          },
+                          {
+                              "id": "expectedAttendees",
+                              "fieldLabel": "Expected no. of attendees",
+                              "fieldTitle": "",
+                              "fieldSubtitle": "",
+                              "type": "text",
+                              "value": null,
+                              "layout": {},
+                              "style": {},
+                              "validators": [
+                                  {
+                                      "required": true,
+                                      "message": ""
+                                  },
+                                  {
+                                      "min": "",
+                                      "message": ""
+                                  },
+                                  {
+                                      "max": "",
+                                      "message": ""
+                                  },
+                                  {
+                                      "pattern": "",
+                                      "message": ""
+                                  }
+                              ]
+                          },
+                          {
+                              "id": "globalCampaigns",
+                              "fieldLabel": "Which Global campaign programs is this tactic adopted, adapted or invented, if any?",
+                              "fieldTitle": "",
+                              "fieldSubtitle": "",
+                              "type": "checkboxGroup",
+                              "optionsLookup": "globalCampaignOptions",
+                              "value": [],
+                              "layout": {},
+                              "style": {},
+                              "validators": [
+                                  {
+                                      "required": true,
+                                      "message": ""
+                                  },
+                                  {
+                                      "min": "",
+                                      "message": ""
+                                  },
+                                  {
+                                      "max": "",
+                                      "message": ""
+                                  },
+                                  {
+                                      "pattern": "",
+                                      "message": ""
+                                  }
+                              ]
+                          }
+                      ]
+                  },
+                  {
+                      "sectionId": 8,
+                      "sectionName": "Execution Details 3",
+                      "layout": {},
+                      "fields": [
+                          {
+                              "id": "buyerSegment1",
+                              "fieldLabel": "Buyer Segment 1",
+                              "fieldTitle": "",
+                              "fieldSubtitle": "",
+                              "type": "text",
+                              "value": null,
+                              "layout": {},
+                              "style": {},
+                              "validators": [
+                                  {
+                                      "required": true,
+                                      "message": ""
+                                  },
+                                  {
+                                      "min": "",
+                                      "message": ""
+                                  },
+                                  {
+                                      "max": "",
+                                      "message": ""
+                                  },
+                                  {
+                                      "pattern": "",
+                                      "message": ""
+                                  }
+                              ]
+                          },
+                          {
+                              "id": "buyerSegment2",
+                              "fieldLabel": "Buyer Segment 2",
+                              "fieldTitle": "",
+                              "fieldSubtitle": "",
+                              "type": "text",
+                              "value": null,
+                              "layout": {},
+                              "style": {},
+                              "validators": [
+                                  {
+                                      "required": true,
+                                      "message": ""
+                                  },
+                                  {
+                                      "min": "",
+                                      "message": ""
+                                  },
+                                  {
+                                      "max": "",
+                                      "message": ""
+                                  },
+                                  {
+                                      "pattern": "",
+                                      "message": ""
+                                  }
+                              ]
+                          },
+                          {
+                              "id": "buyerSegment3",
+                              "fieldLabel": "Buyer Segment 3",
+                              "fieldTitle": "",
+                              "fieldSubtitle": "",
+                              "type": "text",
+                              "value": null,
+                              "layout": {},
+                              "style": {},
+                              "validators": [
+                                  {
+                                      "required": true,
+                                      "message": ""
+                                  },
+                                  {
+                                      "min": "",
+                                      "message": ""
+                                  },
+                                  {
+                                      "max": "",
+                                      "message": ""
+                                  },
+                                  {
+                                      "pattern": "",
+                                      "message": ""
+                                  }
+                              ]
+                          },
+                          {
+                              "id": "buyerSegment4",
+                              "fieldLabel": "Buyer Segment 4",
+                              "fieldTitle": "",
+                              "fieldSubtitle": "",
+                              "type": "text",
+                              "value": null,
+                              "layout": {},
+                              "style": {},
+                              "validators": [
+                                  {
+                                      "required": true,
+                                      "message": ""
+                                  },
+                                  {
+                                      "min": "",
+                                      "message": ""
+                                  },
+                                  {
+                                      "max": "",
+                                      "message": ""
+                                  },
+                                  {
+                                      "pattern": "",
+                                      "message": ""
+                                  }
+                              ]
+                          },
+                          {
+                              "id": "buyerSegment5",
+                              "fieldLabel": "Buyer Segment 5",
+                              "fieldTitle": "",
+                              "fieldSubtitle": "",
+                              "type": "text",
+                              "value": null,
+                              "layout": {},
+                              "style": {},
+                              "validators": [
+                                  {
+                                      "required": true,
+                                      "message": ""
+                                  },
+                                  {
+                                      "min": "",
+                                      "message": ""
+                                  },
+                                  {
+                                      "max": "",
+                                      "message": ""
+                                  },
+                                  {
+                                      "pattern": "",
+                                      "message": ""
+                                  }
+                              ]
+                          },
+                          {
+                              "id": "allBuyerSegments",
+                              "fieldLabel": "All",
+                              "fieldTitle": "",
+                              "fieldSubtitle": "",
+                              "type": "text",
+                              "value": null,
+                              "readOnly": true,
+                              "layout": {},
+                              "style": {},
+                              "validators": [
+                                  {
+                                      "required": true,
+                                      "message": ""
+                                  },
+                                  {
+                                      "min": "",
+                                      "message": ""
+                                  },
+                                  {
+                                      "max": "",
+                                      "message": ""
+                                  },
+                                  {
+                                      "pattern": "",
+                                      "message": ""
+                                  }
+                              ]
+                          }
+                      ]
+                  },
+                  {
+                      "sectionId": 9,
+                      "sectionName": "Execution Details 4",
+                      "layout": {},
+                      "fields": [
+                          {
+                              "id": "coreMessaging1",
+                              "fieldLabel": "Core Messaging 1",
+                              "fieldTitle": "",
+                              "fieldSubtitle": "",
+                              "type": "text",
+                              "value": null,
+                              "layout": {},
+                              "style": {},
+                              "validators": [
+                                  {
+                                      "required": true,
+                                      "message": ""
+                                  },
+                                  {
+                                      "min": "",
+                                      "message": ""
+                                  },
+                                  {
+                                      "max": "",
+                                      "message": ""
+                                  },
+                                  {
+                                      "pattern": "",
+                                      "message": ""
+                                  }
+                              ]
+                          },
+                          {
+                              "id": "coreMessaging2",
+                              "fieldLabel": "Core Messaging 2",
+                              "fieldTitle": "",
+                              "fieldSubtitle": "",
+                              "type": "text",
+                              "value": null,
+                              "layout": {},
+                              "style": {},
+                              "validators": [
+                                  {
+                                      "required": true,
+                                      "message": ""
+                                  },
+                                  {
+                                      "min": "",
+                                      "message": ""
+                                  },
+                                  {
+                                      "max": "",
+                                      "message": ""
+                                  },
+                                  {
+                                      "pattern": "",
+                                      "message": ""
+                                  }
+                              ]
+                          },
+                          {
+                              "id": "allCoreMessaging",
+                              "fieldLabel": "All",
+                              "fieldTitle": "",
+                              "fieldSubtitle": "",
+                              "type": "text",
+                              "value": null,
+                              "readOnly": true,
+                              "layout": {},
+                              "style": {},
+                              "validators": [
+                                  {
+                                      "required": true,
+                                      "message": ""
+                                  },
+                                  {
+                                      "min": "",
+                                      "message": ""
+                                  },
+                                  {
+                                      "max": "",
+                                      "message": ""
+                                  },
+                                  {
+                                      "pattern": "",
+                                      "message": ""
+                                  }
+                              ]
+                          },
+                          {
+                              "id": "partnerInvolvement",
+                              "fieldLabel": "Level of partner involvement",
+                              "fieldTitle": "",
+                              "fieldSubtitle": "",
+                              "type": "select",
+                              "optionsLookup": "partnerInvolvementOptions",
+                              "value": null,
+                              "layout": {
+                                  "gridColumn": "1 / span 2"
+                              },
+                              "style": {},
+                              "validators": [
+                                  {
+                                      "required": true,
+                                      "message": ""
+                                  },
+                                  {
+                                      "min": "",
+                                      "message": ""
+                                  },
+                                  {
+                                      "max": "",
+                                      "message": ""
+                                  },
+                                  {
+                                      "pattern": "",
+                                      "message": ""
+                                  }
+                              ]
+                          },
+                          {
+                              "id": "whyNoPartner",
+                              "fieldLabel": "If no partner is selected here, why is partner not involved",
+                              "fieldTitle": "",
+                              "fieldSubtitle": "",
+                              "type": "select",
+                              "optionsLookup": "whyNoPartnerOptions",
+                              "value": null,
+                              "layout": {
+                                  "gridColumn": "1 / span 2"
+                              },
+                              "style": {},
+                              "validators": [
+                                  {
+                                      "required": true,
+                                      "message": ""
+                                  },
+                                  {
+                                      "min": "",
+                                      "message": ""
+                                  },
+                                  {
+                                      "max": "",
+                                      "message": ""
+                                  },
+                                  {
+                                      "pattern": "",
+                                      "message": ""
+                                  }
+                              ]
+                          }
+                      ]
+                  },
+                  {
+                      "sectionId": 10,
+                      "sectionName": "Execution Details 5",
+                      "layout": {},
+                      "fields": [
+                          {
+                              "id": "accountSegment1",
+                              "fieldLabel": "Account Segment 1",
+                              "fieldTitle": "",
+                              "fieldSubtitle": "",
+                              "type": "text",
+                              "value": null,
+                              "layout": {},
+                              "style": {},
+                              "validators": [
+                                  {
+                                      "required": true,
+                                      "message": ""
+                                  },
+                                  {
+                                      "min": "",
+                                      "message": ""
+                                  },
+                                  {
+                                      "max": "",
+                                      "message": ""
+                                  },
+                                  {
+                                      "pattern": "",
+                                      "message": ""
+                                  }
+                              ]
+                          },
+                          {
+                              "id": "accountSegment2",
+                              "fieldLabel": "Account Segment 2",
+                              "fieldTitle": "",
+                              "fieldSubtitle": "",
+                              "type": "text",
+                              "value": null,
+                              "layout": {},
+                              "style": {},
+                              "validators": [
+                                  {
+                                      "required": true,
+                                      "message": ""
+                                  },
+                                  {
+                                      "min": "",
+                                      "message": ""
+                                  },
+                                  {
+                                      "max": "",
+                                      "message": ""
+                                  },
+                                  {
+                                      "pattern": "",
+                                      "message": ""
+                                  }
+                              ]
+                          },
+                          {
+                              "id": "accountSegment3",
+                              "fieldLabel": "Account Segment 3",
+                              "fieldTitle": "",
+                              "fieldSubtitle": "",
+                              "type": "text",
+                              "value": null,
+                              "layout": {},
+                              "style": {},
+                              "validators": [
+                                  {
+                                      "required": true,
+                                      "message": ""
+                                  },
+                                  {
+                                      "min": "",
+                                      "message": ""
+                                  },
+                                  {
+                                      "max": "",
+                                      "message": ""
+                                  },
+                                  {
+                                      "pattern": "",
+                                      "message": ""
+                                  }
+                              ]
+                          },
+                          {
+                              "id": "accountSegment4",
+                              "fieldLabel": "Account Segment 4",
+                              "fieldTitle": "",
+                              "fieldSubtitle": "",
+                              "type": "text",
+                              "value": null,
+                              "layout": {},
+                              "style": {},
+                              "validators": [
+                                  {
+                                      "required": true,
+                                      "message": ""
+                                  },
+                                  {
+                                      "min": "",
+                                      "message": ""
+                                  },
+                                  {
+                                      "max": "",
+                                      "message": ""
+                                  },
+                                  {
+                                      "pattern": "",
+                                      "message": ""
+                                  }
+                              ]
+                          },
+                          {
+                              "id": "accountSegment5",
+                              "fieldLabel": "Account Segment 5",
+                              "fieldTitle": "",
+                              "fieldSubtitle": "",
+                              "type": "text",
+                              "value": null,
+                              "layout": {},
+                              "style": {},
+                              "validators": [
+                                  {
+                                      "required": true,
+                                      "message": ""
+                                  },
+                                  {
+                                      "min": "",
+                                      "message": ""
+                                  },
+                                  {
+                                      "max": "",
+                                      "message": ""
+                                  },
+                                  {
+                                      "pattern": "",
+                                      "message": ""
+                                  }
+                              ]
+                          },
+                          {
+                              "id": "allAccountSegments",
+                              "fieldLabel": "All account segment alignment",
+                              "fieldTitle": "",
+                              "fieldSubtitle": "",
+                              "type": "text",
+                              "value": null,
+                              "readOnly": true,
+                              "layout": {},
+                              "style": {},
+                              "validators": [
+                                  {
+                                      "required": true,
+                                      "message": ""
+                                  },
+                                  {
+                                      "min": "",
+                                      "message": ""
+                                  },
+                                  {
+                                      "max": "",
+                                      "message": ""
+                                  },
+                                  {
+                                      "pattern": "",
+                                      "message": ""
+                                  }
+                              ]
+                          }
+                      ]
+                  },
+                  {
+                      "sectionId": 11,
+                      "sectionName": "Execution Details 6",
+                      "layout": {},
+              "fields": [
+
+                          {
+                              "id": "existingCustomer",
+                              "fieldLabel": "Existing",
+                              "fieldTitle": "",
+                              "fieldSubtitle": "",
+                              "type": "text",
+                              "value": null,
+                              "layout": {},
+                              "style": {},
+                              "validators": [
+                                  {
+                                      "required": true,
+                                      "message": ""
+                                  },
+                                  {
+                                      "min": "",
+                                      "message": ""
+                                  },
+                                  {
+                                      "max": "",
+                                      "message": ""
+                                  },
+                                  {
+                                      "pattern": "",
+                                      "message": ""
+                                  }
+                              ]
+                          },
+                          {
+                              "id": "greenfieldCustomer",
+                              "fieldLabel": "Greenfield",
+                              "fieldTitle": "",
+                              "fieldSubtitle": "",
+                              "type": "text",
+                              "value": null,
+                              "layout": {},
+                              "style": {},
+                              "validators": [
+                                  {
+                                      "required": true,
+                                      "message": ""
+                                  },
+                                  {
+                                      "min": "",
+                                      "message": ""
+                                  },
+                                  {
+                                      "max": "",
+                                      "message": ""
+                                  },
+                                  {
+                                      "pattern": "",
+                                      "message": ""
+                                  }
+                              ]
+                          },
+                          {
+                              "id": "allCustomerLifecycle",
+                              "fieldLabel": "All",
+                              "fieldTitle": "",
+                              "fieldSubtitle": "",
+                              "type": "text",
+                              "value": null,
+                              "readOnly": true,
+                              "layout": {},
+                              "style": {},
+                              "validators": [
+                                  {
+                                      "required": true,
+                                      "message": ""
+                                  },
+                                  {
+                                      "min": "",
+                                      "message": ""
+                                  },
+                                  {
+                                      "max": "",
+                                      "message": ""
+                                  },
+                                  {
+                                      "pattern": "",
+                                      "message": ""
+                                  }
+                              ]
+                          }
+                      ]
+                  },
+                  {
+                      "sectionId": 12,
+                      "sectionName": "Review and Submit",
+                      "layout": {
+                          "type": "grid",
+                          "columns": 2,
+                          "gapRow": "8px",
+                          "gapColumn": "16px"
+                      },
+                      "gridFields": [
+                          {
+                              "id": "tacticTitle",
+                              "fieldLabel": "Tactic Title",
+                              "fieldTitle": "",
+                              "fieldSubtitle": "",
+                              "type": "text",
+                              "value": "Google Event",
+                              "style": {"grid-column": "1", "grid-row": "1"},
+                              "validators": [
+                                  {
+                                      "required": true,
+                                      "message": ""
+                                  },
+                                  {
+                                      "min": "",
+                                      "message": ""
+                                  },
+                                  {
+                                      "max": "",
+                                      "message": ""
+                                  },
+                                  {
+                                      "pattern": "",
+                                      "message": ""
+                                  }
+                              ]
+                          },
+                          {
+                              "id": "tacticType",
+                              "fieldLabel": "Tactic Type",
+                              "fieldTitle": "",
+                              "fieldSubtitle": "",
+                              "type": "text",
+                              "value": "Event & Experiences : Multiple Events",
+                              "style": {"grid-column": "2", "grid-row": "1"},
+                              "validators": [
+                                  {
+                                      "required": true,
+                                      "message": ""
+                                  },
+                                  {
+                                      "min": "",
+                                      "message": ""
+                                  },
+                                  {
+                                      "max": "",
+                                      "message": ""
+                                  },
+                                  {
+                                      "pattern": "",
+                                      "message": ""
+                                  }
+                              ]
+                          },
+                          {
+                              "id": "owner",
+                              "fieldLabel": "Owner",
+                              "fieldTitle": "",
+                              "fieldSubtitle": "",
+                              "type": "text",
+                              "value": "stevens@google.com",
+                              "style": {"grid-column": "1", "grid-row": "2"},
+                              "validators": [
+                                  {
+                                      "required": true,
+                                      "message": ""
+                                  },
+                                  {
+                                      "min": "",
+                                      "message": ""
+                                  },
+                                  {
+                                      "max": "",
+                                      "message": ""
+                                  },
+                                  {
+                                      "pattern": "",
+                                      "message": ""
+                                  }
+                              ]
+                          },
+                          {
+                              "id": "costCenter",
+                              "fieldLabel": "Cost Center",
+                              "fieldTitle": "",
+                              "fieldSubtitle": "",
+                              "type": "text",
+                              "value": "09A: Reserve",
+                              "style": {"grid-column": "2", "grid-row": "2"},
+                              "validators": [
+                                  {
+                                      "required": true,
+                                      "message": ""
+                                  },
+                                  {
+                                      "min": "",
+                                      "message": ""
+                                  },
+                                  {
+                                      "max": "",
+                                      "message": ""
+                                  },
+                                  {
+                                      "pattern": "",
+                                      "message": ""
+                                  }
+                              ]
+                          },
+                          {
+                              "id": "totalBudget",
+                              "fieldLabel": "Total Budget",
+                              "fieldTitle": "",
+                              "fieldSubtitle": "",
+                              "type": "text",
+                              "value": "$ 50,000",
+                              "style": {"grid-column": "1", "grid-row": "3"},
+                              "validators": [
+                                  {
+                                      "required": true,
+                                      "message": ""
+                                  },
+                                  {
+                                      "min": "",
+                                      "message": ""
+                                  },
+                                  {
+                                      "max": "",
+                                      "message": ""
+                                  },
+                                  {
+                                      "pattern": "",
+                                      "message": ""
+                                  }
+                              ]
+                          },
+                          {
+                              "id": "basicDetailsStatus",
+                              "fieldLabel": "Basic Details",
+                              "fieldTitle": "",
+                              "fieldSubtitle": "",
+                              "type": "text",
+                              "value": "Complete",
+                              "style": {"grid-column": "2", "grid-row": "3"},
+                              "validators": [
+                                  {
+                                      "required": true,
+                                      "message": ""
+                                  },
+                                  {
+                                      "min": "",
+                                      "message": ""
+                                  },
+                                  {
+                                      "max": "",
+                                      "message": ""
+                                  },
+                                  {
+                                      "pattern": "",
+                                      "message": ""
+                                  }
+                              ]
+                          },
+                          {
+                              "id": "eventCategorisationStatus",
+                              "fieldLabel": "Event Categorisation",
+                              "fieldTitle": "",
+                              "fieldSubtitle": "",
+                              "type": "text",
+                              "value": "Complete",
+                              "style": {"grid-column": "1", "grid-row": "4"},
+                              "validators": [
+                                  {
+                                      "required": true,
+                                      "message": ""
+                                  },
+                                  {
+                                      "min": "",
+                                      "message": ""
+                                  },
+                                  {
+                                      "max": "",
+                                      "message": ""
+                                  },
+                                  {
+                                      "pattern": "",
+                                      "message": ""
+                                  }
+                              ]
+                          },
+                          {
+                              "id": "locationDetailsStatus",
+                              "fieldLabel": "Location Details",
+                              "fieldTitle": "",
+                              "fieldSubtitle": "",
+                              "type": "text",
+                              "value": "Complete",
+                              "style": {"grid-column": "2", "grid-row": "4"},
+                              "validators": [
+                                  {
+                                      "required": true,
+                                      "message": ""
+                                  },
+                                  {
+                                      "min": "",
+                                      "message": ""
+                                  },
+                                  {
+                                      "max": "",
+                                      "message": ""
+                                  },
+                                  {
+                                      "pattern": "",
+                                      "message": ""
+                                  }
+                              ]
+                          },
+                          {
+                              "id": "budgetDetailsStatus",
+                              "fieldLabel": "Budget Details",
+                              "fieldTitle": "",
+                              "fieldSubtitle": "",
+                              "type": "text",
+                              "value": "Complete",
+                              "style": {"grid-column": "1", "grid-row": "5"},
+                              "validators": [
+                                  {
+                                      "required": true,
+                                      "message": ""
+                                  },
+                                  {
+                                      "min": "",
+                                      "message": ""
+                                  },
+                                  {
+                                      "max": "",
+                                      "message": ""
+                                  },
+                                  {
+                                      "pattern": "",
+                                      "message": ""
+                                  }
+                              ]
+                          },
+                          {
+                              "id": "initiativeDetailsStatus",
+                              "fieldLabel": "Initiative Details",
+                              "fieldTitle": "",
+                              "fieldSubtitle": "",
+                              "type": "text",
+                              "value": "Complete",
+                              "style": {"grid-column": "2", "grid-row": "5"},
+                              "validators": [
+                                  {
+                                      "required": true,
+                                      "message": ""
+                                  },
+                                  {
+                                      "min": "",
+                                      "message": ""
+                                  },
+                                  {
+                                      "max": "",
+                                      "message": ""
+                                  },
+                                  {
+                                      "pattern": "",
+                                      "message": ""
+                                  }
+                              ]
+                          },
+                          {
+                              "id": "executionDetailsStatus",
+                              "fieldLabel": "Execution Details",
+                              "fieldTitle": "",
+                              "fieldSubtitle": "",
+                              "type": "text",
+                              "value": "Complete",
+                              "style": {"grid-column": "1", "grid-row": "6"},
+                              "validators": [
+                                  {
+                                      "required": true,
+                                      "message": ""
+                                  },
+                                  {
+                                      "min": "",
+                                      "message": ""
+                                  },
+                                  {
+                                      "max": "",
+                                      "message": ""
+                                  },
+                                  {
+                                      "pattern": "",
+                                      "message": ""
+                                  }
+                              ]
+                          }
+                      ]
+                  }
+              ]
+          },
+          "singleEventWithMultiple": {},
+          "genericFlow": {},
+          "vendorFlow": {}
+      }
+  ],
+  "lookups": {
+      "categoryOptions": [
+          {
+              "value": "promote",
+              "label": "Promote: Tactics that get your message in front of customers and partners",
+              "optionsLookup": "tacticTypeOptionsByCategoryPromote"
+          },
+          {
+              "value": "build_manage",
+              "label": "Build & Manage: Tactics that create and manage the content, assets, and tools you use for promotion",
+              "optionsLookup": "tacticTypeOptionsByCategoryBuildManage"
+          },
+          {
+              "value": "vendors",
+              "label": "Vendors: Tactics for vendors by Role Family and Role, as defined by Project Emporia",
+              "optionsLookup": "tacticTypeOptionsByCategoryVendors"
+          }
+      ],
+      "tacticTypeOptionsByCategoryPromote": [
+          {
+              "value": "partner_co_op",
+              "label": "Partner Co-op"
+          },
+          {
+              "value": "content_asset_promotion",
+              "label": "Content & Asset Promotion"
+          },
+          {
+              "value": "email_nurture",
+              "label": "Email Nurture"
+          },
+          {
+              "value": "direct_mail",
+              "label": "Direct Mail"
+          },
+          {
+              "value": "events_experiences",
+              "label": "Events & Experiences",
+              "optionsLookup": "eventTypeOptions"
+          },
+          {
+              "value": "outbound_prospecting",
+              "label": "Outbound Prospecting"
+          },
+          {
+              "value": "brand_partnerships_sponsorships",
+              "label": "Brand Partnerships & Sponsorships"
+          },
+          {
+              "value": "partner_ppf_mdf",
+              "label": "Partner PPF/MDF"
+          },
+          {
+              "value": "referral_programs",
+              "label": "Referral Programs"
+          }
+      ],
+      "tacticTypeOptionsByCategoryBuildManage": [
+          {
+              "value": "analytics",
+              "label": "Analytics"
+          },
+          {
+              "value": "research",
+              "label": "Research"
+          },
+          {
+              "value": "contact_enrichment",
+              "label": "Contact Enrichment"
+          },
+          {
+              "value": "web_development",
+              "label": "Web Development"
+          },
+          {
+              "value": "free_trial_ti",
+              "label": "Free Trial TI (technical infra)"
+          },
+          {
+              "value": "marketing_technology",
+              "label": "Marketing Technology"
+          },
+          {
+              "value": "content_asset_development",
+              "label": "Content & Asset Development"
+          },
+          {
+              "value": "localization_translation",
+              "label": "Localization & Translation"
+          },
+          {
+              "value": "learning_development",
+              "label": "Learning & Development"
+          },
+          {
+              "value": "social_channel_management",
+              "label": "Social Channel Management"
+          }
+      ],
+      "tacticTypeOptionsByCategoryVendors": [
+          {
+              "value": "data_analytics_insights",
+              "label": "Data, Analytics & Insights"
+          },
+          {
+              "value": "chief_of_staff",
+              "label": "Chief of Staff"
+          },
+          {
+              "value": "communications",
+              "label": "Communications"
+          },
+          {
+              "value": "creative",
+              "label": "Creative"
+          },
+          {
+              "value": "e_abp",
+              "label": "E/ABP"
+          },
+          {
+              "value": "event_management",
+              "label": "Event Management"
+          },
+          {
+              "value": "external_relationship_management",
+              "label": "External Relationship Management"
+          },
+          {
+              "value": "leadership",
+              "label": "Leadership"
+          },
+          {
+              "value": "marketing_activation",
+              "label": "Marketing Activation"
+          },
+          {
+              "value": "marketing_execution",
+              "label": "Marketing Execution"
+          },
+          {
+              "value": "production",
+              "label": "Production"
+          }
+      ],
+      "eventTypeOptions": [
+          {
+              "value": "single",
+              "title": "Single Event",
+              "description": "Create a new tactic for a standalone event.",
+              "optionsLookup": "singleEventYesNoOptions"
+          },
+          {
+              "value": "multi",
+              "title": "Multi Event",
+              "description": "Group several existing tactics under a single initiative.",
+              "optionsLookup": "noOption"
+          }
+      ],
+      "singleEventYesNoOptions": [
+          {
+              "value": "yes",
+              "label": "Yes",
+              "pageId": 2
+          },
+          {
+              "value": "no",
+              "label": "No"
+          }
+      ],
+      "noOption": [
+          {
+              "value": "no",
+              "label": "No"
+          }
+      ],
+      "eventRingOptions": [
+          {
+              "value": "ring1",
+              "label": "Ring 1: Global 1st Party"
+          },
+          {
+              "value": "ring2",
+              "label": "Ring 2: Global 3rd Party"
+          },
+          {
+              "value": "ring3",
+              "label": "Ring 3: Global 1st Party Series"
+          },
+          {
+              "value": "ring4",
+              "label": "Ring 4: Regional / Local"
+          }
+      ],
+      "firstPartyThirdPartyOptions": [
+          {
+              "value": "first_party",
+              "label": "1st party event",
+              "parentValue": "ring1"
+          },
+          {
+              "value": "third_party",
+              "label": "3rd Party Event",
+              "parentValue": "ring2"
+          },
+          {
+              "value": "first_party_series",
+              "label": "1st Party Series",
+              "parentValue": "ring3"
+          },
+          {
+              "value": "regional_local",
+              "label": "Regional / Local Event",
+              "parentValue": "ring4"
+          }
+      ],
+      "eventCategoryOptions": [
+          {
+              "value": "big_moment",
+              "label": "Big Moment (Not Listed)",
+              "parentValue": "first_party"
+          },
+          {
+              "value": "cyber_defense",
+              "label": "Cyber Defense Summit",
+              "parentValue": "first_party"
+          },
+          {
+              "value": "digital_ai",
+              "label": "Digital AI moments",
+              "parentValue": "first_party"
+          },
+          {
+              "value": "gcn",
+              "label": "Google cloud next",
+              "parentValue": "first_party"
+          },
+          {
+              "value": "google_exec",
+              "label": "Google Executive events",
+              "parentValue": "first_party"
+          },
+          {
+              "value": "google_io",
+              "label": "Google I/O",
+              "parentValue": "first_party"
+          },
+          {
+              "value": "public_sector_summit",
+              "label": "Public Sector Summit",
+              "parentValue": "first_party"
+          },
+          {
+              "value": "analyst",
+              "label": "Analyst",
+              "parentValue": "third_party"
+          },
+          {
+              "value": "developer",
+              "label": "Developer",
+              "parentValue": "third_party"
+          },
+          {
+              "value": "industry_vertical",
+              "label": "Industry Vertical",
+              "parentValue": "third_party"
+          },
+          {
+              "value": "partner",
+              "label": "Partner",
+              "parentValue": "third_party"
+          }
+      ],
+      "eventSubCategoryOptions": [
+          {
+              "value": "gcn24",
+              "label": "Google cloud next '24",
+              "parentValue": "gcn"
+          },
+          {
+              "value": "gcn25",
+              "label": "Google cloud next '25",
+              "parentValue": "gcn"
+          },
+          {
+              "value": "gcn26",
+              "label": "Google cloud next '26",
+              "parentValue": "gcn"
+          },
+          {
+              "value": "gartner",
+              "label": "Gartner",
+              "parentValue": "analyst"
+          },
+          {
+              "value": "other_analyst",
+              "label": "Other",
+              "parentValue": "analyst"
+          },
+          {
+              "value": "tentpole_dev_events",
+              "label": "3P Tentpole Developer Events",
+              "parentValue": "developer"
+          },
+          {
+              "value": "other_dev_events",
+              "label": "Other Developer Events",
+              "parentValue": "developer"
+          },
+          {
+              "value": "financial_services",
+              "label": "Financial Services",
+              "parentValue": "industry_vertical"
+          },
+          {
+              "value": "healthcare",
+              "label": "Healthcare",
+              "parentValue": "industry_vertical"
+          },
+          {
+              "value": "retail",
+              "label": "Retail",
+              "parentValue": "industry_vertical"
+          },
+          {
+              "value": "manufacturing",
+              "label": "Manufacturing",
+              "parentValue": "industry_vertical"
+          },
+          {
+              "value": "public_sector",
+              "label": "Public Sector",
+              "parentValue": "industry_vertical"
+          },
+          {
+              "value": "media_entertainment",
+              "label": "Media & Entertainment",
+              "parentValue": "industry_vertical"
+          },
+          {
+              "value": "technology",
+              "label": "Technology",
+              "parentValue": "industry_vertical"
+          },
+          {
+              "value": "partner_summit",
+              "label": "Partner Summit",
+              "parentValue": "partner"
+          },
+          {
+              "value": "partner_training",
+              "label": "Partner Training",
+              "parentValue": "partner"
+          }
+      ],
+      "ring1optionsLookup": {
+          "isFirstOrThirdParty": [
+              {
+                  "value": "first_party",
+                  "label": "1st party event",
+                  "eventCategory": [
+                      {
+                          "value": "big_moment",
+                          "label": "Big Moment (Not Listed)",
+                          "owner": "Big Moment (Not Listed) Owner"
+                      },
+                      {
+                          "value": "cyber_defense",
+                          "label": "Cyber Defense Summit",
+                          "owner": "Cyber Defense Summit Owner"
+                      },
+                      {
+                          "value": "digital_ai",
+                          "label": "Digital AI moments",
+                          "owner": "Digital AI Moments Owner"
+                      },
+                      {
+                          "value": "gcn",
+                          "label": "Google cloud next",
+                          "owner": "Google Cloud Next Owner",
+                          "subCategory": [
+                              {
+                                  "value": "gcn24",
+                                  "label": "Google cloud next '24",
+                                  "owner": "Google Cloud Next '24 Owner"
+                              },
+                              {
+                                  "value": "gcn25",
+                                  "label": "Google cloud next '25",
+                                  "owner": "Google Cloud Next '25 Owner"
+                              },
+                              {
+                                  "value": "gcn26",
+                                  "label": "Google cloud next '26",
+                                  "owner": "Google Cloud Next '26 Owner"
+                              }
+                          ]
+                      },
+                      {
+                          "value": "google_exec",
+                          "label": "Google Execustive events",
+                          "owner": "Google Executive Events Owner"
+                      },
+                      {
+                          "value": "google_io",
+                          "label": "Google I/O",
+                          "owner": "Google I/O Owner"
+                      },
+                      {
+                          "value": "public_sector_summit",
+                          "label": "Public Sector Summit",
+                          "owner": "Public Sector Summit Owner"
+                      }
+                  ]
+              }
+          ]
+      },
+      "ring2optionsLookup": {
+          "isFirstOrThirdParty": [
+              {
+                  "value": "third_party",
+                  "label": "3rd Party Event",
+                  "eventCategory": [
+                      {
+                          "value": "analyst",
+                          "label": "Analyst",
+                          "owner": "Analyst Owner",
+                          "subCategory": [
+                              {
+                                  "value": "gartner",
+                                  "label": "Gartner",
+                                  "owner": "Gartner Owner"
+                              },
+                              {
+                                  "value": "other_analyst",
+                                  "label": "Other",
+                                  "owner": "Other Analyst Owner"
+                              }
+                          ]
+                      },
+                      {
+                          "value": "developer",
+                          "label": "Developer",
+                          "owner": "Developer Advocacy",
+                          "subCategory": [
+                              {
+                                  "value": "developer_owner_sub",
+                                  "label": "Developer Owner",
+                                  "owner": null,
+                                  "subCategory": [
+                                      {
+                                          "value": "tentpole_dev_events",
+                                          "label": "3P Tentpole Developer Events",
+                                          "owner": "3P Tentpole Developer Events Owner"
+                                      },
+                                      {
+                                          "value": "other_dev_events",
+                                          "label": "Other (Not Listed)",
+                                          "owner": "Other Developer Events Owner"
+                                      }
+                                  ]
+                              }
+                          ]
+                      },
+                      {
+                          "value": "digital_native",
+                          "label": "Digital Native / Startup",
+                          "owner": "Startups Owner"
+                      },
+                      {
+                          "value": "industry",
+                          "label": "Industry",
+                          "owner": "Industry Owner",
+                          "subCategory": [
+                              {
+                                  "value": "data_ai",
+                                  "label": "Data & AI",
+                                  "owner": "Data & AI Owner"
+                              },
+                              {
+                                  "value": "energy_utilities",
+                                  "label": "Energy & Utilities",
+                                  "owner": "Energy & Utilities Owner"
+                              },
+                              {
+                                  "value": "financial_services",
+                                  "label": "Financial services",
+                                  "owner": "Financial services Owner"
+                              },
+                              {
+                                  "value": "health_life_sciences",
+                                  "label": "Healthcare & Life Sciences",
+                                  "owner": "Healthcare & Life Sciences Owner"
+                              },
+                              {
+                                  "value": "manufacturing_industrial",
+                                  "label": "Manufacturing & Industrial",
+                                  "owner": "Manufacturing & Industrial Owner"
+                              },
+                              {
+                                  "value": "other_industry",
+                                  "label": "Other (Not Listed)",
+                                  "owner": "Other Industry Owner"
+                              },
+                              {
+                                  "value": "retail_cpg",
+                                  "label": "Retail & CPG",
+                                  "owner": "Retail & CPG Owner"
+                              },
+                              {
+                                  "value": "software_internet",
+                                  "label": "Software & Internet",
+                                  "owner": "Software & Internet Owner"
+                              },
+                              {
+                                  "value": "telco_media_ent_gaming",
+                                  "label": "Telco, Media, Entertainment & Gaming",
+                                  "owner": "TMEG Owner"
+                              }
+                          ]
+                      },
+                      {
+                          "value": "one_google_3p",
+                          "label": "One Google 3P Executive Events",
+                          "owner": "One Google Owner",
+                          "subCategory": [
+                              {
+                                  "value": "tentpole_exec_events",
+                                  "label": "3P Tentpole Executive Events",
+                                  "owner": "3P Tentpole Executive Events Owner"
+                              },
+                              {
+                                  "value": "other_exec_events",
+                                  "label": "Other (Not Listed)",
+                                  "owner": "Other Executive Events Owner"
+                              }
+                          ]
+                      },
+                      {
+                          "value": "partner",
+                          "label": "Partner",
+                          "owner": "Partner Owner",
+                          "subCategory": [
+                              {
+                                  "value": "gsi_co_marketing",
+                                  "label": "GSI co-marketing",
+                                  "owner": "GSI co-marketing Owner"
+                              },
+                              {
+                                  "value": "isv_co_marketing",
+                                  "label": "ISV co-marketing",
+                                  "owner": "ISV co-marketing Owner"
+                              },
+                              {
+                                  "value": "to_partner",
+                                  "label": "To Partner",
+                                  "owner": "To Partner.Owner"
+                              }
+                          ]
+                      },
+                      {
+                          "value": "public_sector",
+                          "label": "Public Sector",
+                          "owner": "Public Sector Owner",
+                          "subCategory": [
+                              {
+                                  "value": "defense",
+                                  "label": "Defense",
+                                  "owner": "Defense Owner"
+                              },
+                              {
+                                  "value": "federal_civilian",
+                                  "label": "Federal Civilian",
+                                  "owner": "Federal Civilian owner"
+                              },
+                              {
+                                  "value": "general",
+                                  "label": "General",
+                                  "owner": "General owner"
+                              },
+                              {
+                                  "value": "health_life_sciences_ps",
+                                  "label": "Healthcare & Life Sciences",
+                                  "owner": "Healthcare & Life Sciences owner"
+                              },
+                              {
+                                  "value": "higher_ed_research",
+                                  "label": "Higher Education and Research",
+                                  "owner": "Higher Education and Research Owner"
+                              },
+                              {
+                                  "value": "law_enforcement",
+                                  "label": "Law Enforcement",
+                                  "owner": "Law Enforcement Owner"
+                              },
+                              {
+                                  "value": "national_security_intel",
+                                  "label": "National Security and Intel",
+                                  "owner": "National Security and Intel Owner"
+                              },
+                              {
+                                  "value": "state_provincial_local",
+                                  "label": "State/Provincial and Local Government",
+                                  "owner": "State/Provincial and Local Government Owner"
+                              },
+                              {
+                                  "value": "supply_chain_procurement",
+                                  "label": "Supply Chain and Procurement",
+                                  "owner": null
+                              }
+                          ]
+                      },
+                      {
+                          "value": "security",
+                          "label": "Security",
+                          "owner": "Security Owner"
+                      }
+                  ]
+              }
+          ]
+      },
+      "ring3optionsLookup": {
+          "isFirstOrThirdParty": [
+              {
+                  "value": "first_party_series",
+                  "label": "1st Party Event",
+                  "eventCategory": [
+                      {
+                          "value": "cmo_ai_labs",
+                          "label": "CMO AI Labs",
+                          "owner": "CMO AI Labs Owner"
+                      },
+                      {
+                          "value": "digital_native_startup_r3",
+                          "label": "Digital Native / Startup",
+                          "owner": "Digital Native / Startup Owner",
+                          "subCategory": [
+                              {
+                                  "value": "other_not_listed_dns",
+                                  "label": "Other (Not Listed)",
+                                  "owner": "Other (Not Listed) owner"
+                              },
+                              {
+                                  "value": "startup_school",
+                                  "label": "Startup School",
+                                  "owner": "Startup School Owner"
+                              },
+                              {
+                                  "value": "startup_summit",
+                                  "label": "Startup Summit",
+                                  "owner": "Startup Summit Owner"
+                              }
+                          ]
+                      },
+                      {
+                          "value": "digital_campaigns_r3",
+                          "label": "Digital Campaigns",
+                          "owner": "Digital Campaigns Owner"
+                      },
+                      {
+                          "value": "digital_solution_summits",
+                          "label": "Digital Solution Summits",
+                          "owner": "Digital Solution Summits Owner"
+                      },
+                      {
+                          "value": "gen_ai_at_work",
+                          "label": "Gen AI at Work",
+                          "owner": "Gen AI at Work Owner"
+                      },
+                      {
+                          "value": "io_connects",
+                          "label": "I/O Connects",
+                          "owner": "I/O Connects Owner"
+                      },
+                      {
+                          "value": "live_labs",
+                          "label": "Live + Labs",
+                          "owner": "Live + Labs Owner"
+                      },
+                      {
+                          "value": "region_launch",
+                          "label": "Region Launch",
+                          "owner": "Region Launch Owner"
+                      },
+                      {
+                          "value": "regional_cloud_summits",
+                          "label": "Regional Cloud Summits",
+                          "owner": "Regional Cloud Summits Owner",
+                          "subCategory": [
+                              {
+                                  "value": "cloud_summit_apac",
+                                  "label": "Cloud Summit APAC",
+                                  "owner": "Cloud Summit APAC Owner"
+                              },
+                              {
+                                  "value": "cloud_summit_emea",
+                                  "label": "Cloud Summit EMEA",
+                                  "owner": "Cloud Summit EMEA Owner"
+                              },
+                              {
+                                  "value": "cloud_summit_japan",
+                                  "label": "Cloud Summit JAPAN",
+                                  "owner": "Cloud Summit JAPAN Owner"
+                              },
+                              {
+                                  "value": "cloud_summit_latam",
+                                  "label": "Cloud Summit LATAM",
+                                  "owner": "Cloud Summit LATAM owner"
+                              }
+                          ]
+                      },
+                      {
+                          "value": "security_r3",
+                          "label": "Security",
+                          "owner": "Security Owner",
+                          "subCategory": [
+                              {
+                                  "value": "ciso_connect",
+                                  "label": "CISO Connect",
+                                  "owner": "CISO Connect Owner"
+                              },
+                              {
+                                  "value": "ciso_program",
+                                  "label": "CISO Program",
+                                  "owner": "CISO Program Owner"
+                              },
+                              {
+                                  "value": "other_security_r3",
+                                  "label": "Other (Not Listed)",
+                                  "owner": "Other (Not Listed) Owner"
+                              }
+                          ]
+                      },
+                      {
+                          "value": "smb_traditional",
+                          "label": "SMB Traditional",
+                          "owner": "SMB Traditional Owner",
+                          "subCategory": [
+                              {
+                                  "value": "growth_tech_series",
+                                  "label": "Growth Tech Series",
+                                  "owner": "Growth Tech Series Owner"
+                              },
+                              {
+                                  "value": "other_smb",
+                                  "label": "Other (Not Listed)",
+                                  "owner": "Other (Not Listed) Owner"
+                              },
+                              {
+                                  "value": "scaling_up_series",
+                                  "label": "Scaling Up Series",
+                                  "owner": "Scaling Up Series Owner"
+                              }
+                          ]
+                      }
+                  ]
+              }
+          ]
+      },
+      "ring4optionsLookup": {
+          "isFirstOrThirdParty": [
+              {
+                  "value": "first_party_r4",
+                  "label": "1st Party Event",
+                  "eventCategory": [
+                      {
+                          "value": "analyst_r4",
+                          "label": "Analyst",
+                          "owner": "Analyst Owner",
+                          "subCategory": [
+                              {
+                                  "value": "gartner_r4",
+                                  "label": "Gartner",
+                                  "owner": "Gartner Owner"
+                              },
+                              {
+                                  "value": "other_analyst_r4",
+                                  "label": "Other (Not Listed)",
+                                  "owner": "Other (Not Listed) owner"
+                              }
+                          ]
+                      },
+                      {
+                          "value": "best_of_next_r4",
+                          "label": "Best of Next / Next Ancillary Events",
+                          "owner": "Best of Next / Next Ancillary Events Owner"
+                      },
+                      {
+                          "value": "developer_r4",
+                          "label": "Developer",
+                          "owner": "Developer Owner",
+                          "subCategory": [
+                              {
+                                  "value": "account_based_skilling_r4",
+                                  "label": "Account-Based Skilling",
+                                  "owner": "Account-Based Skilling Owner"
+                              },
+                              {
+                                  "value": "certifications_r4",
+                                  "label": "Certifications",
+                                  "owner": "Certifications owner"
+                              },
+                              {
+                                  "value": "dev_meetups_r4",
+                                  "label": "Developer Meet-Ups",
+                                  "owner": "Developer Meet-Ups Owner"
+                              },
+                              {
+                                  "value": "devfest_r4",
+                                  "label": "DevFest",
+                                  "owner": "DevFest Owner"
+                              },
+                              {
+                                  "value": "hackathons_r4",
+                                  "label": "Hackathons",
+                                  "owner": "Hackathons Owner"
+                              },
+                              {
+                                  "value": "hands_on_labs_r4",
+                                  "label": "Hands-On Labs",
+                                  "owner": "Hands-On Labs Owner"
+                              },
+                              {
+                                  "value": "other_developer_r4",
+                                  "label": "Other (Not Listed)",
+                                  "owner": "Other (Not Listed owner)"
+                              }
+                          ]
+                      },
+                      {
+                          "value": "digital_native_startup_r4",
+                          "label": "Digital Native / Startup",
+                          "owner": "Digital Native / Startup Owner"
+                      },
+                      {
+                          "value": "executive_cxo_r4",
+                          "label": "Executive / CXO",
+                          "owner": "Executive / CXO Owner",
+                          "subCategory": [
+                              {
+                                  "value": "other_cxo_r4",
+                                  "label": "Other (Not Listed)",
+                                  "owner": "Other (Not Listed) Owner"
+                              },
+                              {
+                                  "value": "corp_hospitality_r4",
+                                  "label": "Corporate Hospitality, Marquee Events, & Brand Partnerships",
+                                  "owner": "Corporate Hospitality, Marquee Events, & Brand Partnerships Owner"
+                              },
+                              {
+                                  "value": "cxo_general_r4",
+                                  "label": "CXO (General)",
+                                  "owner": "CXO (General) Owner"
+                              },
+                              {
+                                  "value": "evanta_inspire_cio_r4",
+                                  "label": "Evanta / Inspire CIO",
+                                  "owner": "Evanta / Inspire CIO Owner"
+                              },
+                              {
+                                  "value": "leading_matters_r4",
+                                  "label": "Leading Matters",
+                                  "owner": "Leading Matters Owner"
+                              },
+                              {
+                                  "value": "one_google_r4",
+                                  "label": "One Google",
+                                  "owner": "One Google Owner"
+                              },
+                              {
+                                  "value": "roundtable_r4",
+                                  "label": "Roundtable",
+                                  "owner": "Roundtable Owner"
+                              }
+                          ]
+                      },
+                      {
+                          "value": "industry_r4",
+                          "label": "Industry",
+                          "owner": "Industry Owner",
+                          "subCategory": [
+                              {
+                                  "value": "data_ai_r4",
+                                  "label": "Data & AI",
+                                  "owner": "Data & AI Owner"
+                              },
+                              {
+                                  "value": "energy_utilities_r4",
+                                  "label": "Energy & Utilities",
+                                  "owner": "Energy & Utilities Owner"
+                              },
+                              {
+                                  "value": "financial_services_r4",
+                                  "label": "Financial Services",
+                                  "owner": "Financial Services Owner"
+                              },
+                              {
+                                  "value": "health_life_sciences_r4",
+                                  "label": "Healthcare & Life Sciences",
+                                  "owner": "Healthcare & Life Sciences Owner"
+                              },
+                              {
+                                  "value": "manufacturing_industrial_r4",
+                                  "label": "Manufacturing & Industrial",
+                                  "owner": "Manufacturing & Industrial Owner"
+                              },
+                              {
+                                  "value": "other_industry_r4",
+                                  "label": "Other (Not Listed)",
+                                  "owner": "Other (Not Listed) Owner"
+                              },
+                              {
+                                  "value": "retail_cpg_r4",
+                                  "label": "Retail & CPG",
+                                  "owner": "Retail & CPG Owner"
+                              },
+                              {
+                                  "value": "software_internet_r4",
+                                  "label": "Software & Internet",
+                                  "owner": "Software & Internet Owner"
+                              }
+                          ]
+                      },
+                      {
+                          "value": "public_sector_r4",
+                          "label": "Public Sector",
+                          "owner": "Public Sector Owner"
+                      },
+                      {
+                          "value": "security_r4",
+                          "label": "Security",
+                          "owner": "Security Owner"
+                      },
+                      {
+                          "value": "solutions_programming_r4",
+                          "label": "Solutions Programming (Incl Cloud onAir, Webinars, in-person activations)",
+                          "owner": "Solutions Programming Owner"
+                      }
+                  ]
+              },
+              {
+                  "value": "third_party_r4",
+                  "label": "3rd Party Event",
+                  "eventCategory": [
+                      {
+                          "value": "first_party_r4",
+                          "label": "1st Party Event",
+                          "subCategory": [
+                              {
+                                  "value": "analyst_r4",
+                                  "label": "Analyst",
+                                  "owner": "Analyst Owner",
+                                  "subCategory": [
+                                      {
+                                          "value": "gartner_r4",
+                                          "label": "Gartner",
+                                          "owner": "Gartner Owner"
+                                      },
+                                      {
+                                          "value": "other_analyst_r4",
+                                          "label": "Other (Not Listed)",
+                                          "owner": "Other (Not Listed) owner"
+                                      }
+                                  ]
+                              },
+                              {
+                                  "value": "best_of_next_r4",
+                                  "label": "Best of Next / Next Ancillary Events",
+                                  "owner": "Best of Next / Next Ancillary Events Owner"
+                              },
+                              {
+                                  "value": "developer_r4",
+                                  "label": "Developer",
+                                  "owner": "Developer Owner",
+                                  "subCategory": [
+                                      {
+                                          "value": "account_based_skilling_r4",
+                                          "label": "Account-Based Skilling",
+                                          "owner": "Account-Based Skilling Owner"
+                                      },
+                                      {
+                                          "value": "certifications_r4",
+                                          "label": "Certifications",
+                                          "owner": "Certifications owner"
+                                      },
+                                      {
+                                          "value": "dev_meetups_r4",
+                                          "label": "Developer Meet-Ups",
+                                          "owner": "Developer Meet-Ups Owner"
+                                      },
+                                      {
+                                          "value": "devfest_r4",
+                                          "label": "DevFest",
+                                          "owner": "DevFest Owner"
+                                      },
+                                      {
+                                          "value": "hackathons_r4",
+                                          "label": "Hackathons",
+                                          "owner": "Hackathons Owner"
+                                      },
+                                      {
+                                          "value": "hands_on_labs_r4",
+                                          "label": "Hands-On Labs",
+                                          "owner": "Hands-On Labs Owner"
+                                      },
+                                      {
+                                          "value": "other_developer_r4",
+                                          "label": "Other (Not Listed)",
+                                          "owner": "Other (Not Listed owner)"
+                                      }
+                                  ]
+                              },
+                              {
+                                  "value": "digital_native_startup_r4",
+                                  "label": "Digital Native / Startup",
+                                  "owner": "Digital Native / Startup Owner"
+                              },
+                              {
+                                  "value": "executive_cxo_r4",
+                                  "label": "Executive / CXO",
+                                  "owner": "Executive / CXO Owner",
+                                  "subCategory": [
+                                      {
+                                          "value": "other_cxo_r4",
+                                          "label": "Other (Not Listed)",
+                                          "owner": "Other (Not Listed) Owner"
+                                      },
+                                      {
+                                          "value": "corp_hospitality_r4",
+                                          "label": "Corporate Hospitality, Marquee Events, & Brand Partnerships",
+                                          "owner": "Corporate Hospitality, Marquee Events, & Brand Partnerships Owner"
+                                      },
+                                      {
+                                          "value": "cxo_general_r4",
+                                          "label": "CXO (General)",
+                                          "owner": "CXO (General) Owner"
+                                      },
+                                      {
+                                          "value": "evanta_inspire_cio_r4",
+                                          "label": "Evanta / Inspire CIO",
+                                          "owner": "Evanta / Inspire CIO Owner"
+                                      },
+                                      {
+                                          "value": "leading_matters_r4",
+                                          "label": "Leading Matters",
+                                          "owner": "Leading Matters Owner"
+                                      },
+                                      {
+                                          "value": "one_google_r4",
+                                          "label": "One Google",
+                                          "owner": "One Google Owner"
+                                      },
+                                      {
+                                          "value": "roundtable_r4",
+                                          "label": "Roundtable",
+                                          "owner": "Roundtable Owner"
+                                      }
+                                  ]
+                              },
+                              {
+                                  "value": "industry_r4",
+                                  "label": "Industry",
+                                  "owner": "Industry Owner",
+                                  "subCategory": [
+                                      {
+                                          "value": "data_ai_r4",
+                                          "label": "Data & AI",
+                                          "owner": "Data & AI Owner"
+                                      },
+                                      {
+                                          "value": "energy_utilities_r4",
+                                          "label": "Energy & Utilities",
+                                          "owner": "Energy & Utilities Owner"
+                                      },
+                                      {
+                                          "value": "financial_services_r4",
+                                          "label": "Financial Services",
+                                          "owner": "Financial Services Owner"
+                                      },
+                                      {
+                                          "value": "health_life_sciences_r4",
+                                          "label": "Healthcare & Life Sciences",
+                                          "owner": "Healthcare & Life Sciences Owner"
+                                      },
+                                      {
+                                          "value": "manufacturing_industrial_r4",
+                                          "label": "Manufacturing & Industrial",
+                                          "owner": "Manufacturing & Industrial Owner"
+                                      },
+                                      {
+                                          "value": "other_industry_r4",
+                                          "label": "Other (Not Listed)",
+                                          "owner": "Other (Not Listed) Owner"
+                                      },
+                                      {
+                                          "value": "retail_cpg_r4",
+                                          "label": "Retail & CPG",
+                                          "owner": "Retail & CPG Owner"
+                                      },
+                                      {
+                                          "value": "software_internet_r4",
+                                          "label": "Software & Internet",
+                                          "owner": "Software & Internet Owner"
+                                      }
+                                  ]
+                              },
+                              {
+                                  "value": "public_sector_r4",
+                                  "label": "Public Sector",
+                                  "owner": "Public Sector Owner"
+                              },
+                              {
+                                  "value": "security_r4",
+                                  "label": "Security",
+                                  "owner": "Security Owner"
+                              },
+                              {
+                                  "value": "solutions_programming_r4",
+                                  "label": "Solutions Programming (Incl Cloud onAir, Webinars, in-person activations)",
+                                  "owner": "Solutions Programming Owner"
+                              }
+                          ]
+                      },
+                      {
+                          "value": "partner_r4",
+                          "label": "Partner",
+                          "owner": "Partner Owner",
+                          "subCategory": [
+                              {
+                                  "value": "channel_co_marketing_r4",
+                                  "label": "Channel co-marketing (Sell & Services, excl. GSI / MSSP)",
+                                  "owner": "Channel co-marketing (Sell & Services, excl. GSI / MSSP) Owner"
+                              },
+                              {
+                                  "value": "gsi_co_marketing_r4",
+                                  "label": "GSI co-marketing",
+                                  "owner": "GSI co-marketing Owner"
+                              },
+                              {
+                                  "value": "isv_co_marketing_r4",
+                                  "label": "ISV co-marketing",
+                                  "owner": "ISV co-marketing Owner"
+                              },
+                              {
+                                  "value": "mssp_co_marketing_r4",
+                                  "label": "MSSP co-marketing",
+                                  "owner": "MSSP co-marketing Owner"
+                              },
+                              {
+                                  "value": "other_partner_r4",
+                                  "label": "Other (Not Listed)",
+                                  "owner": "Other (Not Listed) Owner"
+                              },
+                              {
+                                  "value": "to_partner_r4",
+                                  "label": "To-Partner",
+                                  "owner": null
+                              }
+                          ]
+                      },
+                      {
+                          "value": "public_sector_r4",
+                          "label": "Public Sector",
+                          "owner": "Public Sector Owner",
+                          "subCategory": [
+                              {
+                                  "value": "defense_r4",
+                                  "label": "Defense",
+                                  "owner": "Defense owner"
+                              },
+                              {
+                                  "value": "federal_civilian_r4",
+                                  "label": "Federal Civilian",
+                                  "owner": "Federal Civilian Owner"
+                              },
+                              {
+                                  "value": "general_ps_r4",
+                                  "label": "General",
+                                  "owner": "General Owner"
+                              },
+                              {
+                                  "value": "health_life_sciences_ps_r4",
+                                  "label": "Healthcare & Life Sciences",
+                                  "owner": "Healthcare & Life Sciences Owner"
+                              },
+                              {
+                                  "value": "higher_ed_research_r4",
+                                  "label": "Higher Education and Research",
+                                  "owner": "Higher Education and Research Owner"
+                              },
+                              {
+                                  "value": "law_enforcement_r4",
+                                  "label": "Law Enforcement",
+                                  "owner": "Law Enforcement Owner"
+                              },
+                              {
+                                  "value": "national_security_intel_r4",
+                                  "label": "National Security and Intel",
+                                  "owner": "National Security and Intel Owner"
+                              },
+                              {
+                                  "value": "state_provincial_local_r4",
+                                  "label": "State/Provincial and Local Government",
+                                  "owner": "State/Provincial and Local Government Owner"
+                              },
+                              {
+                                  "value": "supply_chain_procurement_r4",
+                                  "label": "Supply Chain and Procurement",
+                                  "owner": "Supply Chain and Procurement Owner"
+                              }
+                          ]
+                      },
+                      {
+                          "value": "security_r4",
+                          "label": "Security",
+                          "owner": "Security Owner",
+                          "subCategory": [
+                              {
+                                  "value": "isac_r4",
+                                  "label": "ISAC",
+                                  "owner": "ISAC Owner"
+                              },
+                              {
+                                  "value": "other_security_r4",
+                                  "label": "Other (Not Listed)",
+                                  "owner": "Other (Not Listed) Owner"
+                              }
+                          ]
+                      },
+                      {
+                          "value": "solutions_programming_r4",
+                          "label": "Solutions Programming (Incl Cloud onAir, Webinars, in-person activations)",
+                          "owner": "Solutions Programming Owner",
+                          "subCategory": [
+                              {
+                                  "value": "cloud_onboard_r4",
+                                  "label": "Cloud OnBoard",
+                                  "owner": "Cloud OnBoard Owner"
+                              },
+                              {
+                                  "value": "gcu_r4",
+                                  "label": "Google Cloud Universe",
+                                  "owner": "Google Cloud Universe Owner"
+                              },
+                              {
+                                  "value": "ai_r4",
+                                  "label": "AI",
+                                  "owner": "AI Owner"
+                              },
+                              {
+                                  "value": "cloud_study_jam_r4",
+                                  "label": "Cloud Study Jam",
+                                  "owner": "Cloud Study Jam Owner"
+                              },
+                              {
+                                  "value": "cloud_technical_series_r4",
+                                  "label": "Cloud Technical Series",
+                                  "owner": "Cloud Technical Series Owner"
+                              },
+                              {
+                                  "value": "data_cloud_r4",
+                                  "label": "Data Cloud",
+                                  "owner": "Data Cloud Owner"
+                              },
+                              {
+                                  "value": "gcp_weeklies_r4",
+                                  "label": "Google Cloud Weeklies",
+                                  "owner": "Google Cloud Weeklies Owner"
+                              },
+                              {
+                                  "value": "gws_r4",
+                                  "label": "GWS",
+                                  "owner": "GWS Owner"
+                              },
+                              {
+                                  "value": "infra_app_mod_r4",
+                                  "label": "Infra & App Mod",
+                                  "owner": "Infra & App Mod Owner"
+                              },
+                              {
+                                  "value": "other_solutions_r4",
+                                  "label": "Other (Not Listed)",
+                                  "owner": "Other (Not Listed) Owner"
+                              },
+                              {
+                                  "value": "techbytes_r4",
+                                  "label": "TechBytes",
+                                  "owner": "TechBytes Owner"
+                              }
+                          ]
+                      }
+                  ]
+              }
+          ]
+      },
+      "fundingStatusOptions": [
+          {
+              "value": "fully_funded",
+              "label": "Fully Funded"
+          },
+          {
+              "value": "partially_funded",
+              "label": "Partially Funded"
+          },
+          {
+              "value": "not_funded",
+              "label": "Not Funded"
+          },
+          {
+              "value": "unsure",
+              "label": "Unsure"
+          }
+      ],
+      "hostingTypeOptions": [
+          {
+              "value": "digital",
+              "label": "Digital Event"
+          },
+          {
+              "value": "physical",
+              "label": "Physical Event"
+          },
+          {
+              "value": "hybrid",
+              "label": "Hybrid Event"
+          }
+      ],
+      "cityOptions": [
+          {
+              "value": "new_york",
+              "label": "New York"
+          },
+          {
+              "value": "london",
+              "label": "London"
+          },
+          {
+              "value": "tokyo",
+              "label": "Tokyo"
+          }
+      ],
+      "countryOptions": [
+          {
+              "value": "usa",
+              "label": "United States"
+          },
+          {
+              "value": "uk",
+              "label": "United Kingdom"
+          },
+          {
+              "value": "india",
+              "label": "India"
+          }
+      ],
+      "costCenterOptions": [
+          {
+              "value": "cc101",
+              "label": "101 - Corporate Marketing"
+          },
+          {
+              "value": "cc205",
+              "label": "205 - Field Marketing NA"
+          },
+          {
+              "value": "cc310",
+              "label": "310 - Product Marketing GCP"
+          }
+      ],
+      "priorityOptions": [
+          {
+              "value": "p0",
+              "label": "P0 - In budget"
+          },
+          {
+              "value": "p1",
+              "label": "P1 - Nice to have"
+          }
+      ],
+      "confidenceOptions": [
+          {
+              "value": "low",
+              "label": "Low"
+          },
+          {
+              "value": "medium",
+              "label": "Medium"
+          },
+          {
+              "value": "high",
+              "label": "High"
+          }
+      ],
+      "partnerRoleOptions": [
+          {
+              "value": "partner_host",
+              "label": "Partner Host"
+          },
+          {
+              "value": "partner_involved",
+              "label": "Partner Involved"
+          },
+          {
+              "value": "no_partner_involvement",
+              "label": "No Partner Involvement"
+          }
+      ],
+      "singleMultiPartnerOptions": [
+          {
+              "value": "single",
+              "label": "Yes - Single Partner"
+          },
+          {
+              "value": "multiple",
+              "label": "Yes - Multiple Partners"
+          }
+      ],
+      "partnerResponsibilityOptions": [
+          {
+              "value": "thought_leadership",
+              "label": "Partner Generated Thought Leadership (Whitepaper, Panelist)"
+          },
+          {
+              "value": "joint_messaging",
+              "label": "Joint Messaging & Content Creation"
+          },
+          {
+              "value": "lead_nurture",
+              "label": "Lead Nurture & Follow Up (Lead-to-Opp // Opp-to-Close)"
+          },
+          {
+              "value": "speak_at_event",
+              "label": "Speak at Google / 3rd Party Roundtable, Forum"
+          },
+          {
+              "value": "host_event",
+              "label": "Host Event (Webinar, Townhall, Workshop, Demo)"
+          },
+          {
+              "value": "joint_offer",
+              "label": "Joint Customer Offer"
+          },
+          {
+              "value": "sales_engagement",
+              "label": "Sales Leadership Customer Engagement"
+          },
+          {
+              "value": "other",
+              "label": "Other"
+          }
+      ],
+      "leadFollowUpOptions": [
+          {
+              "value": "partner_only",
+              "label": "Partner Only"
+          },
+          {
+              "value": "google_only",
+              "label": "Google Sales Only"
+          },
+          {
+              "value": "partner_and_google",
+              "label": "Partner and Google together"
+          }
+      ],
+      "noPartnerReasonOptions": [
+          {
+              "value": "no_qualified_partner",
+              "label": "No qualified partner available"
+          },
+          {
+              "value": "insufficient_bandwidth",
+              "label": "Qualified partner has insufficient bandwidth"
+          },
+          {
+              "value": "insufficient_time",
+              "label": "Insufficient time to integrate for launch"
+          },
+          {
+              "value": "not_relevant",
+              "label": "Partner integration is not relevant"
+          }
+      ],
+      "globalCampaignOptions": [
+          {
+              "value": "gcp_ai",
+              "label": "GCP - AI: Win the AI era"
+          },
+          {
+              "value": "gcp_data",
+              "label": "GCP - Data: Future-proof your data"
+          },
+          {
+              "value": "not_tied",
+              "label": "Tactic is not tied to any Global Campaign Program (this is rare)"
+          }
+      ],
+      "adaptAdoptInventOptions": {
+          "gcp_ai": [
+              {
+                  "value": "adapt",
+                  "label": "Adapt"
+              },
+              {
+                  "value": "adopt",
+                  "label": "Adopt"
+              },
+              {
+                  "value": "invent",
+                  "label": "Invent"
+              }
+          ],
+          "gcp_data": [
+              {
+                  "value": "adapt",
+                  "label": "Adapt"
+              },
+              {
+                  "value": "adopt",
+                  "label": "Adopt"
+              },
+              {
+                  "value": "invent",
+                  "label": "Invent"
+              }
+          ],
+          "not_tied": [
+              {
+                  "value": "invent",
+                  "label": "Invent"
+              }
+          ]
+      },
+      "budgetLevel1Options": [
+          {
+              "value": "GCM Cost Centre",
+              "label": "GCM Cost Centre"
+          }
+      ],
+      "budgetLevel2Options": [
+          {
+              "value": "09A: Sales Development",
+              "label": "09A: Sales Development",
+              "parentValue": "GCM Cost Centre"
+          },
+          {
+              "value": "09S: Global Experimental Mkting",
+              "label": "09S: Global Experimental Mkting",
+              "parentValue": "GCM Cost Centre"
+          },
+          {
+              "value": "0F3: Brand",
+              "label": "0F3: Brand",
+              "parentValue": "GCM Cost Centre"
+          },
+          {
+              "value": "0H9: Growth Strategy & Marketing Transformation",
+              "label": "0H9: Growth Strategy & Marketing Transformation",
+              "parentValue": "GCM Cost Centre"
+          }
+      ],
+      "budgetLevel3Options": [
+          {
+              "value": "09A: Reserve",
+              "label": "09A: Reserve",
+              "parentValue": "09A: Sales Development"
+          },
+          {
+              "value": "09A: SDR APAC",
+              "label": "09A: SDR APAC",
+              "parentValue": "09A: Sales Development"
+          },
+          {
+              "value": "09A: SDR EMEA",
+              "label": "09A: SDR EMEA",
+              "parentValue": "09A: Sales Development"
+          },
+          {
+              "value": "09A: SDR Japan",
+              "label": "09A: SDR Japan",
+              "parentValue": "09A: Sales Development"
+          },
+          {
+              "value": "09A: SDR LatAm",
+              "label": "09A: SDR LatAm",
+              "parentValue": "09A: Sales Development"
+          },
+          {
+              "value": "09A: SDR NorthAm",
+              "label": "09A: SDR NorthAm",
+              "parentValue": "09A: Sales Development"
+          },
+          {
+              "value": "09S: Central Spend",
+              "label": "09S: Central Spend",
+              "parentValue": "09S: Global Experimental Mkting"
+          },
+          {
+              "value": "09S: Cloud Summits – Central",
+              "label": "09S: Cloud Summits – Central",
+              "parentValue": "09S: Global Experimental Mkting"
+          },
+          {
+              "value": "09S: Cloud Summits – EMEA",
+              "label": "09S: Cloud Summits – EMEA",
+              "parentValue": "09S: Global Experimental Mkting"
+          },
+          {
+              "value": "09S: Cloud Summits – JAPAC",
+              "label": "09S: Cloud Summits – JAPAC",
+              "parentValue": "09S: Global Experimental Mkting"
+          },
+          {
+              "value": "09S: Cloud Summits – LATAM",
+              "label": "09S: Cloud Summits – LATAM",
+              "parentValue": "09S: Global Experimental Mkting"
+          },
+          {
+              "value": "09S: Cloud Summits – NORTHAM",
+              "label": "09S: Cloud Summits – NORTHAM",
+              "parentValue": "09S: Global Experimental Mkting"
+          },
+          {
+              "value": "09S: Cloud Summits – Public Sector",
+              "label": "09S: Cloud Summits – Public Sector",
+              "parentValue": "09S: Global Experimental Mkting"
+          },
+          {
+              "value": "09S: NEXT Global",
+              "label": "09S: NEXT Global",
+              "parentValue": "09S: Global Experimental Mkting"
+          },
+          {
+              "value": "09S: Reserve",
+              "label": "09S: Reserve",
+              "parentValue": "09S: Global Experimental Mkting"
+          },
+          {
+              "value": "09S: Security",
+              "label": "09S: Security",
+              "parentValue": "09S: Global Experimental Mkting"
+          },
+          {
+              "value": "0F3: EMEA Brand & Creative Support",
+              "label": "0F3: EMEA Brand & Creative Support",
+              "parentValue": "0F3: Brand"
+          },
+          {
+              "value": "0F3: Global Brand & Creative Support",
+              "label": "0F3: Global Brand & Creative Support",
+              "parentValue": "0F3: Brand"
+          },
+          {
+              "value": "0F3: Global Brand Campaign Media",
+              "label": "0F3: Global Brand Campaign Media",
+              "parentValue": "0F3: Brand"
+          },
+          {
+              "value": "0F3: Global Brand Campaign Production",
+              "label": "0F3: Global Brand Campaign Production",
+              "parentValue": "0F3: Brand"
+          },
+          {
+              "value": "0F3: JAPAC Brand & Creative Support",
+              "label": "0F3: JAPAC Brand & Creative Support",
+              "parentValue": "0F3: Brand"
+          },
+          {
+              "value": "0F3: Reserve",
+              "label": "0F3: Reserve",
+              "parentValue": "0F3: Brand"
+          },
+          {
+              "value": "0H9: Business Operations",
+              "label": "0H9: Business Operations",
+              "parentValue": "0H9: Growth Strategy & Marketing Transformation"
+          },
+          {
+              "value": "0H9: Campaigns Ops",
+              "label": "0H9: Campaigns Ops",
+              "parentValue": "0H9: Growth Strategy & Marketing Transformation"
+          },
+          {
+              "value": "0H9: Data Ops",
+              "label": "0H9: Data Ops",
+              "parentValue": "0H9: Growth Strategy & Marketing Transformation"
+          },
+          {
+              "value": "0H9: Experimental Strategy & Operations",
+              "label": "0H9: Experimental Strategy & Operations",
+              "parentValue": "0H9: Growth Strategy & Marketing Transformation"
+          },
+          {
+              "value": "0H9: GGD Reserve",
+              "label": "0H9: GGD Reserve",
+              "parentValue": "0H9: Growth Strategy & Marketing Transformation"
+          },
+          {
+              "value": "0H9: Scaled & Growth Ops",
+              "label": "0H9: Scaled & Growth Ops",
+              "parentValue": "0H9: Growth Strategy & Marketing Transformation"
+          }
+      ],
+      "budgetLevel4Options": [
+          {
+              "value": "09A: Reserve",
+              "label": "09A: Reserve",
+              "parentValue": "09A: Reserve"
+          },
+          {
+              "value": "09A: SDR APAC",
+              "label": "09A: SDR APAC",
+              "parentValue": "09A: SDR APAC"
+          },
+          {
+              "value": "09A: SDR EMEA",
+              "label": "09A: SDR EMEA",
+              "parentValue": "09A: SDR EMEA"
+          },
+          {
+              "value": "09A: SDR Japan",
+              "label": "09A: SDR Japan",
+              "parentValue": "09A: SDR Japan"
+          },
+          {
+              "value": "09A: SDR LatAm",
+              "label": "09A: SDR LatAm",
+              "parentValue": "09A: SDR LatAm"
+          },
+          {
+              "value": "09A: SDR NorthAm",
+              "label": "09A: SDR NorthAm",
+              "parentValue": "09A: SDR NorthAm"
+          },
+          {
+              "value": "09S: Central Spend – AI Moments",
+              "label": "09S: Central Spend – AI Moments",
+              "parentValue": "09S: Central Spend"
+          },
+          {
+              "value": "09S: Central Spend – AI Sprint",
+              "label": "09S: Central Spend – AI Sprint",
+              "parentValue": "09S: Central Spend"
+          },
+          {
+              "value": "09S: Central Spend – Analyst Events",
+              "label": "09S: Central Spend – Analyst Events",
+              "parentValue": "09S: Central Spend"
+          },
+          {
+              "value": "09S: Central Spend – Cental TVC Bench",
+              "label": "09S: Central Spend – Cental TVC Bench",
+              "parentValue": "09S: Central Spend"
+          },
+          {
+              "value": "09S: Central Spend – CXO Events",
+              "label": "09S: Central Spend – CXO Events",
+              "parentValue": "09S: Central Spend"
+          },
+          {
+              "value": "09S: Central Spend – Demos",
+              "label": "09S: Central Spend – Demos",
+              "parentValue": "09S: Central Spend"
+          },
+          {
+              "value": "09S: Central Spend – One Google",
+              "label": "09S: Central Spend – One Google",
+              "parentValue": "09S: Central Spend"
+          },
+          {
+              "value": "09S: Central Spend – Operating Costs",
+              "label": "09S: Central Spend – Operating Costs",
+              "parentValue": "09S: Central Spend"
+          },
+          {
+              "value": "09S: Central Spend – Dev Events Uplift Fund",
+              "label": "09S: Central Spend – Dev Events Uplift Fund",
+              "parentValue": "09S: Central Spend"
+          },
+          {
+              "value": "09S: Cloud Summits – Central",
+              "label": "09S: Cloud Summits – Central",
+              "parentValue": "09S: Cloud Summits – Central"
+          },
+          {
+              "value": "09S: Cloud Smmits – EMEA",
+              "label": "09S: Cloud Smmits – EMEA",
+              "parentValue": "09S: Cloud Summits – EMEA"
+          },
+          {
+              "value": "09S: Cloud Summits – JAPAC",
+              "label": "09S: Cloud Summits – JAPAC",
+              "parentValue": "09S: Cloud Summits – JAPAC"
+          },
+          {
+              "value": "09S: Cloud Summits – LATAM",
+              "label": "09S: Cloud Summits – LATAM",
+              "parentValue": "09S: Cloud Summits – LATAM"
+          },
+          {
+              "value": "09S: Cloud Smmits – NORTHAM",
+              "label": "09S: Cloud Smmits – NORTHAM",
+              "parentValue": "09S: Cloud Summits – NORTHAM"
+          },
+          {
+              "value": "09S: Cloud Summits – Public Sector",
+              "label": "09S: Cloud Summits – Public Sector",
+              "parentValue": "09S: Cloud Summits – Public Sector"
+          },
+          {
+              "value": "09S: NEXT Global",
+              "label": "09S: NEXT Global",
+              "parentValue": "09S: NEXT Global"
+          },
+          {
+              "value": "09S: Reserve",
+              "label": "09S: Reserve",
+              "parentValue": "09S: Reserve"
+          },
+          {
+              "value": "09S: Security",
+              "label": "09S: Security",
+              "parentValue": "09S: Security"
+          },
+          {
+              "value": "0F3: EMEA Brand & Creative Support",
+              "label": "0F3: EMEA Brand & Creative Support",
+              "parentValue": "0F3: EMEA Brand & Creative Support"
+          },
+          {
+              "value": "0F3: Global Brand & Creative Support",
+              "label": "0F3: Global Brand & Creative Support",
+              "parentValue": "0F3: Global Brand & Creative Support"
+          },
+          {
+              "value": "0F3: Global Brand Campaign Media",
+              "label": "0F3: Global Brand Campaign Media",
+              "parentValue": "0F3: Global Brand Campaign Media"
+          },
+          {
+              "value": "0F3: Global Brand Campaign Production",
+              "label": "0F3: Global Brand Campaign Production",
+              "parentValue": "0F3: Global Brand Campaign Production"
+          },
+          {
+              "value": "0F3: JAPAC Brand & Creative Support",
+              "label": "0F3: JAPAC Brand & Creative Support",
+              "parentValue": "0F3: JAPAC Brand & Creative Support"
+          },
+          {
+              "value": "0F3: Reserve",
+              "label": "0F3: Reserve",
+              "parentValue": "0F3: Reserve"
+          },
+          {
+              "value": "0H9: Business Operations",
+              "label": "0H9: Business Operations",
+              "parentValue": "0H9: Business Operations"
+          },
+          {
+              "value": "0H9: Campaigns Ops",
+              "label": "0H9: Campaigns Ops",
+              "parentValue": "0H9: Campaigns Ops"
+          },
+          {
+              "value": "0H9: Data Ops",
+              "label": "0H9: Data Ops",
+              "parentValue": "0H9: Data Ops"
+          },
+          {
+              "value": "0H9: Experimental Strategy & Operations",
+              "label": "0H9: Experimental Strategy & Operations",
+              "parentValue": "0H9: Experimental Strategy & Operations"
+          },
+          {
+              "value": "0H9: GGD Reserve",
+              "label": "0H9: GGD Reserve",
+              "parentValue": "0H9: GGD Reserve"
+          },
+          {
+              "value": "0H9: Scaled & Growth Ops",
+              "label": "0H9: Scaled & Growth Ops",
+              "parentValue": "0H9: Scaled & Growth Ops"
+          }
+      ],
+      "initiativeOptions": [
+          {
+              "value": "enterprise_incl_select",
+              "label": "Enterprise (incl. Select)"
+          },
+          {
+              "value": "corporate",
+              "label": "Corporate"
+          },
+          {
+              "value": "smb",
+              "label": "SMB"
+          },
+          {
+              "value": "startups_p1a",
+              "label": "Startups (P1A)"
+          },
+          {
+              "value": "sdr",
+              "label": "SDR"
+          },
+          {
+              "value": "direct_touched",
+              "label": "Direct Touched - $sum(enterprise_incl_select,corporate,smb,startups_p1a,sdr)"
+          },
+          {
+              "value": "ppf_mdf",
+              "label": "PPF/MDF"
+          },
+          {
+              "value": "isv",
+              "label": "ISV"
+          },
+          {
+              "value": "others_gsi_affiliates",
+              "label": "Others (GSI, affiliates, etc.)"
+          },
+          {
+              "value": "partner_after_direct_touched",
+              "label": "Partner - $sum(ppf_mdf,isv,others_gsi_affiliates)"
+          },
+          {
+              "value": "named",
+              "label": "Named"
+          },
+          {
+              "value": "smb_after_partner",
+              "label": "SMB"
+          },
+          {
+              "value": "startups_p1a_after_partner",
+              "label": "Startups (P1A)"
+          },
+          {
+              "value": "self_serve_after_partner",
+              "label": "Self-Serve - $sum(named,smb_after_partner,startups_p1a_after_partner)"
+          },
+          {
+              "value": "gcp",
+              "label": "GCP - $sum(direct_touched,partner_after_direct_touched,self_serve_after_partner)"
+          },
+          {
+              "value": "enterprise_incl_select_after_gcp",
+              "label": "Enterprise (incl. Select)"
+          },
+          {
+              "value": "corporate_after_gcp",
+              "label": "Corporate"
+          },
+          {
+              "value": "smb_after_gcp",
+              "label": "SMB"
+          },
+          {
+              "value": "sdr_after_gcp",
+              "label": "SDR"
+          },
+          {
+              "value": "sales_assisted",
+              "label": "Sales-Assisted - $sum(enterprise_incl_select_after_gcp,corporate_after_gcp,smb_after_gcp,sdr_after_gcp)"
+          },
+          {
+              "value": "ppf_mdf_after_sales_assisted",
+              "label": "PPF/MDF"
+          },
+          {
+              "value": "isv_after_sales_assisted",
+              "label": "ISV"
+          },
+          {
+              "value": "others_gsi_affiliates_after_sales_assisted",
+              "label": "Others (GSI, affiliates, etc.)"
+          },
+          {
+              "value": "partner_after_sales_assisted",
+              "label": "Partner - $sum(ppf_mdf_after_sales_assisted,isv_after_sales_assisted,others_gsi_affiliates_after_sales_assisted)"
+          },
+          {
+              "value": "named_after_partner",
+              "label": "Named"
+          },
+          {
+              "value": "smb_after_partner_sales_assisted",
+              "label": "SMB"
+          },
+          {
+              "value": "self_serve_after_partner_sales_assisted",
+              "label": "Self-Serve - $sum(named_after_partner,smb_after_partner_sales_assisted,self_serve_after_partner_sales_assisted)"
+          },
+          {
+              "value": "gws",
+              "label": "GWS - $sum(sales_assisted,partner_after_sales_assisted,self_serve_after_partner_sales_assisted)"
+          },
+          {
+              "value": "global_partner_programs",
+              "label": "Global Partner Programs"
+          },
+          {
+              "value": "demand_gen_global_campaign_build",
+              "label": "Demand Gen Global Campaign Build"
+          },
+          {
+              "value": "next",
+              "label": "NEXT"
+          },
+          {
+              "value": "summits",
+              "label": "Summits"
+          },
+          {
+              "value": "events_global_build",
+              "label": "Events Global Build"
+          },
+          {
+              "value": "global_events",
+              "label": "Global Events - $sum(global_partner_programs,demand_gen_global_campaign_build,next,summits,events_global_build)"
+          },
+          {
+              "value": "security_demand_generation",
+              "label": "Security Demand Generation"
+          },
+          {
+              "value": "security_product_marketing",
+              "label": "Security Product Marketing"
+          },
+          {
+              "value": "security",
+              "label": "Security - $sum(security_demand_generation,security_product_marketing,security)"
+          },
+          {
+              "value": "developer_advocacy",
+              "label": "Developer Advocacy"
+          },
+          {
+              "value": "gcp_ai_perception",
+              "label": "GCP AI Perception"
+          },
+          {
+              "value": "gws_ai_consideration",
+              "label": "GWS AI Consideration"
+          },
+          {
+              "value": "brand_global_build",
+              "label": "Brand Global Build"
+          },
+          {
+              "value": "developer_perception",
+              "label": "Developer Perception"
+          },
+          {
+              "value": "regional_brand_campaign",
+              "label": "Regional Brand Campaign"
+          },
+          {
+              "value": "global_brand_campaigns",
+              "label": "Global Brand Campaigns - $sum(developer_advocacy,gcp_ai_perception,gws_ai_consideration,brand_global_build,developer_perception,regional_brand_campaign)"
+          },
+          {
+              "value": "brand_partnerships",
+              "label": "Brand Partnerships"
+          },
+          {
+              "value": "gws_product_marketing",
+              "label": "GWS Product Marketing"
+          },
+          {
+              "value": "gcp_product_marketing",
+              "label": "GCP Product Marketing"
+          },
+          {
+              "value": "gcp_analyst_relations",
+              "label": "GCP Analyst Relations"
+          },
+          {
+              "value": "customer_reference",
+              "label": "Customer Reference"
+          },
+          {
+              "value": "mindshare_thought_leadership",
+              "label": "Mindshare / Thought Leadership - $sum(brand_partnerships,gws_product_marketing,gcp_product_marketing,gcp_analyst_relations,customer_reference)"
+          },
+          {
+              "value": "activation",
+              "label": "Activation"
+          },
+          {
+              "value": "demand_ops",
+              "label": "Demand Ops"
+          },
+          {
+              "value": "ai_optimization",
+              "label": "AI Optimization"
+          },
+          {
+              "value": "systems_data",
+              "label": "Systems & Data"
+          },
+          {
+              "value": "strategy_planning_ops",
+              "label": "Strategy, Planning & Ops"
+          },
+          {
+              "value": "marketer_enablement",
+              "label": "Marketer Enablement - $sum(activation,demand_ops,ai_optimization,systems_data,strategy_planning_ops)"
+          },
+          {
+              "value": "one_google",
+              "label": "One Google"
+          },
+          {
+              "value": "gcm_reserve_acquire_revenue",
+              "label": "GCM Reserve - Acquire Revenue"
+          },
+          {
+              "value": "gcm_reserve_improve_efficiency",
+              "label": "GCM Reserve - Improve Efficiency"
+          },
+          {
+              "value": "gcm_reserve_lift_mindshare",
+              "label": "GCM Reserve - Lift Mindshare"
+          },
+          {
+              "value": "gcm_reserve_source_demand",
+              "label": "GCM Reserve - Source Demand"
+          },
+          {
+              "value": "gcm_reserve",
+              "label": "GCM Reserve - $sum(one_google,gcm_reserve_acquire_revenue,gcm_reserve_improve_efficiency,gcm_reserve_lift_mindshare,gcm_reserve_source_demand)"
+          },
+          {
+              "value": "dei_culture",
+              "label": "DEI & Culture"
+          }
+      ]
+  },
+  "rules": [
+      {
+          "name": "Populate Tactic Type based on Category",
+          "trigger": {
+              "fieldId": "category",
+              "event": "onChange"
+          },
+          "actions": [
+              {
+                  "targetFieldId": "tacticType",
+                  "type": "setVisibility",
+                  "payload": true
+              },
+              {
+                  "targetFieldId": "tacticType",
+                  "type": "setOptionsFromLookup",
+                  "lookupTable": "tacticTypeOptionsByCategory"
+              },
+              {
+                  "targetFieldId": "tacticType",
+                  "type": "setValue",
+                  "payload": null
+              }
+          ]
+      },
+      {
+          "name": "Control Event Type visibility",
+          "trigger": {
+              "fieldId": "tacticType",
+              "event": "onChange"
+          },
+          "action": {
+              "type": "conditionalVisibility",
+              "targetFieldId": "eventType",
+              "condition": {
+                  "operator": "equals",
+                  "value": "events_experiences"
+              }
+          }
+      },
+      {
+          "name": "Handle 'Single Event' selection",
+          "trigger": {
+              "fieldId": "eventType",
+              "value": "single"
+          },
+          "actions": [
+              {
+                  "targetFieldId": "isAlignedToMultiEvent",
+                  "type": "setVisibility",
+                  "payload": true
+              },
+              {
+                  "targetFieldId": "isAlignedToMultiEvent",
+                  "type": "setValue",
+                  "payload": "no"
+              },
+              {
+                  "targetFieldId": "isAlignedToMultiEvent",
+                  "type": "setReadOnly",
+                  "payload": true
+              }
+          ]
+      },
+      {
+          "name": "Handle 'Multi Event' selection",
+          "trigger": {
+              "fieldId": "eventType",
+              "value": "multi"
+          },
+          "actions": [
+              {
+                  "targetFieldId": "isAlignedToMultiEvent",
+                  "type": "setVisibility",
+                  "payload": true
+              },
+              {
+                  "targetFieldId": "isAlignedToMultiEvent",
+                  "type": "setReadOnly",
+                  "payload": false
+              },
+              {
+                  "targetFieldId": "isAlignedToMultiEvent",
+                  "type": "setValue",
+                  "payload": null
+              }
+          ]
+      },
+      {
+          "name": "Control Number of Inquiries visibility and requirement",
+          "trigger": {
+              "fieldId": "willGenerateLeads",
+              "event": "onChange"
+          },
+          "actions": [
+              {
+                  "type": "conditionalVisibility",
+                  "targetFieldId": "numberOfInquiries",
+                  "condition": {
+                      "operator": "equals",
+                      "value": "yes"
+                  }
+              },
+              {
+                  "type": "conditionalRequirement",
+                  "targetFieldId": "numberOfInquiries",
+                  "condition": {
+                      "operator": "equals",
+                      "value": "yes"
+                  }
+              }
+          ]
+      },
+      {
+          "name": "Handle Event Organisation cascading logic",
+          "trigger": {
+              "event": "onGroupChange",
+              "fieldId": "eventOrganisation"
+          },
+          "action": {
+              "type": "handleCascadingGroup",
+              "lookupTree": "eventOrganisationTree",
+              "fieldIds": [
+                  "eventRing",
+                  "isFirstOrThirdParty",
+                  "eventCategory",
+                  "eventSubCategory",
+                  "eventSubCategory2"
+              ],
+              "ownerFieldIds": [
+                  "eventCategoryOwner",
+                  "eventSubCategoryOwner",
+                  "eventSubCategory2Owner"
+              ]
+          }
+      },
+      {
+          "name": "Control Adapt/Adopt/Invent visibility and options",
+          "trigger": {
+              "fieldId": "isGlobalCampaign",
+              "event": "onChange"
+          },
+          "actions": [
+              {
+                  "type": "conditionalVisibility",
+                  "targetFieldId": "adaptAdoptInvent",
+                  "condition": {
+                      "operator": "notEquals",
+                      "value": null
+                  }
+              },
+              {
+                  "targetFieldId": "adaptAdoptInvent",
+                  "type": "setOptionsFromLookup",
+                  "lookupTable": "adaptAdoptInventOptions"
+              }
+          ]
+      },
+      {
+          "name": "Control City visibility based on hosting type",
+          "trigger": {
+              "fieldId": "howIsEventHosted",
+              "event": "onChange"
+          },
+          "action": {
+              "type": "conditionalVisibility",
+              "targetFieldId": "city",
+              "condition": {
+                  "operator": "in",
+                  "value": [
+                      "physical",
+                      "hybrid"
+                  ]
+              }
+          }
+      },
+      {
+          "name": "Control Country visibility for Digital events",
+          "trigger": {
+              "fieldId": "howIsEventHosted",
+              "event": "onChange"
+          },
+          "action": {
+              "type": "conditionalVisibility",
+              "targetFieldId": "selectCountry",
+              "condition": {
+                  "operator": "equals",
+                  "value": "digital"
+              }
+          }
+      },
+      {
+          "name": "Validate End Date",
+          "trigger": {
+              "fieldId": "endDate",
+              "event": "onChange"
+          },
+          "validator": {
+              "type": "compareDates",
+              "leftFieldId": "endDate",
+              "operator": ">=",
+              "rightFieldId": "startDate",
+              "message": "End date must be on or after start date."
+          }
+      },
+      {
+          "name": "Validate Account Segment Sum",
+          "trigger": {
+              "fieldId": "accountSegmentAlignment",
+              "event": "onGroupChange"
+          },
+          "validator": {
+              "type": "percentageSumEquals",
+              "fieldIds": [
+                  "enterprise",
+                  "corporate",
+                  "smb",
+                  "select",
+                  "startups"
+              ],
+              "target": 100,
+              "message": "The sum of segment percentages must equal 100%."
+          }
+      }
+  ]
+}
