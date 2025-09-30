@@ -1,3 +1,4 @@
+
 """
 Configuration management for Smart Tactics application
 Supports multiple environments with secure secret handling

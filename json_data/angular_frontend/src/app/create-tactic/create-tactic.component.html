@@ -1,0 +1,153 @@
+<div class="create-tactic-container">
+  <!-- Header -->
+  <header class="header">
+    <div class="logo">
+      <div class="logo-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <defs>
+            <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" style="stop-color:#8B5CF6"/>
+              <stop offset="100%" style="stop-color:#3B82F6"/>
+            </linearGradient>
+          </defs>
+          <path d="M12 2L13.09 8.26L20 9L13.09 9.74L12 16L10.91 9.74L4 9L10.91 8.26L12 2Z" fill="url(#gradient)"/>
+        </svg>
+      </div>
+      <span class="logo-text">SmartTactic</span>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <div class="form-container">
+      <!-- Page Title and Description -->
+      <div class="page-header">
+        <h1 class="page-title">{{ currentPage?.pageLabel }}</h1>
+        <p class="page-description">{{ currentPage?.pageSubLabel }}</p>
+      </div>
+
+      <!-- Form -->
+      <form [formGroup]="form" (ngSubmit)="onSubmit()" class="tactic-form">
+        <div class="form-content">
+          <!-- Left Column - Form Fields -->
+          <div class="form-fields">
+            <!-- Category Field -->
+            <div class="field-group">
+              <label class="field-label">Category</label>
+              <select 
+                formControlName="category" 
+                class="form-select"
+                [class.input-highlight]="form.get('category')?.value">
+                <option value="">Category</option>
+                <option 
+                  *ngFor="let option of categoryOptions" 
+                  [value]="option.value">
+                  {{ option.label }}
+                </option>
+              </select>
+            </div>
+
+            <!-- Tactic Type Field -->
+            <div class="field-group" *ngIf="form.get('category')?.value">
+              <label class="field-label">Type</label>
+              <select 
+                formControlName="tacticType" 
+                class="form-select"
+                [class.label-warning]="!form.get('tacticType')?.value">
+                <option value="">Type</option>
+                <option 
+                  *ngFor="let option of tacticTypeOptions" 
+                  [value]="option.value">
+                  {{ option.label }}
+                </option>
+              </select>
+            </div>
+
+            <!-- Event Type Field -->
+            <div class="field-group" *ngIf="form.get('tacticType')?.value === 'events_experiences'">
+              <label class="field-label">What type of event do you want to create?</label>
+              <div class="selection-cards">
+                <div 
+                  *ngFor="let option of eventTypeOptions" 
+                  class="selection-card"
+                  [class.selected]="form.get('eventType')?.value === option.value"
+                  (click)="form.get('eventType')?.setValue(option.value)">
+                  <div class="card-content">
+                    <h3 class="card-title">{{ option.title }}</h3>
+                    <p class="card-description">{{ option.description }}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Multi Event Alignment Field -->
+            <div class="field-group" *ngIf="form.get('eventType')?.value">
+              <label class="field-label">Is your tactic aligned to a multi-event?</label>
+              <select 
+                formControlName="isAlignedToMultiEvent" 
+                class="form-select">
+                <option value="">Select an option</option>
+                <option 
+                  *ngFor="let option of singleEventYesNoOptions" 
+                  [value]="option.value">
+                  {{ option.label }}
+                </option>
+              </select>
+            </div>
+          </div>
+
+          <!-- Right Column - Tactic Type Descriptions -->
+          <div class="tactic-descriptions" *ngIf="!form.get('category')?.value">
+            <div class="description-card">
+              <div class="description-icon vendors">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  <rect x="3" y="4" width="18" height="18" rx="2" stroke="currentColor" stroke-width="2"/>
+                  <path d="M16 8L8 8" stroke="currentColor" stroke-width="2"/>
+                  <path d="M16 12L8 12" stroke="currentColor" stroke-width="2"/>
+                </svg>
+              </div>
+              <div class="description-content">
+                <h3 class="description-title">Vendors</h3>
+                <p class="description-text">Tactics for vendors by Role Family and Role, as defined by Project Emporia.</p>
+              </div>
+            </div>
+
+            <div class="description-card">
+              <div class="description-icon build-manage">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  <path d="M12 2L2 7L12 12L22 7L12 2Z" stroke="currentColor" stroke-width="2"/>
+                  <path d="M2 17L12 22L22 17" stroke="currentColor" stroke-width="2"/>
+                  <path d="M2 12L12 17L22 12" stroke="currentColor" stroke-width="2"/>
+                </svg>
+              </div>
+              <div class="description-content">
+                <h3 class="description-title">Build & Manage</h3>
+                <p class="description-text">Tactics that create and manage the content, assets, and tools you use for promotion.</p>
+              </div>
+            </div>
+
+            <div class="description-card">
+              <div class="description-icon promote">
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+                  <rect x="2" y="3" width="20" height="14" rx="2" stroke="currentColor" stroke-width="2"/>
+                  <path d="M8 21L16 21" stroke="currentColor" stroke-width="2"/>
+                  <path d="M12 17L12 21" stroke="currentColor" stroke-width="2"/>
+                </svg>
+              </div>
+              <div class="description-content">
+                <h3 class="description-title">Promote</h3>
+                <p class="description-text">Tactics that get your message in front of customers and partners.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </form>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <button type="button" class="back-button" (click)="onBack()">Back</button>
+    <button type="button" class="continue-button" (click)="onContinue()">Continue</button>
+  </footer>
+</div>

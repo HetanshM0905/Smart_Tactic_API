@@ -3,10 +3,9 @@ Flask==2.3.3
 flask-cors==4.0.0
 gunicorn==21.2.0
 
-# Database dependencies
+# Database dependencies (NoSQL)
+tinydb==4.8.0
 google-cloud-firestore==2.11.1
-sqlalchemy==2.0.21
-psycopg2-binary==2.9.7
 
 # Google Cloud dependencies
 google-cloud-logging==3.5.0

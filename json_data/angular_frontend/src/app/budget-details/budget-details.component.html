@@ -1,0 +1,152 @@
+<div class="budget-details-container">
+  <!-- Header -->
+  <header class="header">
+    <div class="logo">
+      <div class="logo-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <defs>
+            <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" style="stop-color:#8B5CF6"/>
+              <stop offset="100%" style="stop-color:#3B82F6"/>
+            </linearGradient>
+          </defs>
+          <path d="M12 2L13.09 8.26L20 9L13.09 9.74L12 16L10.91 9.74L4 9L10.91 8.26L12 2Z" fill="url(#gradient)"/>
+        </svg>
+      </div>
+      <span class="logo-text">SmartTactic</span>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <div class="form-container">
+      <!-- Page Title -->
+      <div class="page-header">
+        <h1 class="page-title">Create Smart Tactic</h1>
+      </div>
+
+      <!-- Step Navigation -->
+      <div class="step-navigation">
+        <button class="nav-arrow" type="button">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+            <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2"/>
+          </svg>
+        </button>
+        
+        <div class="steps">
+          <div class="step completed">
+            <div class="step-number">1</div>
+            <div class="step-label">Basic Details</div>
+          </div>
+          <div class="step completed">
+            <div class="step-number">2</div>
+            <div class="step-label">Event Categorisation</div>
+          </div>
+          <div class="step completed">
+            <div class="step-number">3</div>
+            <div class="step-label">Location Details</div>
+          </div>
+          <div class="step active">
+            <div class="step-number">4</div>
+            <div class="step-label">Budget Details</div>
+          </div>
+          <div class="step">
+            <div class="step-number">5</div>
+            <div class="step-label">Initiative details</div>
+          </div>
+          <div class="step">
+            <div class="step-number">6</div>
+            <div class="step-label">Execution Details</div>
+          </div>
+        </div>
+        
+        <button class="nav-arrow" type="button">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+            <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2"/>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Form Section -->
+      <div class="form-section">
+        <h2 class="section-title">Budget Details</h2>
+        
+        <form [formGroup]="form" (ngSubmit)="onContinue()" class="budget-form">
+          <!-- Budget Hierarchy -->
+          <div class="budget-hierarchy">
+            <h3 class="hierarchy-title">Budget Hierarchy</h3>
+            
+            <!-- Selected Path Display -->
+            <div class="selected-path" *ngIf="getSelectedPath()">
+              <span class="path-label">Selected Path:</span>
+              <span class="path-value">{{ getSelectedPath() }}</span>
+            </div>
+
+            <!-- Level 1 -->
+            <div class="hierarchy-level">
+              <label class="field-label">Level 1</label>
+              <select formControlName="level1" class="form-select">
+                <option value="">Select Level 1 (GCM Cost Centre)</option>
+                <option *ngFor="let option of budgetLevel1Options" [value]="option.value">
+                  {{ option.label }}
+                </option>
+              </select>
+              <div class="field-error" *ngIf="getFieldError('level1')">
+                {{ getFieldError('level1') }}
+              </div>
+            </div>
+
+            <!-- Level 2 -->
+            <div class="hierarchy-level" *ngIf="form.get('level1')?.value">
+              <label class="field-label">Level 2</label>
+              <select formControlName="level2" class="form-select">
+                <option value="">Select Level 2</option>
+                <option *ngFor="let option of filteredLevel2Options" [value]="option.value">
+                  {{ option.label }}
+                </option>
+              </select>
+              <div class="field-error" *ngIf="getFieldError('level2')">
+                {{ getFieldError('level2') }}
+              </div>
+            </div>
+
+            <!-- Level 3 -->
+            <div class="hierarchy-level" *ngIf="form.get('level2')?.value">
+              <label class="field-label">Level 3</label>
+              <select formControlName="level3" class="form-select">
+                <option value="">Select Level 3</option>
+                <option *ngFor="let option of filteredLevel3Options" [value]="option.value">
+                  {{ option.label }}
+                </option>
+              </select>
+              <div class="field-error" *ngIf="getFieldError('level3')">
+                {{ getFieldError('level3') }}
+              </div>
+            </div>
+
+            <!-- Level 4 -->
+            <div class="hierarchy-level" *ngIf="form.get('level3')?.value">
+              <label class="field-label">Level 4</label>
+              <select formControlName="level4" class="form-select">
+                <option value="">Select Level 4</option>
+                <option *ngFor="let option of filteredLevel4Options" [value]="option.value">
+                  {{ option.label }}
+                </option>
+              </select>
+              <div class="field-error" *ngIf="getFieldError('level4')">
+                {{ getFieldError('level4') }}
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <button type="button" class="back-button" (click)="onBack()">Back</button>
+    <button type="button" class="continue-button" (click)="onContinue()">Continue</button>
+  </footer>
+</div>
+

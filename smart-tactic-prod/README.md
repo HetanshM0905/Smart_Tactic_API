@@ -6,7 +6,7 @@ A production-ready, scalable Flask application for AI-powered event management w
 
 - **AI-Powered Event Processing**: Uses Gemini Pro for intelligent form field generation and data correction
 - **Modular Architecture**: Clean separation of concerns with services, integrations, and utilities
-- **Dual Database Support**: Firestore for unstructured data, AlloyDB for structured metadata
+- **NoSQL Database**: TinyDB for local storage with Firestore integration for cloud deployment
 - **Intelligent Fallback**: Automatic error recovery and data correction
 - **Autofill Engine**: Rule-based and AI-powered form field population
 - **Comprehensive Monitoring**: Langfuse tracing, Google Cloud Logging, and performance metrics
@@ -35,7 +35,7 @@ smart_tactic_backend/
 │   ├── integrations/               # External service integrations
 │   │   ├── __init__.py
 │   │   ├── firestore_client.py
-│   │   ├── sql_client.py
+│   │   ├── tinydb_client.py
 │   │   ├── gemini_llm.py
 │   │   └── langfuse_logger.py
 │   └── utils/                      # Utilities and helpers
@@ -57,10 +57,10 @@ smart_tactic_backend/
 ### Prerequisites
 
 - Python 3.11+
-- Google Cloud Platform account
+- Google Cloud Platform account (optional)
 - Gemini API key
-- AlloyDB instance (optional)
-- Firestore database
+- TinyDB (included in requirements)
+- Firestore database (optional, for cloud deployment)
 
 ### Local Development
 
@@ -81,13 +81,18 @@ smart_tactic_backend/
    pip install -r requirements.txt
    ```
 
-4. **Configure environment**
+4. **Setup TinyDB database**
+   ```bash
+   python simple_tinydb_setup.py
+   ```
+
+5. **Configure environment**
    ```bash
    cp env.example .env
    # Edit .env with your configuration
    ```
 
-5. **Run the application**
+6. **Run the application**
    ```bash
    python app/main.py
    ```
@@ -114,18 +119,37 @@ smart_tactic_backend/
 | `SECRET_KEY` | Flask secret key | Required |
 | `GOOGLE_CLOUD_PROJECT` | GCP project ID | Required |
 | `GEMINI_API_KEY` | Gemini API key | Required |
-| `ALLOYDB_HOST` | AlloyDB host | Optional |
+| `TINYDB_PATH` | TinyDB database path | `data/smart_tactic_tinydb.json` |
 | `LANGFUSE_PUBLIC_KEY` | Langfuse public key | Optional |
 | `LANGFUSE_SECRET_KEY` | Langfuse secret key | Optional |
 
 See `env.example` for complete configuration options.
+
+### TinyDB Database Setup
+
+The application uses TinyDB for local NoSQL storage. To set up the database:
+
+1. **Run the setup script**
+   ```bash
+   python simple_tinydb_setup.py
+   ```
+
+2. **Test the setup**
+   ```bash
+   python test_simple_tinydb.py
+   ```
+
+3. **Database location**
+   - Main database: `data/smart_tactic_tinydb.json`
+   - Backup files: `data/*.json`
+
+For detailed TinyDB setup instructions, see [TINYDB_SETUP.md](TINYDB_SETUP.md).
 
 ### Google Cloud Setup
 
 1. **Enable APIs**
    ```bash
    gcloud services enable firestore.googleapis.com
-   gcloud services enable alloydb.googleapis.com
    gcloud services enable logging.googleapis.com
    ```
 

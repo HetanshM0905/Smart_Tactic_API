@@ -1,0 +1,466 @@
+<div class="execution-details-container">
+  <!-- Header -->
+  <header class="header">
+    <div class="logo">
+      <div class="logo-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <defs>
+            <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" style="stop-color:#8B5CF6"/>
+              <stop offset="100%" style="stop-color:#3B82F6"/>
+            </linearGradient>
+          </defs>
+          <path d="M12 2L13.09 8.26L20 9L13.09 9.74L12 16L10.91 9.74L4 9L10.91 8.26L12 2Z" fill="url(#gradient)"/>
+        </svg>
+      </div>
+      <span class="logo-text">SmartTactic</span>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <div class="form-container">
+      <!-- Page Title -->
+      <div class="page-header">
+        <h1 class="page-title">Create Smart Tactic</h1>
+      </div>
+
+      <!-- Step Navigation -->
+      <div class="step-navigation">
+        <button class="nav-arrow" type="button">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+            <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2"/>
+          </svg>
+        </button>
+        
+        <div class="steps">
+          <div class="step completed">
+            <div class="step-number">1</div>
+            <div class="step-label">Basic Details</div>
+          </div>
+          <div class="step completed">
+            <div class="step-number">2</div>
+            <div class="step-label">Event Categorisation</div>
+          </div>
+          <div class="step completed">
+            <div class="step-number">3</div>
+            <div class="step-label">Location Details</div>
+          </div>
+          <div class="step completed">
+            <div class="step-number">4</div>
+            <div class="step-label">Budget Details</div>
+          </div>
+          <div class="step completed">
+            <div class="step-number">5</div>
+            <div class="step-label">Initiative details</div>
+          </div>
+          <div class="step active">
+            <div class="step-number">6</div>
+            <div class="step-label">Execution Details</div>
+          </div>
+        </div>
+        
+        <button class="nav-arrow" type="button">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+            <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2"/>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Form Section -->
+      <div class="form-section">
+        <h2 class="section-title">Execution Details {{ currentSection }}</h2>
+        
+        <!-- Section Navigation -->
+        <div class="section-navigation">
+          <button type="button" class="section-nav-btn" (click)="previousSection()" [disabled]="currentSection === 1">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+              <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2"/>
+            </svg>
+            Previous
+          </button>
+          
+          <div class="section-indicator">
+            <span class="section-text">Section {{ currentSection }} of {{ totalSections }}</span>
+          </div>
+          
+          <button type="button" class="section-nav-btn" (click)="nextSection()" [disabled]="currentSection === totalSections">
+            Next
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+              <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2"/>
+            </svg>
+          </button>
+        </div>
+        
+        <form [formGroup]="form" (ngSubmit)="onContinue()" class="execution-form">
+          <!-- Execution Details 1: Basic Event Info -->
+          <div *ngIf="currentSection === 1" class="section-content">
+            <div class="form-grid">
+              <div class="field-group">
+                <label class="field-label">Event Venue</label>
+                <input 
+                  type="text" 
+                  formControlName="eventVenue" 
+                  class="form-input"
+                  placeholder="Enter event venue"
+                />
+                <div class="field-error" *ngIf="getFieldError('eventVenue')">
+                  {{ getFieldError('eventVenue') }}
+                </div>
+              </div>
+
+              <div class="field-group">
+                <label class="field-label">Registration Link</label>
+                <input 
+                  type="url" 
+                  formControlName="registrationLink" 
+                  class="form-input"
+                  placeholder="https://example.com/registration"
+                />
+                <div class="field-error" *ngIf="getFieldError('registrationLink')">
+                  {{ getFieldError('registrationLink') }}
+                </div>
+              </div>
+
+              <div class="field-group">
+                <label class="field-label">Sales Kit Link</label>
+                <input 
+                  type="url" 
+                  formControlName="salesKitLink" 
+                  class="form-input"
+                  placeholder="https://example.com/sales-kit"
+                />
+                <div class="field-error" *ngIf="getFieldError('salesKitLink')">
+                  {{ getFieldError('salesKitLink') }}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Execution Details 2: Expected Numbers & Global Campaigns -->
+          <div *ngIf="currentSection === 2" class="section-content">
+            <div class="form-grid">
+              <div class="field-group">
+                <label class="field-label">Expected no. of Registrations</label>
+                <input 
+                  type="number" 
+                  formControlName="expectedRegistrations" 
+                  class="form-input"
+                  placeholder="Enter expected registrations"
+                />
+                <div class="field-error" *ngIf="getFieldError('expectedRegistrations')">
+                  {{ getFieldError('expectedRegistrations') }}
+                </div>
+              </div>
+
+              <div class="field-group">
+                <label class="field-label">Expected no. of attendees</label>
+                <input 
+                  type="number" 
+                  formControlName="expectedAttendees" 
+                  class="form-input"
+                  placeholder="Enter expected attendees"
+                />
+                <div class="field-error" *ngIf="getFieldError('expectedAttendees')">
+                  {{ getFieldError('expectedAttendees') }}
+                </div>
+              </div>
+
+              <div class="field-group global-campaigns">
+                <label class="field-label">Which Global campaign programs is this tactic adopted, adapted or invented, if any?</label>
+                <div class="checkbox-group">
+                  <label *ngFor="let option of globalCampaignOptions" class="checkbox-label">
+                    <input 
+                      type="checkbox" 
+                      [value]="option.value"
+                      (change)="onGlobalCampaignChange($event)"
+                      class="checkbox-input"
+                    />
+                    <span class="checkbox-text">{{ option.label }}</span>
+                  </label>
+                </div>
+                <div class="field-error" *ngIf="getFieldError('globalCampaigns')">
+                  {{ getFieldError('globalCampaigns') }}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Execution Details 3: Buyer Segments -->
+          <div *ngIf="currentSection === 3" class="section-content">
+            <div class="form-grid">
+              <div class="field-group">
+                <label class="field-label">Buyer Segment 1</label>
+                <input 
+                  type="text" 
+                  formControlName="buyerSegment1" 
+                  class="form-input"
+                  placeholder="Enter buyer segment 1"
+                />
+                <div class="field-error" *ngIf="getFieldError('buyerSegment1')">
+                  {{ getFieldError('buyerSegment1') }}
+                </div>
+              </div>
+
+              <div class="field-group">
+                <label class="field-label">Buyer Segment 2</label>
+                <input 
+                  type="text" 
+                  formControlName="buyerSegment2" 
+                  class="form-input"
+                  placeholder="Enter buyer segment 2"
+                />
+                <div class="field-error" *ngIf="getFieldError('buyerSegment2')">
+                  {{ getFieldError('buyerSegment2') }}
+                </div>
+              </div>
+
+              <div class="field-group">
+                <label class="field-label">Buyer Segment 3</label>
+                <input 
+                  type="text" 
+                  formControlName="buyerSegment3" 
+                  class="form-input"
+                  placeholder="Enter buyer segment 3"
+                />
+                <div class="field-error" *ngIf="getFieldError('buyerSegment3')">
+                  {{ getFieldError('buyerSegment3') }}
+                </div>
+              </div>
+
+              <div class="field-group">
+                <label class="field-label">Buyer Segment 4</label>
+                <input 
+                  type="text" 
+                  formControlName="buyerSegment4" 
+                  class="form-input"
+                  placeholder="Enter buyer segment 4"
+                />
+                <div class="field-error" *ngIf="getFieldError('buyerSegment4')">
+                  {{ getFieldError('buyerSegment4') }}
+                </div>
+              </div>
+
+              <div class="field-group">
+                <label class="field-label">Buyer Segment 5</label>
+                <input 
+                  type="text" 
+                  formControlName="buyerSegment5" 
+                  class="form-input"
+                  placeholder="Enter buyer segment 5"
+                />
+                <div class="field-error" *ngIf="getFieldError('buyerSegment5')">
+                  {{ getFieldError('buyerSegment5') }}
+                </div>
+              </div>
+
+              <div class="field-group all-field">
+                <label class="field-label">All</label>
+                <input 
+                  type="text" 
+                  formControlName="allBuyerSegments" 
+                  class="form-input readonly"
+                  readonly
+                />
+              </div>
+            </div>
+          </div>
+
+          <!-- Execution Details 4: Core Messaging & Partner Involvement -->
+          <div *ngIf="currentSection === 4" class="section-content">
+            <div class="form-grid">
+              <div class="field-group">
+                <label class="field-label">Core Messaging 1</label>
+                <input 
+                  type="text" 
+                  formControlName="coreMessaging1" 
+                  class="form-input"
+                  placeholder="Enter core messaging 1"
+                />
+                <div class="field-error" *ngIf="getFieldError('coreMessaging1')">
+                  {{ getFieldError('coreMessaging1') }}
+                </div>
+              </div>
+
+              <div class="field-group">
+                <label class="field-label">Core Messaging 2</label>
+                <input 
+                  type="text" 
+                  formControlName="coreMessaging2" 
+                  class="form-input"
+                  placeholder="Enter core messaging 2"
+                />
+                <div class="field-error" *ngIf="getFieldError('coreMessaging2')">
+                  {{ getFieldError('coreMessaging2') }}
+                </div>
+              </div>
+
+              <div class="field-group all-field">
+                <label class="field-label">All</label>
+                <input 
+                  type="text" 
+                  formControlName="allCoreMessaging" 
+                  class="form-input readonly"
+                  readonly
+                />
+              </div>
+
+              <div class="field-group partner-involvement">
+                <label class="field-label">Level of partner involvement</label>
+                <select formControlName="partnerInvolvement" class="form-select">
+                  <option value="">Select partner involvement level</option>
+                  <option *ngFor="let option of partnerInvolvementOptions" [value]="option.value">
+                    {{ option.label }}
+                  </option>
+                </select>
+                <div class="field-error" *ngIf="getFieldError('partnerInvolvement')">
+                  {{ getFieldError('partnerInvolvement') }}
+                </div>
+              </div>
+
+              <div class="field-group why-no-partner" *ngIf="form.get('partnerInvolvement')?.value === 'no_partner_involvement'">
+                <label class="field-label">If no partner is selected here, why is partner not involved</label>
+                <select formControlName="whyNoPartner" class="form-select">
+                  <option value="">Select reason</option>
+                  <option *ngFor="let option of whyNoPartnerOptions" [value]="option.value">
+                    {{ option.label }}
+                  </option>
+                </select>
+                <div class="field-error" *ngIf="getFieldError('whyNoPartner')">
+                  {{ getFieldError('whyNoPartner') }}
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <!-- Execution Details 5: Account Segments -->
+          <div *ngIf="currentSection === 5" class="section-content">
+            <div class="form-grid">
+              <div class="field-group">
+                <label class="field-label">Account Segment 1</label>
+                <input 
+                  type="text" 
+                  formControlName="accountSegment1" 
+                  class="form-input"
+                  placeholder="Enter account segment 1"
+                />
+                <div class="field-error" *ngIf="getFieldError('accountSegment1')">
+                  {{ getFieldError('accountSegment1') }}
+                </div>
+              </div>
+
+              <div class="field-group">
+                <label class="field-label">Account Segment 2</label>
+                <input 
+                  type="text" 
+                  formControlName="accountSegment2" 
+                  class="form-input"
+                  placeholder="Enter account segment 2"
+                />
+                <div class="field-error" *ngIf="getFieldError('accountSegment2')">
+                  {{ getFieldError('accountSegment2') }}
+                </div>
+              </div>
+
+              <div class="field-group">
+                <label class="field-label">Account Segment 3</label>
+                <input 
+                  type="text" 
+                  formControlName="accountSegment3" 
+                  class="form-input"
+                  placeholder="Enter account segment 3"
+                />
+                <div class="field-error" *ngIf="getFieldError('accountSegment3')">
+                  {{ getFieldError('accountSegment3') }}
+                </div>
+              </div>
+
+              <div class="field-group">
+                <label class="field-label">Account Segment 4</label>
+                <input 
+                  type="text" 
+                  formControlName="accountSegment4" 
+                  class="form-input"
+                  placeholder="Enter account segment 4"
+                />
+                <div class="field-error" *ngIf="getFieldError('accountSegment4')">
+                  {{ getFieldError('accountSegment4') }}
+                </div>
+              </div>
+
+              <div class="field-group">
+                <label class="field-label">Account Segment 5</label>
+                <input 
+                  type="text" 
+                  formControlName="accountSegment5" 
+                  class="form-input"
+                  placeholder="Enter account segment 5"
+                />
+                <div class="field-error" *ngIf="getFieldError('accountSegment5')">
+                  {{ getFieldError('accountSegment5') }}
+                </div>
+              </div>
+
+              <div class="field-group all-field">
+                <label class="field-label">All account segment alignment</label>
+                <input 
+                  type="text" 
+                  formControlName="allAccountSegments" 
+                  class="form-input readonly"
+                  readonly
+                />
+              </div>
+            </div>
+          </div>
+
+          <!-- Execution Details 6: Customer Lifecycle -->
+          <div *ngIf="currentSection === 6" class="section-content">
+            <div class="form-grid">
+              <div class="field-group">
+                <label class="field-label">Existing</label>
+                <input 
+                  type="text" 
+                  formControlName="existingCustomer" 
+                  class="form-input"
+                  placeholder="Enter existing customer details"
+                />
+                <div class="field-error" *ngIf="getFieldError('existingCustomer')">
+                  {{ getFieldError('existingCustomer') }}
+                </div>
+              </div>
+
+              <div class="field-group">
+                <label class="field-label">Greenfield</label>
+                <input 
+                  type="text" 
+                  formControlName="greenfieldCustomer" 
+                  class="form-input"
+                  placeholder="Enter greenfield customer details"
+                />
+                <div class="field-error" *ngIf="getFieldError('greenfieldCustomer')">
+                  {{ getFieldError('greenfieldCustomer') }}
+                </div>
+              </div>
+
+              <div class="field-group all-field">
+                <label class="field-label">All</label>
+                <input 
+                  type="text" 
+                  formControlName="allCustomerLifecycle" 
+                  class="form-input readonly"
+                  readonly
+                />
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <button type="button" class="back-button" (click)="onBack()">Back</button>
+    <button type="button" class="continue-button" (click)="onContinue()">Complete</button>
+  </footer>
+</div>

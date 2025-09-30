@@ -1,11 +1,13 @@
-{
+{   
     "pages": [
         {
             "workflowName": "Create Tactic",
             "pageId": 1,
             "pageLabel": "Create Tactic",
             "pageSubLabel": "Tell us what youre planning, and well help you identify the tactic type. Be sure to select the right category to make sure your requests are being seen by the right people",
-            "layout": {},
+            "layout": {
+                
+            },
             "fields": [
                 {
                     "id": "category",
@@ -273,7 +275,8 @@
                     {
                         "sectionId": 1,
                         "sectionName": "Basic Details",
-                        "layout": {},
+                        "layout": {     
+                        },
                         "fields": [
                             {
                                 "id": "eventName",
@@ -547,7 +550,9 @@
                     {
                         "sectionId": 2,
                         "sectionName": "Event Categorisation",
-                        "layout": {},
+                        "layout": {
+                            
+                        },
                         "gridFields": [
                             {
                                 "id": "eventRing",
@@ -869,7 +874,7 @@
                                 "fieldLabel": "Country",
                                 "fieldTitle": "",
                                 "fieldSubtitle": "",
-                                "type": "select",
+                                "type": "multiSelect",
                                 "optionsLookup": "countryOptions",
                                 "value": null,                                
                                 "style": {},

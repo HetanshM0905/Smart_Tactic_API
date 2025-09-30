@@ -1,0 +1,234 @@
+<div class="basic-details-container">
+  <!-- Header -->
+  <header class="header">
+    <div class="logo">
+      <div class="logo-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <defs>
+            <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" style="stop-color:#8B5CF6"/>
+              <stop offset="100%" style="stop-color:#3B82F6"/>
+            </linearGradient>
+          </defs>
+          <path d="M12 2L13.09 8.26L20 9L13.09 9.74L12 16L10.91 9.74L4 9L10.91 8.26L12 2Z" fill="url(#gradient)"/>
+        </svg>
+      </div>
+      <span class="logo-text">SmartTactic</span>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <div class="form-container">
+      <!-- Page Title -->
+      <div class="page-header">
+        <h1 class="page-title">Create Smart Tactic</h1>
+      </div>
+
+      <!-- Step Navigation -->
+      <div class="step-navigation">
+        <button class="nav-arrow" type="button">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+            <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2"/>
+          </svg>
+        </button>
+        
+        <div class="steps">
+          <div class="step active">
+            <div class="step-number">1</div>
+            <div class="step-label">Basic Details</div>
+          </div>
+          <div class="step">
+            <div class="step-number">2</div>
+            <div class="step-label">Event Categorisation</div>
+          </div>
+          <div class="step">
+            <div class="step-number">3</div>
+            <div class="step-label">Location Details</div>
+          </div>
+          <div class="step">
+            <div class="step-number">4</div>
+            <div class="step-label">Budget Details</div>
+          </div>
+          <div class="step">
+            <div class="step-number">5</div>
+            <div class="step-label">Initiative details</div>
+          </div>
+          <div class="step">
+            <div class="step-number">6</div>
+            <div class="step-label">Execution Details</div>
+          </div>
+        </div>
+        
+        <button class="nav-arrow" type="button">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+            <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2"/>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Form Section -->
+      <div class="form-section">
+        <h2 class="section-title">Basic details about the event</h2>
+        
+        <form [formGroup]="form" (ngSubmit)="onContinue()" class="basic-form">
+          <div class="form-grid">
+            <!-- Left Column -->
+            <div class="form-column">
+              <!-- Event Name -->
+              <div class="field-group">
+                <label class="field-label">Event name*</label>
+                <input 
+                  type="text" 
+                  formControlName="eventName" 
+                  class="form-input"
+                  placeholder="Enter event name">
+                <div class="field-error" *ngIf="getFieldError('eventName')">
+                  {{ getFieldError('eventName') }}
+                </div>
+              </div>
+
+              <!-- Description -->
+              <div class="field-group">
+                <label class="field-label">Description</label>
+                <textarea 
+                  formControlName="description" 
+                  class="form-textarea"
+                  rows="4"
+                  placeholder="Enter event description"></textarea>
+                <div class="field-error" *ngIf="getFieldError('description')">
+                  {{ getFieldError('description') }}
+                </div>
+              </div>
+
+              <!-- Priority -->
+              <div class="field-group">
+                <label class="field-label">Priority</label>
+                <select formControlName="priority" class="form-select">
+                  <option value="">Select priority</option>
+                  <option *ngFor="let option of priorityOptions" [value]="option.value">
+                    {{ option.label }}
+                  </option>
+                </select>
+                <div class="field-help">Select priority based on importance and budget impact</div>
+                <div class="field-error" *ngIf="getFieldError('priority')">
+                  {{ getFieldError('priority') }}
+                </div>
+              </div>
+
+              <!-- Start Date -->
+              <div class="field-group">
+                <label class="field-label">Start date</label>
+                <div class="date-input-wrapper">
+                  <input 
+                    type="date" 
+                    formControlName="startDate" 
+                    class="form-input date-input">
+                  <div class="date-icon">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                      <rect x="3" y="4" width="18" height="18" rx="2" stroke="currentColor" stroke-width="2"/>
+                      <path d="M16 2V6M8 2V6M3 10H21" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                  </div>
+                </div>
+                <div class="field-error" *ngIf="getFieldError('startDate')">
+                  {{ getFieldError('startDate') }}
+                </div>
+              </div>
+
+              <!-- Event Date Confidence -->
+              <div class="field-group">
+                <label class="field-label">Event date confidence</label>
+                <select formControlName="eventDateConfidence" class="form-select">
+                  <option value="">Select confidence</option>
+                  <option *ngFor="let option of confidenceOptions" [value]="option.value">
+                    {{ option.label }}
+                  </option>
+                </select>
+                <div class="field-error" *ngIf="getFieldError('eventDateConfidence')">
+                  {{ getFieldError('eventDateConfidence') }}
+                </div>
+              </div>
+
+              <!-- Will Generate Leads -->
+              <div class="field-group">
+                <label class="field-label">Will this tactic generate customer inquiries/leads?</label>
+                <div class="toggle-wrapper">
+                  <label class="toggle">
+                    <input 
+                      type="checkbox" 
+                      formControlName="willGenerateLeads"
+                      class="toggle-input">
+                    <span class="toggle-slider"></span>
+                  </label>
+                </div>
+                <div class="field-error" *ngIf="getFieldError('willGenerateLeads')">
+                  {{ getFieldError('willGenerateLeads') }}
+                </div>
+              </div>
+
+              <!-- Number of Inquiries -->
+              <div class="field-group" *ngIf="form.get('willGenerateLeads')?.value">
+                <label class="field-label">Number of inquiries*</label>
+                <input 
+                  type="number" 
+                  formControlName="numberOfInquiries" 
+                  class="form-input"
+                  min="1"
+                  placeholder="Enter number of inquiries">
+                <div class="field-help">Applicable only if the above answer is Yes</div>
+                <div class="field-error" *ngIf="getFieldError('numberOfInquiries')">
+                  {{ getFieldError('numberOfInquiries') }}
+                </div>
+              </div>
+            </div>
+
+            <!-- Right Column -->
+            <div class="form-column">
+              <!-- Owner -->
+              <div class="field-group">
+                <label class="field-label">Owner</label>
+                <select formControlName="owner" class="form-select">
+                  <option value="">Select owner</option>
+                  <option *ngFor="let owner of ownerOptions" [value]="owner.value">
+                    {{ owner.label }}
+                  </option>
+                </select>
+                <div class="field-help">Search for user by email</div>
+                <div class="field-error" *ngIf="getFieldError('owner')">
+                  {{ getFieldError('owner') }}
+                </div>
+              </div>
+
+              <!-- End Date -->
+              <div class="field-group">
+                <label class="field-label">End date</label>
+                <div class="date-input-wrapper">
+                  <input 
+                    type="date" 
+                    formControlName="endDate" 
+                    class="form-input date-input">
+                  <div class="date-icon">
+                    <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+                      <rect x="3" y="4" width="18" height="18" rx="2" stroke="currentColor" stroke-width="2"/>
+                      <path d="M16 2V6M8 2V6M3 10H21" stroke="currentColor" stroke-width="2"/>
+                    </svg>
+                  </div>
+                </div>
+                <div class="field-error" *ngIf="getFieldError('endDate')">
+                  {{ getFieldError('endDate') }}
+                </div>
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <button type="button" class="back-button" (click)="onBack()">Back</button>
+    <button type="button" class="continue-button" (click)="onContinue()">Continue</button>
+  </footer>
+</div>

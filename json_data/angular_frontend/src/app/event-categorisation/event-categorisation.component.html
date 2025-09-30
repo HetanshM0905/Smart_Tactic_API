@@ -1,0 +1,222 @@
+<div class="event-categorisation-container">
+  <!-- Header -->
+  <header class="header">
+    <div class="logo">
+      <div class="logo-icon">
+        <svg width="24" height="24" viewBox="0 0 24 24" fill="none">
+          <defs>
+            <linearGradient id="gradient" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" style="stop-color:#8B5CF6"/>
+              <stop offset="100%" style="stop-color:#3B82F6"/>
+            </linearGradient>
+          </defs>
+          <path d="M12 2L13.09 8.26L20 9L13.09 9.74L12 16L10.91 9.74L4 9L10.91 8.26L12 2Z" fill="url(#gradient)"/>
+        </svg>
+      </div>
+      <span class="logo-text">SmartTactic</span>
+    </div>
+  </header>
+
+  <!-- Main Content -->
+  <main class="main-content">
+    <div class="form-container">
+      <!-- Page Title -->
+      <div class="page-header">
+        <h1 class="page-title">Create Smart Tactic</h1>
+      </div>
+
+      <!-- Step Navigation -->
+      <div class="step-navigation">
+        <button class="nav-arrow" type="button">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+            <path d="M15 18L9 12L15 6" stroke="currentColor" stroke-width="2"/>
+          </svg>
+        </button>
+        
+        <div class="steps">
+          <div class="step completed">
+            <div class="step-number">1</div>
+            <div class="step-label">Basic Details</div>
+          </div>
+          <div class="step active">
+            <div class="step-number">2</div>
+            <div class="step-label">Event Categorisation</div>
+          </div>
+          <div class="step">
+            <div class="step-number">3</div>
+            <div class="step-label">Location Details</div>
+          </div>
+          <div class="step">
+            <div class="step-number">4</div>
+            <div class="step-label">Budget Details</div>
+          </div>
+          <div class="step">
+            <div class="step-number">5</div>
+            <div class="step-label">Initiative details</div>
+          </div>
+          <div class="step">
+            <div class="step-number">6</div>
+            <div class="step-label">Execution Details</div>
+          </div>
+        </div>
+        
+        <button class="nav-arrow" type="button">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none">
+            <path d="M9 18L15 12L9 6" stroke="currentColor" stroke-width="2"/>
+          </svg>
+        </button>
+      </div>
+
+      <!-- Form Section -->
+      <div class="form-section">
+        <h2 class="section-title">Event Categorisation</h2>
+        
+        <form [formGroup]="form" (ngSubmit)="onContinue()" class="categorisation-form">
+          <!-- Debug info (remove in production) -->
+          <div class="debug-info" style="background: #f0f0f0; padding: 10px; margin-bottom: 20px; border-radius: 4px; font-size: 12px;">
+            <strong>Form Status:</strong> {{ form.valid ? 'Valid' : 'Invalid' }}<br>
+            <strong>Form Value:</strong> {{ form.value | json }}
+          </div>
+          
+          <div class="form-grid">
+            <!-- Event Ring -->
+            <div class="field-group">
+              <label class="field-label">Event Ring</label>
+              <select formControlName="eventRing" class="form-select">
+                <option value="">Select event ring</option>
+                <option *ngFor="let option of eventRingOptions" [value]="option.value">
+                  {{ option.label }}
+                </option>
+              </select>
+              <div class="field-error" *ngIf="getFieldError('eventRing')">
+                {{ getFieldError('eventRing') }}
+              </div>
+            </div>
+
+            <!-- First Party or Third Party Event -->
+            <div class="field-group">
+              <label class="field-label">First party or third party event</label>
+              <select formControlName="firstPartyOrThirdPartyEvent" class="form-select">
+                <option value="">Select party type</option>
+                <option *ngFor="let option of firstPartyThirdPartyOptions" [value]="option.value">
+                  {{ option.label }}
+                </option>
+              </select>
+              <div class="field-error" *ngIf="getFieldError('firstPartyOrThirdPartyEvent')">
+                {{ getFieldError('firstPartyOrThirdPartyEvent') }}
+              </div>
+            </div>
+
+            <!-- Event Category -->
+            <div class="field-group">
+              <label class="field-label">Event Category</label>
+              <select formControlName="eventCategory" class="form-select">
+                <option value="">Select event category</option>
+                <option *ngFor="let option of eventCategoryOptions" [value]="option.value">
+                  {{ option.label }}
+                </option>
+              </select>
+              <div class="field-error" *ngIf="getFieldError('eventCategory')">
+                {{ getFieldError('eventCategory') }}
+              </div>
+            </div>
+
+            <!-- Event Category Owner -->
+            <div class="field-group">
+              <label class="field-label">Event Category Owner</label>
+              <select formControlName="eventCategoryOwner" class="form-select">
+                <option value="">Select owner</option>
+                <option *ngFor="let owner of ownerOptions" [value]="owner.value">
+                  {{ owner.label }}
+                </option>
+              </select>
+              <div class="field-help">Search for user by email</div>
+              <div class="field-error" *ngIf="getFieldError('eventCategoryOwner')">
+                {{ getFieldError('eventCategoryOwner') }}
+              </div>
+            </div>
+
+            <!-- Event Sub Category -->
+            <div class="field-group" *ngIf="form.get('eventCategory')?.value === 'gcn'">
+              <label class="field-label">Event sub Category</label>
+              <select formControlName="eventSubCategory" class="form-select">
+                <option value="">Select sub category</option>
+                <option *ngFor="let option of eventSubCategoryOptions" [value]="option.value">
+                  {{ option.label }}
+                </option>
+              </select>
+              <div class="field-error" *ngIf="getFieldError('eventSubCategory')">
+                {{ getFieldError('eventSubCategory') }}
+              </div>
+            </div>
+
+            <!-- Event Sub Category Owner -->
+            <div class="field-group" *ngIf="form.get('eventSubCategory')?.value">
+              <label class="field-label">Event sub Category Owner</label>
+              <select formControlName="eventSubCategoryOwner" class="form-select">
+                <option value="">Select owner</option>
+                <option *ngFor="let owner of ownerOptions" [value]="owner.value">
+                  {{ owner.label }}
+                </option>
+              </select>
+              <div class="field-help">Search for user by email</div>
+              <div class="field-error" *ngIf="getFieldError('eventSubCategoryOwner')">
+                {{ getFieldError('eventSubCategoryOwner') }}
+              </div>
+            </div>
+
+            <!-- Event Organiser -->
+            <div class="field-group">
+              <label class="field-label">Event Organiser</label>
+              <select formControlName="eventOrganiser" class="form-select">
+                <option value="">Select organiser</option>
+                <option *ngFor="let owner of ownerOptions" [value]="owner.value">
+                  {{ owner.label }}
+                </option>
+              </select>
+              <div class="field-help">Search for user by email</div>
+              <div class="field-error" *ngIf="getFieldError('eventOrganiser')">
+                {{ getFieldError('eventOrganiser') }}
+              </div>
+            </div>
+
+            <!-- Event Point of Contact -->
+            <div class="field-group">
+              <label class="field-label">Event Point of Contact</label>
+              <select formControlName="eventPointOfContact" class="form-select">
+                <option value="">Select point of contact</option>
+                <option *ngFor="let owner of ownerOptions" [value]="owner.value">
+                  {{ owner.label }}
+                </option>
+              </select>
+              <div class="field-help">Search for user by email</div>
+              <div class="field-error" *ngIf="getFieldError('eventPointOfContact')">
+                {{ getFieldError('eventPointOfContact') }}
+              </div>
+            </div>
+
+            <!-- Funding Status -->
+            <div class="field-group funding-status">
+              <label class="field-label">Funding status</label>
+              <select formControlName="fundingStatus" class="form-select">
+                <option value="">Select funding status</option>
+                <option *ngFor="let option of fundingStatusOptions" [value]="option.value">
+                  {{ option.label }}
+                </option>
+              </select>
+              <div class="field-error" *ngIf="getFieldError('fundingStatus')">
+                {{ getFieldError('fundingStatus') }}
+              </div>
+            </div>
+          </div>
+        </form>
+      </div>
+    </div>
+  </main>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <button type="button" class="back-button" (click)="onBack()">Back</button>
+    <button type="button" class="continue-button" (click)="onContinue()">Continue</button>
+  </footer>
+</div>

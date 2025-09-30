@@ -1,0 +1,307 @@
+{
+    "pages": [
+        {
+            "workflowName": "Create Tactic",
+            "pageId": 1,
+            "pageLabel": "Create Tactic",
+            "pageSubLabel": "Tell us what youre planning, and well help you identify the tactic type. Be sure to select the right category to make sure your requests are being seen by the right people",
+            "layout": {
+                
+            },
+            "fields": [
+                {
+                    "id": "category",
+                    "fieldLabel": "Category",
+                    "fieldTitle": "",
+                    "fieldSubtitle": "",
+                    "type": "select",
+                    "optionsLookup": "categoryOptions",
+                    "value": null,
+                    "isVisible": true,
+                    "style": {},
+                    "validators": [
+                        {
+                            "required": true,
+                            "message": ""
+                        },
+                        {
+                            "min": "",
+                            "message": ""
+                        },
+                        {
+                            "max": "",
+                            "message": ""
+                        },
+                        {
+                            "pattern": "",
+                            "message": ""
+                        }
+                    ],
+                    "ui": {
+                        "className": "input-highlight"
+                    }
+                },
+                {
+                    "id": "tacticType",
+                    "fieldLabel": "Tactic Type",
+                    "fieldTitle": "",
+                    "fieldSubtitle": "",
+                    "type": "select",
+                    "optionsLookup": "tacticTypeOptions",
+                    "value": null,
+                    "isVisible": false,
+                    "style": {},
+                    "validators": [
+                        {
+                            "required": true,
+                            "message": ""
+                        },
+                        {
+                            "min": "",
+                            "message": ""
+                        },
+                        {
+                            "max": "",
+                            "message": ""
+                        },
+                        {
+                            "pattern": "",
+                            "message": ""
+                        }
+                    ],
+                    "ui": {
+                        "className": "label-warning"
+                    }
+                },
+                {
+                    "id": "eventType",
+                    "fieldLabel": "What type of event do you want to create?",
+                    "fieldTitle": "",
+                    "fieldSubtitle": "",
+                    "type": "selectionCards",
+                    "optionsLookup": "eventTypeOptions",
+                    "value": null,
+                    "isVisible": false,
+                    "style": {},
+                    "validators": [
+                        {
+                            "required": true,
+                            "message": ""
+                        },
+                        {
+                            "min": "",
+                            "message": ""
+                        },
+                        {
+                            "max": "",
+                            "message": ""
+                        },
+                        {
+                            "pattern": "",
+                            "message": ""
+                        }
+                    ]
+                },
+                {
+                    "id": "isAlignedToMultiEvent",
+                    "fieldLabel": "Is your tactic aligned to a multi-event?",
+                    "fieldTitle": "",
+                    "fieldSubtitle": "",
+                    "type": "select",
+                    "optionsLookup": "singleEventYesNoOptions",
+                    "value": null,
+                    "isVisible": false,
+                    "readOnly": false,
+                    "style": {},
+                    "validators": [
+                        {
+                            "required": true,
+                            "message": ""
+                        },
+                        {
+                            "min": "",
+                            "message": ""
+                        },
+                        {
+                            "max": "",
+                            "message": ""
+                        },
+                        {
+                            "pattern": "",
+                            "message": ""
+                        }
+                    ]
+                }
+            ]
+        }
+    ],
+    "lookups": {
+        "categoryOptions": [
+            {
+                "value": "promote",
+                "label": "Promote: Tactics that get your message in front of customers and partners",
+                "optionsLookup": "tacticTypeOptionsByCategoryPromote"
+            },
+            {
+                "value": "build_manage",
+                "label": "Build & Manage: Tactics that create and manage the content, assets, and tools you use for promotion",
+                "optionsLookup": "tacticTypeOptionsByCategoryBuildManage"
+            },
+            {
+                "value": "vendors",
+                "label": "Vendors: Tactics for vendors by Role Family and Role, as defined by Project Emporia",
+                "optionsLookup": "tacticTypeOptionsByCategoryVendors"
+            }
+        ],
+        "tacticTypeOptionsByCategoryPromote": [
+            {
+                "value": "partner_co_op",
+                "label": "Partner Co-op"
+            },
+            {
+                "value": "content_asset_promotion",
+                "label": "Content & Asset Promotion"
+            },
+            {
+                "value": "email_nurture",
+                "label": "Email Nurture"
+            },
+            {
+                "value": "direct_mail",
+                "label": "Direct Mail"
+            },
+            {
+                "value": "events_experiences",
+                "label": "Events & Experiences",
+                "optionsLookup": "eventTypeOptions"
+            },
+            {
+                "value": "outbound_prospecting",
+                "label": "Outbound Prospecting"
+            },
+            {
+                "value": "brand_partnerships_sponsorships",
+                "label": "Brand Partnerships & Sponsorships"
+            },
+            {
+                "value": "partner_ppf_mdf",
+                "label": "Partner PPF/MDF"
+            },
+            {
+                "value": "referral_programs",
+                "label": "Referral Programs"
+            }
+        ],
+        "tacticTypeOptionsByCategoryBuildManage": [
+            {
+                "value": "analytics",
+                "label": "Analytics"
+            },
+            {
+                "value": "research",
+                "label": "Research"
+            },
+            {
+                "value": "contact_enrichment",
+                "label": "Contact Enrichment"
+            },
+            {
+                "value": "web_development",
+                "label": "Web Development"
+            },
+            {
+                "value": "free_trial_ti",
+                "label": "Free Trial TI (technical infra)"
+            },
+            {
+                "value": "marketing_technology",
+                "label": "Marketing Technology"
+            },
+            {
+                "value": "content_asset_development",
+                "label": "Content & Asset Development"
+            },
+            {
+                "value": "localization_translation",
+                "label": "Localization & Translation"
+            },
+            {
+                "value": "learning_development",
+                "label": "Learning & Development"
+            },
+            {
+                "value": "social_channel_management",
+                "label": "Social Channel Management"
+            }
+        ],
+        "tacticTypeOptionsByCategoryVendors": [
+            {
+                "value": "data_analytics_insights",
+                "label": "Data, Analytics & Insights"
+            },
+            {
+                "value": "chief_of_staff",
+                "label": "Chief of Staff"
+            },
+            {
+                "value": "communications",
+                "label": "Communications"
+            },
+            {
+                "value": "creative",
+                "label": "Creative"
+            },
+            {
+                "value": "e_abp",
+                "label": "E/ABP"
+            },
+            {
+                "value": "event_management",
+                "label": "Event Management"
+            },
+            {
+                "value": "external_relationship_management",
+                "label": "External Relationship Management"
+            },
+            {
+                "value": "leadership",
+                "label": "Leadership"
+            },
+            {
+                "value": "marketing_activation",
+                "label": "Marketing Activation"
+            },
+            {
+                "value": "marketing_execution",
+                "label": "Marketing Execution"
+            },
+            {
+                "value": "production",
+                "label": "Production"
+            }
+        ],
+        "eventTypeOptions": [
+            {
+                "value": "single",
+                "title": "Single Event",
+                "description": "Create a new tactic for a standalone event."
+            },
+            {
+                "value": "multi",
+                "title": "Multi Event",
+                "description": "Group several existing tactics under a single initiative."
+            }
+        ],
+        "singleEventYesNoOptions": [
+            {
+                "value": "yes",
+                "label": "Yes"
+            },
+            {
+                "value": "no",
+                "label": "No"
+            }
+        ]
+    },
+    "rules": []
+}

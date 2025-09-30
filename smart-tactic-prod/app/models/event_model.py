@@ -12,16 +12,75 @@ logger = get_logger(__name__)
 
 @dataclass
 class EventModel:
-    """Event data model"""
+    """Event data model based on Smart Tactic form structure"""
     
     # Core fields
     event_id: str
-    event_type: str
-    title: str
-    description: Optional[str] = None
+    event_type: str = 'conference'
     status: str = 'draft'
     
-    # Metadata
+    # Basic Info fields (from form structure)
+    eventName: Optional[str] = None
+    eventDescription: Optional[str] = None
+    priority: Optional[str] = None
+    owner: Optional[str] = None
+    eventStartDate: Optional[datetime] = None
+    eventEndDate: Optional[datetime] = None
+    EventDateConfidence: Optional[str] = None
+    leads: Optional[str] = None
+    numberOfInquiries: Optional[int] = None
+    
+    # Event categorization
+    eventRing: Optional[str] = None
+    eventParty: Optional[str] = None
+    eventCategory: Optional[str] = None
+    eventCategoryOwner: Optional[str] = None
+    eventSubCategory: Optional[str] = None
+    eventSubCategoryOwner: Optional[str] = None
+    
+    # Logistics
+    fundingStatus: Optional[str] = None
+    hostingType: Optional[str] = None
+    city: Optional[str] = None
+    countries: Optional[str] = None
+    
+    # Financial Details
+    costCenter: Optional[str] = None
+    hasSpend: Optional[str] = None
+    totalBudget: Optional[float] = None
+    splitCostCenter: Optional[str] = None
+    costCenterSplit: Optional[List[Dict[str, Any]]] = None
+    
+    # Partner Details
+    partnerInvolved: Optional[str] = None
+    partnerName: Optional[str] = None
+    responsibilities: Optional[str] = None
+    leadFollowUp: Optional[str] = None
+    
+    # Alignments
+    account_segments: Optional[str] = None
+    account_segment_type: Optional[str] = None
+    buyer_segment_rollups: Optional[str] = None
+    industries: Optional[str] = None
+    products: Optional[str] = None
+    customer_lifecycle: Optional[str] = None
+    core_messaging: Optional[str] = None
+    
+    # Campaign Program
+    tiedToProgram: Optional[bool] = None
+    adoptAdaptInvent: Optional[str] = None
+    
+    # Review & Submit
+    statusBasicDetails: Optional[bool] = None
+    statusExecutionDetails: Optional[bool] = None
+    readyForActivation: Optional[bool] = None
+    
+    # Extras
+    venue: Optional[str] = None
+    registrationLink: Optional[str] = None
+    salesKitLink: Optional[str] = None
+    
+    # Metadata and system fields
     metadata: Dict[str, Any] = None
     form_fields: Dict[str, Any] = None
     layout: Dict[str, Any] = None
@@ -29,17 +88,6 @@ class EventModel:
     # Timestamps
     created_at: Optional[datetime] = None
     updated_at: Optional[datetime] = None
-    
-    # Contact information
-    email: Optional[str] = None
-    phone: Optional[str] = None
-    
-    # Event details
-    date: Optional[datetime] = None
-    venue: Optional[str] = None
-    capacity: Optional[int] = None
-    duration: Optional[int] = None
-    price: Optional[float] = None
     
     def __post_init__(self):
         """Initialize default values after object creation"""
@@ -66,11 +114,11 @@ class EventModel:
         return data
     
     def to_metadata_dict(self) -> Dict[str, Any]:
-        """Convert event to metadata dictionary for database storage"""
+        """Convert event to metadata dictionary for NoSQL storage"""
         return {
             'event_id': self.event_id,
             'event_type': self.event_type,
-            'title': self.title,
+            'eventName': self.eventName,
             'status': self.status,
             'created_at': self.created_at,
             'updated_at': self.updated_at,
@@ -92,41 +140,112 @@ class EventModel:
         logger.info(f"Event {self.event_id} updated")
     
     def validate(self) -> Dict[str, Any]:
-        """Validate event data"""
+        """Validate event data based on form structure"""
         errors = []
         warnings = []
         
-        # Required field validation
-        if not self.title or not self.title.strip():
-            errors.append("Title is required")
+        # Required field validation based on form structure
+        if not self.eventName or not self.eventName.strip():
+            errors.append("Event name is required")
         
-        if not self.event_type or not self.event_type.strip():
-            errors.append("Event type is required")
+        if not self.eventDescription or not self.eventDescription.strip():
+            errors.append("Event description is required")
+        
+        if not self.priority:
+            errors.append("Priority is required")
+        
+        if not self.owner:
+            errors.append("Owner is required")
+        
+        if not self.eventStartDate:
+            errors.append("Event start date is required")
+        
+        if not self.eventEndDate:
+            errors.append("Event end date is required")
+        
+        if not self.EventDateConfidence:
+            errors.append("Event date confidence is required")
+        
+        if not self.leads:
+            errors.append("Leads expected field is required")
+        
+        if not self.eventRing:
+            errors.append("Event ring is required")
+        
+        if not self.eventParty:
+            errors.append("Event party is required")
+        
+        if not self.eventCategoryOwner:
+            errors.append("Event category owner is required")
+        
+        if not self.eventSubCategoryOwner:
+            errors.append("Event sub category owner is required")
+        
+        if not self.fundingStatus:
+            errors.append("Funding status is required")
+        
+        if not self.hostingType:
+            errors.append("Hosting type is required")
+        
+        if not self.costCenter:
+            errors.append("Cost center is required")
+        
+        if not self.hasSpend:
+            errors.append("Has spend field is required")
+        
+        if not self.partnerInvolved:
+            errors.append("Partner involvement is required")
+        
+        if not self.tiedToProgram:
+            errors.append("Tied to program field is required")
+        
+        if not self.adoptAdaptInvent:
+            errors.append("Adopt/Adapt/Invent field is required")
         
         # Field length validation
-        if self.title and len(self.title) > 200:
-            errors.append("Title must be less than 200 characters")
+        if self.eventName and len(self.eventName) > 200:
+            errors.append("Event name must be less than 200 characters")
         
-        if self.description and len(self.description) > 2000:
-            errors.append("Description must be less than 2000 characters")
+        if self.eventDescription and len(self.eventDescription) > 2000:
+            errors.append("Event description must be less than 2000 characters")
         
-        # Value validation
-        if self.capacity is not None and self.capacity < 1:
-            errors.append("Capacity must be at least 1")
+        # Date validation
+        if self.eventStartDate and self.eventEndDate:
+            if self.eventStartDate > self.eventEndDate:
+                errors.append("Event start date must be before end date")
         
-        if self.duration is not None and self.duration < 0:
-            errors.append("Duration must be non-negative")
+        # Conditional field validation
+        if self.leads == "Yes" and not self.numberOfInquiries:
+            warnings.append("Number of inquiries should be provided when leads are expected")
         
-        if self.price is not None and self.price < 0:
-            errors.append("Price must be non-negative")
+        if self.hasSpend == "Yes":
+            if not self.totalBudget:
+                errors.append("Total budget is required when event has spend")
+            if not self.splitCostCenter:
+                errors.append("Split cost center field is required when event has spend")
         
-        # Business rule validation
-        if self.status == 'published':
-            if not self.date:
-                warnings.append("Published events should have a date")
-            
-            if self.event_type in ['conference', 'workshop'] and self.price is None:
-                warnings.append("Published events typically require a price")
+        if self.splitCostCenter == "Yes" and not self.costCenterSplit:
+            errors.append("Cost center split details are required when splitting budget")
+        
+        if self.partnerInvolved != "No Partner Involvement":
+            if not self.partnerName:
+                errors.append("Partner name is required when partner is involved")
+            if not self.leadFollowUp:
+                errors.append("Lead follow-up is required when partner is involved")
+        
+        # Location validation based on hosting type
+        if self.hostingType in ["Physical Event", "Hybrid Event"] and not self.city:
+            warnings.append("City should be provided for physical or hybrid events")
+        
+        if self.hostingType == "Digital Event" and not self.countries:
+            warnings.append("Country should be provided for digital events")
+        
+        # Budget validation
+        if self.totalBudget is not None and self.totalBudget < 0:
+            errors.append("Total budget must be non-negative")
+        
+        if self.numberOfInquiries is not None and self.numberOfInquiries < 0:
+            errors.append("Number of inquiries must be non-negative")
         
         return {
             'valid': len(errors) == 0,
@@ -167,13 +286,20 @@ class EventModel:
         """Get event summary for display"""
         return {
             'event_id': self.event_id,
-            'title': self.title,
+            'event_name': self.eventName,
             'event_type': self.event_type,
             'status': self.status,
-            'date': self.date.isoformat() if self.date else None,
+            'priority': self.priority,
+            'owner': self.owner,
+            'start_date': self.eventStartDate.isoformat() if self.eventStartDate else None,
+            'end_date': self.eventEndDate.isoformat() if self.eventEndDate else None,
+            'hosting_type': self.hostingType,
+            'funding_status': self.fundingStatus,
+            'total_budget': self.totalBudget,
             'venue': self.venue,
-            'capacity': self.capacity,
-            'has_contact': self.has_contact_info(),
+            'city': self.city,
+            'countries': self.countries,
+            'partner_involved': self.partnerInvolved,
             'created_at': self.created_at.isoformat() if self.created_at else None,
             'updated_at': self.updated_at.isoformat() if self.updated_at else None
         }
@@ -255,11 +381,59 @@ class EventModel:
             return True
         return False
     
+    def save_to_tinydb(self, tinydb_client=None) -> Dict[str, Any]:
+        """Save event to TinyDB storage"""
+        try:
+            if tinydb_client is None:
+                from app.integrations.tinydb_client import TinyDBClient
+                tinydb_client = TinyDBClient()
+            
+            event_data = self.to_dict()
+            result = tinydb_client.store_event(event_data)
+            
+            if result['success']:
+                logger.info(f"Event {self.event_id} saved to TinyDB storage")
+            else:
+                logger.error(f"Failed to save event {self.event_id}: {result.get('error')}")
+            
+            return result
+            
+        except Exception as e:
+            logger.error(f"Error saving event to TinyDB: {str(e)}")
+            return {'success': False, 'error': str(e)}
+    
+    @classmethod
+    def load_from_tinydb(cls, event_id: str, tinydb_client=None) -> 'EventModel':
+        """Load event from TinyDB storage"""
+        try:
+            if tinydb_client is None:
+                from app.integrations.tinydb_client import TinyDBClient
+                tinydb_client = TinyDBClient()
+            
+            result = tinydb_client.get_event(event_id)
+            
+            if result['success']:
+                event_data = result['data']
+                # Remove TinyDB metadata fields
+                for key in ['_id', '_created_at', '_updated_at']:
+                    event_data.pop(key, None)
+                
+                event = cls.from_dict(event_data)
+                logger.info(f"Event {event_id} loaded from TinyDB storage")
+                return event
+            else:
+                logger.error(f"Failed to load event {event_id}: {result.get('error')}")
+                return None
+                
+        except Exception as e:
+            logger.error(f"Error loading event from TinyDB: {str(e)}")
+            return None
+    
     @classmethod
     def from_dict(cls, data: Dict[str, Any]) -> 'EventModel':
         """Create EventModel from dictionary"""
         # Convert ISO strings back to datetime objects
-        datetime_fields = ['created_at', 'updated_at', 'date']
+        datetime_fields = ['created_at', 'updated_at', 'eventStartDate', 'eventEndDate']
         for field in datetime_fields:
             if field in data and isinstance(data[field], str):
                 try:
@@ -270,14 +444,14 @@ class EventModel:
         return cls(**data)
     
     @classmethod
-    def create_draft(cls, event_id: str, title: str, event_type: str, 
-                    description: str = None) -> 'EventModel':
+    def create_draft(cls, event_id: str, event_name: str, event_type: str = 'conference', 
+                    event_description: str = None) -> 'EventModel':
         """Create a new draft event"""
         return cls(
             event_id=event_id,
-            title=title,
+            eventName=event_name,
             event_type=event_type,
-            description=description,
+            eventDescription=event_description,
             status='draft'
         )
     
