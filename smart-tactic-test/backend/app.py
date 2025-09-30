@@ -35,13 +35,7 @@ def _candidate_paths() -> List[str]:
     if env:
         cand.append(os.path.abspath(env))
     cand.extend([
-        os.path.join(here, "data", "form_db.json"),
-        os.path.join(here, "form_db.json"),
-        os.path.join(root, "data", "form_db.json"),
-        os.path.join(root, "form_db.json"),
-        os.path.join(cwd, "data", "form_db.json"),
-        os.path.join(cwd, "form_db.json"),
-    ])
+        os.path.join(root, "chat_service", "smart_tactic_tinydb.json") ])
     # De-dup while preserving order
     seen = set()
     ordered = []
@@ -65,23 +59,49 @@ def _resolve_db_path() -> str:
 
 
 # ---------- helpers ----------
-def read_table(db: TinyDB, table_name: str):
+def read_workflow_data(db_path: str, workflow_id: str = "2"):
     """
-    Return the table in a way that matches common TinyDB usage:
-      - If first doc has 'data', return that inner dict (common pattern).
-      - Else if single doc, return it.
-      - Else return list of docs.
+    Read workflow data from smart_tactic_tinydb.json structure.
+    Since the file is a plain JSON object (not TinyDB format), we read it directly.
+    Returns the workflow data for the specified workflow ID.
     """
-    table = db.table(table_name)
-    docs = table.all()
-    if not docs:
-        return []
-    first = docs[0]
-    if isinstance(first, dict) and "data" in first:
-        return first["data"]
-    if len(docs) == 1:
-        return first
-    return docs
+    import json
+    try:
+        with open(db_path, 'r') as f:
+            raw_data = json.load(f)
+        
+        if isinstance(raw_data, dict) and "workflows" in raw_data:
+            workflows = raw_data["workflows"]
+            return workflows.get(workflow_id, {})
+        
+        return None
+    except Exception as e:
+        print(f"Error reading workflow data: {e}")
+        return None
+
+def read_form_structure(db_path: str, workflow_id: str = "2"):
+    """Extract form_structure from the workflow"""
+    workflow = read_workflow_data(db_path, workflow_id)
+    if not workflow:
+        return {}
+    
+    form_structure = workflow.get("form_structure", {})
+    # Return the nested structure under "1" -> "data" if it exists
+    if "1" in form_structure and "data" in form_structure["1"]:
+        return form_structure["1"]["data"]
+    return form_structure
+
+def read_form_options(db_path: str, workflow_id: str = "2"):
+    """Extract form_options from the workflow"""
+    workflow = read_workflow_data(db_path, workflow_id)
+    if not workflow:
+        return {}
+    
+    form_options = workflow.get("form_options", {})
+    # Return the nested structure under "1" -> "data" if it exists
+    if "1" in form_options and "data" in form_options["1"]:
+        return form_options["1"]["data"]
+    return form_options
 
 
 # ---------- routes ----------
@@ -114,17 +134,16 @@ def get_form_config():
     if not db_path:
         return make_response(
             jsonify({
-                "error": "TinyDB file form_db.json not found in expected locations.",
-                "hint": "Set SMART_TACTICS_DB=/absolute/path/to/form_db.json or move your DB to backend/data/form_db.json",
+                "error": "TinyDB file smart_tactic_tinydb.json not found in expected locations.",
+                "hint": "Set SMART_TACTICS_DB=/absolute/path/to/smart_tactic_tinydb.json or move your DB to backend/data/smart_tactic_tinydb.json",
             }),
             500,
         )
 
-    print(f"[Flask] Using TinyDB at: {db_path}\n")
-    db = TinyDB(db_path)
+    print(f"[Flask] Using database at: {db_path}\n")
 
-    form_structure = read_table(db, "form_structure")
-    form_options   = read_table(db, "form_options")
+    form_structure = read_form_structure(db_path)
+    form_options = read_form_options(db_path)
 
     resp = make_response(jsonify({"structure": form_structure, "options": form_options}), 200)
     resp.headers["Cache-Control"] = "no-cache, no-store, must-revalidate"
@@ -139,8 +158,7 @@ def get_form_structure():
     if not db_path:
         return make_response(jsonify({"error": "Database not found"}), 500)
     
-    db = TinyDB(db_path)
-    form_structure = read_table(db, "form_structure")
+    form_structure = read_form_structure(db_path)
     return jsonify(form_structure)
 
 
@@ -150,8 +168,7 @@ def get_form_options():
     if not db_path:
         return make_response(jsonify({"error": "Database not found"}), 500)
     
-    db = TinyDB(db_path)
-    form_options = read_table(db, "form_options")
+    form_options = read_form_options(db_path)
     return jsonify(form_options)
 
 
