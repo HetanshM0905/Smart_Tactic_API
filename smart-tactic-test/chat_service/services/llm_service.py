@@ -55,7 +55,12 @@ class GeminiLLMService(LLMService):
                                     "properties": {
                                         "title": {"type": "string"},
                                         "action": {"type": "string", "enum": ["update", "chat"]},
-                                        "field_data": {"type": "object", "properties": schema if schema else {}},
+                                        "field_data": {
+                                            "type": "object",
+                                            "properties": schema
+
+                                            
+                                        }
                                     },
                                     "required": ["title", "action"]
                                 }
