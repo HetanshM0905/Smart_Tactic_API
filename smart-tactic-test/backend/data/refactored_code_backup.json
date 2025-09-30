@@ -1,0 +1,950 @@
+{
+  "form_structure": {
+    "form_mapping": {
+      "f1": "eventName",
+      "f2": "eventDescription",
+      "f3": "priority",
+      "f4": "owner",
+      "f5": "eventStartDate",
+      "f6": "eventEndDate",
+      "f7": "EventDateConfidence",
+      "f8": "leads",
+      "f9": "eventRing",
+      "f10": "eventParty",
+      "f11": "eventCategory",
+      "f12": "eventCategoryOwner",
+      "f13": "eventSubCategory",
+      "f14": "eventSubCategoryOwner",
+      "f15": "fundingStatus",
+      "f16": "hostingType",
+      "f17": "city",
+      "f18": "countries",
+      "f19": "costCenter",
+      "f20": "hasSpend",
+      "f21": "totalBudget",
+      "f22": "splitCostCenter",
+      "f23": "costCenterSplit",
+      "f24": "partnerInvolved",
+      "f25": "partnerName",
+      "f26": "responsibilities",
+      "f27": "leadFollowUp",
+      "f28": "account_segments",
+      "f29": "account_segment_type",
+      "f30": "buyer_segment_rollups",
+      "f31": "industries",
+      "f32": "products",
+      "f33": "customer_lifecycle",
+      "f34": "core_messaging",
+      "f35": "tiedToProgram",
+      "f36": "adoptAdaptInvent",
+      "f37": "statusBasicDetails",
+      "f38": "statusExecutionDetails",
+      "f39": "readyForActivation",
+      "f40": "numberOfInquiries",
+      "f41": "venue",
+      "f42": "registrationLink",
+      "f43": "salesKitLink"
+    },
+    "sections": [
+      {
+        "label": "Basic Info",
+        "layout": {
+          "type": "flex",
+          "columns": 2,
+          "gap": "16px",
+          "flexWrap": "wrap",
+          "flexDirection": "column"
+        },
+        "fields": [
+          {
+            "id": "f1",
+            "name": "eventName",
+            "fieldlabel": "Event name",
+            "type": "text",
+            "validators": ["required"],
+            "layout": { "margin_bottom": "0px" }
+          },
+          {
+            "id": "f2",
+            "name": "eventDescription",
+            "fieldlabel": "Event description",
+            "type": "textarea",
+            "validators": ["required"],
+            "rows": 3,
+            "layout": { "margin_bottom": "0px" }
+          },
+          {
+            "name": "priorityOwner",
+            "layout": {
+              "type": "flex",
+              "display": "flex",
+              "gap": "16px",
+              "flexDirection": "row"
+            },
+            "subFields": [
+              {
+                "id": "f3",
+                "name": "priority",
+                "fieldlabel": "Priority",
+                "type": "select",
+                "options_key": "f3",
+                "validators": ["required"],
+                "layout": { "flex": "1" }
+              },
+              {
+                "id": "f4",
+                "name": "owner",
+                "fieldlabel": "Owner",
+                "type": "select",
+                "options_key": "f4",
+                "validators": ["required"],
+                "layout": { "flex": "1" }
+              }
+            ]
+          },
+          {
+            "name": "eventDates",
+            "layout": {
+              "type": "flex",
+              "display": "flex",
+              "gap": "16px",
+              "flexDirection": "row"
+            },
+            "subFields": [
+              {
+                "id": "f5",
+                "name": "eventStartDate",
+                "fieldlabel": "Event start date",
+                "type": "date",
+                "validators": ["required"],
+                "layout": { "flex": "1" }
+              },
+              {
+                "id": "f6",
+                "name": "eventEndDate",
+                "fieldlabel": "Event end date",
+                "type": "date",
+                "validators": ["required"],
+                "layout": { "flex": "1" }
+              }
+            ]
+          },
+          {
+            "name": "eventDateConfidenceAndLeads",
+            "layout": {
+              "type": "flex",
+              "display": "flex",
+              "gap": "16px",
+              "flexDirection": "row"
+            },
+            "subFields": [
+              {
+                "id": "f7",
+                "name": "EventDateConfidence",
+                "fieldlabel": "Event date confidence*",
+                "type": "select",
+                "options_key": "f7",
+                "validators": ["required"],
+                "layout": { "flex": "1" }
+              },
+              {
+                "id": "f8",
+                "name": "leads",
+                "fieldlabel": "Leads Expected?*",
+                "type": "select",
+                "options_key": "f8",
+                "validators": ["required"],
+                "layout": { "flex": "1" }
+              }
+            ]
+          },
+          {
+            "id": "f40",
+            "name": "numberOfInquiries",
+            "fieldlabel": "# of Inquiries",
+            "type": "number",
+            "visible_when": { "field": "f8", "equals": ["Yes"] }
+          },
+          {
+            "name": "eventDetail",
+            "label": "Event categorization",
+            "layout": { "type": "grid", "columns": 2, "gap": "16px" },
+            "gridFields": [
+              {
+                "id": "f9",
+                "name": "eventRing",
+                "fieldlabel": "Event ring*",
+                "type": "select",
+                "options_key": "f9",
+                "validators": ["required"]
+              },
+              {
+                "id": "f10",
+                "name": "eventParty",
+                "fieldlabel": "Event Party*",
+                "type": "select",
+                "options_key": "f10",
+                "validators": ["required"]
+              },
+              {
+                "id": "f11",
+                "name": "eventCategory",
+                "fieldlabel": "Event category*",
+                "type": "select",
+                "options": [],
+                "dependsOn": ["f9", "f10"],
+                "options_key": "f11"
+              },
+              {
+                "id": "f12",
+                "name": "eventCategoryOwner",
+                "fieldlabel": "Event category owner*",
+                "type": "select",
+                "options_key": "f4",
+                "validators": ["required"]
+              },
+              {
+                "id": "f13",
+                "name": "eventSubCategory",
+                "fieldlabel": "Event sub category",
+                "type": "select",
+                "options": [],
+                "dependsOn": ["f9", "f10", "f11"],
+                "options_key": "f11"
+              },
+              {
+                "id": "f14",
+                "name": "eventSubCategoryOwner",
+                "fieldlabel": "Event sub category owner*",
+                "type": "select",
+                "options_key": "f4",
+                "validators": ["required"]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "label": "Logistics",
+        "layout": { "type": "flex", "flexDirection": "column", "gap": "16px" },
+        "fields": [
+          {
+            "id": "f15",
+            "name": "fundingStatus",
+            "fieldlabel": "Funding status*",
+            "type": "select",
+            "options_key": "f15",
+            "validators": ["required"]
+          },
+          {
+            "id": "f16",
+            "name": "hostingType",
+            "fieldlabel": "Hosting type*",
+            "type": "select",
+            "options_key": "f16",
+            "validators": ["required"]
+          },
+          {
+            "id": "f17",
+            "name": "city",
+            "fieldlabel": "City",
+            "type": "select",
+            "options_key": "f17",
+            "visible_when": { "field": "f16", "equals": ["Physical Event", "Hybrid Event"] }
+          },
+          {
+            "id": "f18",
+            "name": "countries",
+            "fieldlabel": "Country",
+            "type": "select",
+            "options_key": "f18",
+            "visible_when": { "field": "f16", "equals": ["Digital Event"] }
+          }
+        ]
+      },
+      {
+        "label": "Financial Details",
+        "layout": { "type": "flex", "flexDirection": "column", "gap": "16px" },
+        "fields": [
+          {
+            "id": "f19",
+            "name": "costCenter",
+            "fieldlabel": "Cloud marketing cost center*",
+            "type": "select",
+            "options_key": "f19",
+            "validators": ["required"]
+          },
+          {
+            "id": "f20",
+            "name": "hasSpend",
+            "fieldlabel": "Does this tactic have spend?*",
+            "type": "select",
+            "options_key": "f20",
+            "validators": ["required"]
+          },
+          {
+            "id": "f21",
+            "name": "totalBudget",
+            "fieldlabel": "Total budget*",
+            "type": "number",
+            "validators": ["required"],
+            "visible_when": { "field": "f20", "equals": ["Yes"] }
+          },
+          {
+            "id": "f22",
+            "name": "splitCostCenter",
+            "fieldlabel": "Split budget between cost centers?",
+            "type": "select",
+            "options_key": "f22",
+            "validators": ["required"],
+            "visible_when": { "field": "f20", "equals": ["Yes"] }
+          },
+          {
+            "id": "f23",
+            "name": "costCenterSplit",
+            "fieldlabel": "Cost center split",
+            "type": "array",
+            "visible_when": { "field": "f22", "equals": ["Yes"] },
+            "itemTemplate": {
+              "layout": { "type": "flex", "gap": "16px" },
+              "subFields": [
+                {
+                  "name": "costCenter",
+                  "type": "select",
+                  "options_key": "f19",
+                  "validators": ["required"],
+                  "layout": { "flex": "1" }
+                },
+                {
+                  "name": "splitPercentage",
+                  "type": "number",
+                  "validators": ["required", "percentage"],
+                  "layout": { "flex": "1" }
+                }
+              ]
+            }
+          }
+        ]
+      },
+      {
+        "label": "Extras",
+        "layout": { "type": "flex", "flexDirection": "column", "gap": "16px" },
+        "fields": [
+          { "id": "f41", "name": "venue", "fieldlabel": "Venue", "type": "text" },
+          {
+            "id": "f42",
+            "name": "registrationLink",
+            "fieldlabel": "Registration Link",
+            "type": "text"
+          },
+          {
+            "id": "f43",
+            "name": "salesKitLink",
+            "fieldlabel": "Sales Kit Link",
+            "type": "text"
+          }
+        ]
+      },
+      {
+        "label": "Partner Details",
+        "layout": { "type": "flex", "flexDirection": "column", "gap": "16px" },
+        "fields": [
+          {
+            "id": "f24",
+            "name": "partnerInvolved",
+            "fieldlabel": "Is a partner involved?*",
+            "type": "select",
+            "options_key": "f24",
+            "validators": ["required"]
+          },
+          {
+            "id": "f25",
+            "name": "partnerName",
+            "fieldlabel": "Partner name*",
+            "type": "text",
+            "validators": ["required"],
+            "visible_when": { "field": "f24", "not_equals": ["No Partner Involvement"] }
+          },
+          {
+            "id": "f26",
+            "name": "responsibilities",
+            "fieldlabel": "Partner responsibilities",
+            "type": "select",
+            "options_key": "f26",
+            "visible_when": { "field": "f24", "not_equals": ["No Partner Involvement"] }
+          },
+          {
+            "id": "f27",
+            "name": "leadFollowUp",
+            "fieldlabel": "Who will follow up with the leads?*",
+            "type": "select",
+            "options_key": "f27",
+            "validators": ["required"],
+            "visible_when": { "field": "f24", "not_equals": ["No Partner Involvement"] }
+          }
+        ]
+      },
+      {
+        "label": "Alignments",
+        "layout": { "type": "grid", "columns": 2, "gap": "16px" },
+        "gridFields": [
+          {
+            "id": "f28",
+            "name": "account_segments",
+            "fieldlabel": "Account Segments",
+            "type": "select",
+            "options_key": "f28"
+          },
+          {
+            "id": "f29",
+            "name": "account_segment_type",
+            "fieldlabel": "Account Segment Type",
+            "type": "select",
+            "options_key": "f29"
+          },
+          {
+            "id": "f30",
+            "name": "buyer_segment_rollups",
+            "fieldlabel": "Buyer Segment Rollups",
+            "type": "select",
+            "options_key": "f30"
+          },
+          {
+            "id": "f31",
+            "name": "industries",
+            "fieldlabel": "Industries",
+            "type": "select",
+            "options_key": "f31"
+          },
+          {
+            "id": "f32",
+            "name": "products",
+            "fieldlabel": "Products",
+            "type": "select",
+            "options_key": "f32"
+          },
+          {
+            "id": "f33",
+            "name": "customer_lifecycle",
+            "fieldlabel": "Customer Lifecycle",
+            "type": "select",
+            "options_key": "f33"
+          },
+          {
+            "id": "f34",
+            "name": "core_messaging",
+            "fieldlabel": "Core Messaging",
+            "type": "select",
+            "options_key": "f34"
+          }
+        ]
+      },
+      {
+        "label": "Campaign Program",
+        "layout": { "type": "flex", "flexDirection": "column", "gap": "16px" },
+        "fields": [
+          {
+            "id": "f35",
+            "name": "tiedToProgram",
+            "fieldlabel": "Is this tactic tied to a global campaign program?*",
+            "type": "select",
+            "options_key": "f35",
+            "validators": ["required"]
+          },
+          {
+            "id": "f36",
+            "name": "adoptAdaptInvent",
+            "fieldlabel": "Adopt / Adapt / Invent*",
+            "type": "select",
+            "options_key": "f36",
+            "dependsOn": "f35",
+            "validators": ["required"]
+          }
+        ]
+      },
+      {
+        "label": "Review & Submit",
+        "fields": [
+          {
+            "id": "f37",
+            "name": "statusBasicDetails",
+            "fieldlabel": "Basic details status",
+            "type": "boolean"
+          },
+          {
+            "id": "f38",
+            "name": "statusExecutionDetails",
+            "fieldlabel": "Execution details status",
+            "type": "boolean"
+          },
+          {
+            "id": "f39",
+            "name": "readyForActivation",
+            "fieldlabel": "Ready for activation",
+            "type": "boolean"
+          }
+        ]
+      }
+    ]
+  },
+  "form_options": {
+    "f3": [
+      { "key": "P0 - In budget", "value": "P0 - In budget" },
+      { "key": "P1 - Nice to have", "value": "P1 - Nice to have" }
+    ],
+    "f4": [
+      { "key": "sujitha@google.com", "value": "sujitha@google.com" },
+      { "key": "demo_user@relanto.com", "value": "demo_user@relanto.com" },
+      { "key": "program_owner@relanto.com", "value": "program_owner@relanto.com" },
+      { "key": "owner2@relanto.com", "value": "owner2@relanto.com" },
+      { "key": "owner3@relanto.com", "value": "owner3@relanto.com" }
+    ],
+    "f7": [
+      { "key": "Low", "value": "Low" },
+      { "key": "Medium", "value": "Medium" },
+      { "key": "High", "value": "High" }
+    ],
+    "f8": [
+      { "key": "Yes", "value": "Yes" },
+      { "key": "No", "value": "No" }
+    ],
+  "f9" : [
+    { "key": "R1", "value": "Ring 1: Global 1st Party" },
+    { "key": "R2", "value": "Ring 2: Global 3rd Party" },
+    {"key": "R3", "value": "Ring 3: Global 1st Party Series" },
+    { "key": "R4", "value": "Ring 4: Regional / Local" }
+  ],
+          "R1": [{ "key": "P1", "value": "1st party event" }],
+        
+          "R1.P1": [
+            { "key": "C1", "value": "Google Cloud Next" },
+            { "key": "C2", "value": "Google Cloud Next ’24" }
+          ],
+        
+          "R1.P1.C1": [{ "key": "C01", "value": "Google Cloud Next Owner" }],
+          "R1.P1.C2": [{ "key": "C02", "value": "Google Cloud Next ’24 Owner" }],
+        
+          "R1.P1.C1.C01": [
+            { "key": "SC01", "value": "Cloud Next Global" },
+            { "key": "SC02", "value": "Cloud Next Digital" },
+            { "key": "SC03", "value": "Other (Not Listed)" }
+          ],
+          "R1.P1.C1.C01.SC01": [{ "key": "SCW01", "value": "Cloud Next Global Owner" }],
+          "R1.P1.C1.C01.SC02": [{ "key": "SCW02", "value": "Cloud Next Digital Owner" }],
+          "R1.P1.C1.C01.SC03": [{ "key": "SCW03", "value": "Other (Not Listed) Owner" }],
+        
+          "R1.P1.C2.C02": [
+            { "key": "SC04", "value": "Cloud Next ’24 San Francisco" },
+            { "key": "SC05", "value": "Other (Not Listed)" }
+          ],
+          "R1.P1.C2.C02.SC04": [{ "key": "SCW04", "value": "Cloud Next ’24 San Francisco Owner" }],
+          "R1.P1.C2.C02.SC05": [{ "key": "SCW05", "value": "Other (Not Listed) Owner" }],
+        
+        
+        
+          "R2": [{ "key": "P2", "value": "3rd Party Event" }],
+        
+          "R2.P2": [
+            { "key": "C1", "value": "Analyst"},
+            { "key": "C2", "value": "Developer"},
+            { "key": "C3", "value": "Digital Native / Startup"},
+            { "key": "C4", "value": "Industry"},
+            { "key": "C5", "value": "One Google 3P Executive Events"},
+            { "key": "C6", "value": "Partner"},
+            { "key": "C7", "value": "Public Sector"},
+            { "key": "C8", "value": "Security"}
+          ],
+        
+          "R2.P2.C1": [{ "key": "C01", "value": "Analyst Owner" }],
+          "R2.P2.C2": [{ "key": "C02", "value": "Developer Owner" }],
+          "R2.P2.C3": [{ "key": "C03", "value": "Digital Native / Startup Owner" }],
+          "R2.P2.C4": [{ "key": "C04", "value": "Industry Owner" }],
+          "R2.P2.C5": [{ "key": "C05", "value": "One Google 3P Executive Events" }],
+          "R2.P2.C6": [{ "key": "C06", "value": "Partner" }],
+          "R2.P2.C7": [{ "key": "C07", "value": "Public Sector" }],
+          "R2.P2.C8": [{ "key": "C08", "value": "Security Owner" }],
+        
+          "R2.P2.C1.C01": [
+            { "key": "SC01", "value": "Gartner" },
+            { "key": "SC02", "value": "Other (Not Listed)" }
+          ],
+          "R2.P2.C1.C01.SC01": [{ "key": "SCW01"}],
+          "R2.P2.C1.C01.SC02": [{ "key": "SCW02"}],
+        
+          "R2.P2.C2.C02": [
+            { "key": "SC03", "value": "3P Tentpole Developer Events" },
+            { "key": "SC04", "value": "Other (Not Listed)" }
+          ],
+          "R2.P2.C2.C02.SC03": [{ "key": "SCW03", "value": "3P Tentpole Developer Events Owner" }],
+          "R2.P2.C2.C02.SC04": [{ "key": "SCW04", "value": "Other (Not Listed) Owner" }],
+        
+          "R2.P2.C3.C03": [],
+        
+          "R2.P2.C4.C04": [
+            { "key": "SC05", "value": "Data & AI" },
+            { "key": "SC06", "value": "Energy & Utilities" },
+            { "key": "SC07", "value": "Financial services" },
+            { "key": "SC08", "value": "Healthcare & Life Sciences" },
+            { "key": "SC09", "value": "Manufacturing & Industrial" },
+            { "key": "SC10", "value": "Other (Not Listed)" },
+            { "key": "SC11", "value": "Retail & CPG" },
+            { "key": "SC12", "value": "Software & Internet" },
+            { "key": "SC13", "value": "Telco, Media, Entertainment & Gaming" }
+          ],
+          "R2.P2.C4.C04.SC05": [{ "key": "SCW05", "value": "Data & AI Owner" }],
+          "R2.P2.C4.C04.SC06": [{ "key": "SCW06", "value": "Energy & Utilities Owner" }],
+          "R2.P2.C4.C04.SC07": [{ "key": "SCW07", "value": "Financial services Owner" }],
+          "R2.P2.C4.C04.SC08": [{ "key": "SCW08", "value": "Healthcare & Life Sciences Owner" }],
+          "R2.P2.C4.C04.SC09": [{ "key": "SCW09", "value": "Manufacturing & Industrial Owner" }],
+          "R2.P2.C4.C04.SC10": [{ "key": "SCW10", "value": "Other (Not Listed) Owner" }],
+          "R2.P2.C4.C04.SC11": [{ "key": "SCW11", "value": "Retail & CPG Owner" }],
+          "R2.P2.C4.C04.SC12": [{ "key": "SCW12", "value": "Software & Internet Owner" }],
+          "R2.P2.C4.C04.SC13": [{ "key": "SCW13", "value": "Telco, Media, Entertainment & Gaming Owner" }],
+        
+          "R2.P2.C5.C05": [
+            { "key": "SC14", "value": "3P Tentpole Executive Events" },
+            { "key": "SC15", "value": "Other (Not Listed)" }
+          ],
+          "R2.P2.C5.C05.SC14": [{ "key": "SCW14", "value": "3P Tentpole Developer Events Owner" }],
+          "R2.P2.C5.C05.SC15": [{ "key": "SCW15", "value": "Other (Not Listed) Owner" }],
+        
+          "R2.P2.C6.C06": [
+            { "key": "SC16", "value": "GSI co-marketing" },
+            { "key": "SC17", "value": "ISV co-marketing" },
+            { "key": "SC18", "value": "To Partner" }
+          ],
+          "R2.P2.C6.C06.SC16": [{ "key": "SCW16", "value": "GSI co-marketing Owner" }],
+          "R2.P2.C6.C06.SC17": [{ "key": "SCW17", "value": "ISV co-marketing Owner" }],
+          "R2.P2.C6.C06.SC18": [{ "key": "SCW18", "value": "To Partner Owner" }],
+        
+          "R2.P2.C7.C07": [
+            { "key": "SC19", "value": "Defense" },
+            { "key": "SC20", "value": "Federal Civilian" },
+            { "key": "SC21", "value": "General" },
+            { "key": "SC22", "value": "Healthcare & Life Sciences" },
+            { "key": "SC23", "value": "Higher Education and Research" },
+            { "key": "SC24", "value": "Law Enforcement" },
+            { "key": "SC25", "value": "National Security and Intel" },
+            { "key": "SC26", "value": "State/Provincial and Local Government" },
+            { "key": "SC27", "value": "Supply Chain and Procurement" }
+          ],
+          "R2.P2.C7.C07.SC19": [{ "key": "SCW19", "value": "Defense Owner" }],
+          "R2.P2.C7.C07.SC20": [{ "key": "SCW20", "value": "Federal Civilian Owner" }],
+          "R2.P2.C7.C07.SC21": [{ "key": "SCW21", "value": "General Owner" }],
+          "R2.P2.C7.C07.SC22": [{ "key": "SCW22", "value": "Healthcare & Life Sciences Owner" }],
+          "R2.P2.C7.C07.SC23": [{ "key": "SCW23", "value": "Higher Education and Research Owner" }],
+          "R2.P2.C7.C07.SC24": [{ "key": "SCW24", "value": "Law Enforcement Owner" }],
+          "R2.P2.C7.C07.SC25": [{ "key": "SCW25", "value": "National Security and Intel Owner" }],
+          "R2.P2.C7.C07.SC26": [{ "key": "SCW26", "value": "State/Provincial and Local Government Owner" }],
+          "R2.P2.C7.C07.SC27": [{ "key": "SCW27", "value": "Supply Chain and Procurement Owner" }],
+        
+          "R2.P2.C8.C08": [],
+        
+        
+          "R3": [{ "key": "P3", "value": "1st party event" }],
+        
+          "R3.P3": [
+            { "key": "C1", "value": "CMO AI Labs" },
+            { "key": "C2", "value": "Digital Native / Startup" },
+            { "key": "C3", "value": "Digital Campaigns" },
+            { "key": "C4", "value": "Digital Solution Summits" },
+            { "key": "C5", "value": "Gen AI at Work" },
+            { "key": "C6", "value": "I/O Connects" },
+            { "key": "C7", "value": "Live + Labs" },
+            { "key": "C8", "value": "Region Launch" },
+            { "key": "C9", "value": "Regional Cloud Summits" },
+            { "key": "C10", "value": "Security" },
+            { "key": "C11", "value": "SMB Traditional" },
+            { "key": "C12", "value": "Analyst"}
+          ],
+        
+          "R3.P3.C1": [{ "key": "C01", "value": "CMO AI Labs Owner" }],
+          "R3.P3.C2": [{ "key": "C02", "value": "Digital Native / Startup Owner" }],
+          "R3.P3.C3": [{ "key": "C03", "value": "Digital Campaigns Owner" }],
+          "R3.P3.C4": [{ "key": "C04", "value": "Digital Solution Summits Owner" }],
+          "R3.P3.C5": [{ "key": "C05", "value": "Gen AI at Work Owner" }],
+          "R3.P3.C6": [{ "key": "C06", "value": "I/O Connects Owner" }],
+          "R3.P3.C7": [{ "key": "C07", "value": "Live + Labs Owner" }],
+          "R3.P3.C8": [{ "key": "C08", "value": "Region Launch Owner" }],
+          "R3.P3.C9": [{ "key": "C09", "value": "Regional Cloud Summits Owner" }],
+          "R3.P3.C10": [{ "key": "C10O", "value": "Security Owner" }],
+          "R3.P3.C11": [{ "key": "C11O", "value": "SMB Traditional Owner" }],
+          "R3.P3.C12": [{ "key": "C12O", "value": "Analyst Owner" }],
+        
+          "R3.P3.C1.C01": [],
+        
+          "R3.P3.C2.C02": [
+            { "key": "SC01", "value": "Startup School" },
+            { "key": "SC02", "value": "Startup Summit" },
+            { "key": "SC03", "value": "Other (Not Listed)" }
+          ],
+          "R3.P3.C2.C02.SC01": [{ "key": "SCW01", "value": "Startup School Owner" }],
+          "R3.P3.C2.C02.SC02": [{ "key": "SCW02", "value": "Startup Summit Owner" }],
+          "R3.P3.C2.C02.SC03": [{ "key": "SCW03", "value": "Other (Not Listed) Owner" }],
+        
+          "R3.P3.C3.C03": [],
+          "R3.P3.C4.C04": [],
+          "R3.P3.C5.C05": [],
+          "R3.P3.C6.C06": [],
+          "R3.P3.C7.C07": [],
+          "R3.P3.C8.C08": [],
+        
+          "R3.P3.C9.C09": [
+            { "key": "SC04", "value": "Cloud Summit APAC" },
+            { "key": "SC05", "value": "Cloud Summit EMEA" },
+            { "key": "SC06", "value": "Cloud Summit JAPAN" },
+            { "key": "SC07", "value": "Cloud Summit LATAM" }
+          ],
+          "R3.P3.C9.C09.SC04": [{ "key": "SCW04", "value": "Cloud Summit APAC Owner" }],
+          "R3.P3.C9.C09.SC05": [{ "key": "SCW05", "value": "Cloud Summit EMEA Owner" }],
+          "R3.P3.C9.C09.SC06": [{ "key": "SCW06", "value": "Cloud Summit JAPAN Owner" }],
+          "R3.P3.C9.C09.SC07": [{ "key": "SCW07", "value": "Cloud Summit LATAM Owner" }],
+        
+          "R3.P3.C10.C10O": [
+            { "key": "SC08", "value": "CISO Connect" },
+            { "key": "SC09", "value": "CISO Program" },
+            { "key": "SC10", "value": "Other (Not Listed)" }
+          ],
+          "R3.P3.C10.C10O.SC08": [{ "key": "SCW08", "value": "CISO Connect Owner" }],
+          "R3.P3.C10.C10O.SC09": [{ "key": "SCW09", "value": "CISO Program Owner" }],
+          "R3.P3.C10.C10O.SC10": [{ "key": "SCW10", "value": "Other (Not Listed) Owner" }],
+        
+          "R3.P3.C11.C11O": [
+            { "key": "SC11", "value": "Growth Tech Series" },
+            { "key": "SC12", "value": "Scaling Up Series" },
+            { "key": "SC13", "value": "Other (Not Listed)" }
+          ],
+          "R3.P3.C11.C11O.SC11": [{ "key": "SCW11", "value": "Growth Tech Series Owner" }],
+          "R3.P3.C11.C11O.SC12": [{ "key": "SCW12", "value": "Scaling Up Series Owner" }],
+          "R3.P3.C11.C11O.SC13": [{ "key": "SCW13", "value": "Other (Not Listed) Owner" }],
+        
+          "R3.P3.C12.C12O": [
+            { "key": "SC14", "value": "Gartner" },
+            { "key": "SC15", "value": "Other (Not Listed)" }
+          ],
+          "R3.P3.C12.C12O.SC14": [{ "key": "SCW14", "value": "Gartner Owner" }],
+          "R3.P3.C12.C12O.SC15": [{ "key": "SCW15", "value": "Other (Not Listed) Owner" }],
+        
+          "R4": [
+            { "key": "P4", "value": "1st party event" },
+            { "key": "P5", "value": "3rd party event" }
+          ],
+        
+          "R4.P4": [
+            { "key": "C1", "value": "Cloud OnBoard" },
+            { "key": "C2", "value": "Customer Programs" },
+            { "key": "C3", "value": "Executive Programs" },
+            { "key": "C4", "value": "Flagship In-Region" },
+            { "key": "C5", "value": "Industry Events" },
+            { "key": "C6", "value": "Learning" },
+            { "key": "C7", "value": "Partner Events" },
+            { "key": "C8", "value": "Region-Specific" },
+            { "key": "C9", "value": "Sub-Regional Flagships" }
+          ],
+        
+          "R4.P4.C1": [{ "key": "C01", "value": "Cloud OnBoard Owner" }],
+          "R4.P4.C2": [{ "key": "C02", "value": "Customer Programs Owner" }],
+          "R4.P4.C3": [{ "key": "C03", "value": "Executive Programs Owner" }],
+          "R4.P4.C4": [{ "key": "C04", "value": "Flagship In-Region Owner" }],
+          "R4.P4.C5": [{ "key": "C05", "value": "Industry Events Owner" }],
+          "R4.P4.C6": [{ "key": "C06", "value": "Learning Owner" }],
+          "R4.P4.C7": [{ "key": "C07", "value": "Partner Events Owner" }],
+          "R4.P4.C8": [{ "key": "C08", "value": "Region-Specific Owner" }],
+          "R4.P4.C9": [{ "key": "C09", "value": "Sub-Regional Flagships Owner" }],
+        
+          "R4.P4.C1.C01": [
+            { "key": "SC01", "value": "Cloud OnBoard India" },
+            { "key": "SC02", "value": "Cloud OnBoard Japan" },
+            { "key": "SC03", "value": "Cloud OnBoard Korea" },
+            { "key": "SC04", "value": "Other (Not Listed)" }
+          ],
+          "R4.P4.C1.C01.SC01": [{ "key": "SCW01", "value": "Cloud OnBoard India Owner" }],
+          "R4.P4.C1.C01.SC02": [{ "key": "SCW02", "value": "Cloud OnBoard Japan Owner" }],
+          "R4.P4.C1.C01.SC03": [{ "key": "SCW03", "value": "Cloud OnBoard Korea Owner" }],
+          "R4.P4.C1.C01.SC04": [{ "key": "SCW04", "value": "Other (Not Listed) Owner" }],
+        
+          "R4.P4.C2.C02": [
+            { "key": "SC05", "value": "Customer Connect" },
+            { "key": "SC06", "value": "Other (Not Listed)" }
+          ],
+          "R4.P4.C2.C02.SC05": [{ "key": "SCW05", "value": "Customer Connect Owner" }],
+          "R4.P4.C2.C02.SC06": [{ "key": "SCW06", "value": "Other (Not Listed) Owner" }],
+        
+          "R4.P4.C3.C03": [
+            { "key": "SC07", "value": "CXO Roundtable" },
+            { "key": "SC08", "value": "Other (Not Listed)" }
+          ],
+          "R4.P4.C3.C03.SC07": [{ "key": "SCW07", "value": "CXO Roundtable Owner" }],
+          "R4.P4.C3.C03.SC08": [{ "key": "SCW08", "value": "Other (Not Listed) Owner" }],
+        
+          "R4.P4.C4.C04": [
+            { "key": "SC09", "value": "Google Cloud Summit India" },
+            { "key": "SC10", "value": "Google Cloud Summit Korea" },
+            { "key": "SC11", "value": "Other (Not Listed)" }
+          ],
+          "R4.P4.C4.C04.SC09": [{ "key": "SCW09", "value": "Google Cloud Summit India Owner" }],
+          "R4.P4.C4.C04.SC10": [{ "key": "SCW10", "value": "Google Cloud Summit Korea Owner" }],
+          "R4.P4.C4.C04.SC11": [{ "key": "SCW11", "value": "Other (Not Listed) Owner" }],
+        
+          "R4.P4.C5.C05": [
+            { "key": "SC12", "value": "Industry Connect" },
+            { "key": "SC13", "value": "Other (Not Listed)" }
+          ],
+          "R4.P4.C5.C05.SC12": [{ "key": "SCW12", "value": "Industry Connect Owner" }],
+          "R4.P4.C5.C05.SC13": [{ "key": "SCW13", "value": "Other (Not Listed) Owner" }],
+        
+          "R4.P4.C6.C06": [
+            { "key": "SC14", "value": "Learning Series India" },
+            { "key": "SC15", "value": "Other (Not Listed)" }
+          ],
+          "R4.P4.C6.C06.SC14": [{ "key": "SCW14", "value": "Learning Series India Owner" }],
+          "R4.P4.C6.C06.SC15": [{ "key": "SCW15", "value": "Other (Not Listed) Owner" }],
+        
+          "R4.P4.C7.C07": [
+            { "key": "SC16", "value": "Partner Summit India" },
+            { "key": "SC17", "value": "Other (Not Listed)" }
+          ],
+          "R4.P4.C7.C07.SC16": [{ "key": "SCW16", "value": "Partner Summit India Owner" }],
+          "R4.P4.C7.C07.SC17": [{ "key": "SCW17", "value": "Other (Not Listed) Owner" }],
+        
+          "R4.P4.C8.C08": [
+            { "key": "SC18", "value": "Google Cloud Jakarta Summit" },
+            { "key": "SC19", "value": "Google Cloud ASEAN Summit" },
+            { "key": "SC20", "value": "Other (Not Listed)" }
+          ],
+          "R4.P4.C8.C08.SC18": [{ "key": "SCW18", "value": "Google Cloud Jakarta Summit Owner" }],
+          "R4.P4.C8.C08.SC19": [{ "key": "SCW19", "value": "Google Cloud ASEAN Summit Owner" }],
+          "R4.P4.C8.C08.SC20": [{ "key": "SCW20", "value": "Other (Not Listed) Owner" }],
+        
+          "R4.P4.C9.C09": [
+            { "key": "SC21", "value": "Cloud Summit SEA" },
+            { "key": "SC22", "value": "Cloud Summit ANZ" },
+            { "key": "SC23", "value": "Other (Not Listed)" }
+          ],
+          "R4.P4.C9.C09.SC21": [{ "key": "SCW21", "value": "Cloud Summit SEA Owner" }],
+          "R4.P4.C9.C09.SC22": [{ "key": "SCW22", "value": "Cloud Summit ANZ Owner" }],
+          "R4.P4.C9.C09.SC23": [{ "key": "SCW23", "value": "Other (Not Listed) Owner" }],
+        
+          "R4.P5": [
+            { "key": "C10", "value": "Regional 3rd Party" }
+          ],
+        
+          "R4.P5.C10": [{ "key": "C10O", "value": "Regional 3rd Party Owner" }],
+        
+          "R4.P5.C10.C10O": [
+            { "key": "SC24", "value": "AWS re:Invent India" },
+            { "key": "SC25", "value": "Azure Summit India" },
+            { "key": "SC26", "value": "Other (Not Listed)" }
+          ],
+          "R4.P5.C10.C10O.SC24": [{ "key": "SCW24", "value": "AWS re:Invent India Owner" }],
+          "R4.P5.C10.C10O.SC25": [{ "key": "SCW25", "value": "Azure Summit India Owner" }],
+          "R4.P5.C10.C10O.SC26": [{ "key": "SCW26", "value": "Other (Not Listed) Owner" }],
+    "f15": [
+      { "key": "Fully Funded", "value": "Fully Funded" },
+      { "key": "Partially Funded", "value": "Partially Funded" },
+      { "key": "Not Funded", "value": "Not Funded" },
+      { "key": "Unsure", "value": "Unsure" }
+    ],
+    "f16": [
+      { "key": "Digital Event", "value": "Digital Event" },
+      { "key": "Physical Event", "value": "Physical Event" },
+      { "key": "Hybrid Event", "value": "Hybrid Event" }
+    ],
+    "f17": [
+      { "key": "Bengaluru", "value": "Bengaluru" },
+      { "key": "Hyderabad", "value": "Hyderabad" },
+      { "key": "Delhi", "value": "Delhi" },
+      { "key": "Mumbai", "value": "Mumbai" },
+      { "key": "Pune", "value": "Pune" },
+      { "key": "Chennai", "value": "Chennai" }
+    ],
+    "f18": [
+      { "key": "India", "value": "India" },
+      { "key": "United States", "value": "United States" },
+      { "key": "United Kingdom", "value": "United Kingdom" },
+      { "key": "Germany", "value": "Germany" },
+      { "key": "Japan", "value": "Japan" },
+      { "key": "Singapore", "value": "Singapore" }
+    ],
+    "f19": [
+      { "key": "1Q1: EMEA - AR", "value": "1Q1: EMEA - AR" },
+      { "key": "CC-US", "value": "CC-US" },
+      { "key": "CC-EMEA", "value": "CC-EMEA" },
+      { "key": "CC-APAC", "value": "CC-APAC" },
+      { "key": "CC-IN-BLR-MKT", "value": "CC-IN-BLR-MKT" },
+      { "key": "CC-IN-NAT-MKT", "value": "CC-IN-NAT-MKT" },
+      { "key": "CC-IN-ANL-MKT", "value": "CC-IN-ANL-MKT" }
+    ],
+    "f20": [
+      { "key": "Yes", "value": "Yes" },
+      { "key": "No", "value": "No" }
+    ],
+    "f22": [
+      { "key": "Yes", "value": "Yes" },
+      { "key": "No", "value": "No" }
+    ],
+    "f24": [
+      { "key": "Yes - Single Partner", "value": "Yes - Single Partner" },
+      { "key": "Yes - Multiple Partners", "value": "Yes - Multiple Partners" },
+      { "key": "No Partner Involvement", "value": "No Partner Involvement" }
+    ],
+    "f26": [
+      { "key": "Partner Generated Thought Leadership", "value": "Partner Generated Thought Leadership" },
+      { "key": "Joint Messaging & Content Creation", "value": "Joint Messaging & Content Creation" },
+      { "key": "Lead Nurture & Follow Up", "value": "Lead Nurture & Follow Up" },
+      { "key": "Speak at Event", "value": "Speak at Event" },
+      { "key": "Host Event", "value": "Host Event" },
+      { "key": "Joint Customer Offer", "value": "Joint Customer Offer" }
+    ],
+    "f27": [
+      { "key": "Partner Only", "value": "Partner Only" },
+      { "key": "Google Sales Only", "value": "Google Sales Only" },
+      { "key": "Partner and Google together", "value": "Partner and Google together" }
+    ],
+    "f28": [
+      { "key": "Enterprise", "value": "Enterprise" },
+      { "key": "Corporate", "value": "Corporate" },
+      { "key": "SMB", "value": "SMB" }
+    ],
+    "f29": [
+      { "key": "Digital Natives", "value": "Digital Natives" },
+      { "key": "Traditional", "value": "Traditional" },
+      { "key": "ISV & SaaS", "value": "ISV & SaaS" }
+    ],
+    "f30": [
+      { "key": "Executive", "value": "Executive" },
+      { "key": "Decision Maker", "value": "Decision Maker" },
+      { "key": "Practitioner", "value": "Practitioner" }
+    ],
+    "f31": [
+      { "key": "Retail", "value": "Retail" },
+      { "key": "Health Care", "value": "Health Care" },
+      { "key": "Financial Services", "value": "Financial Services" }
+    ],
+    "f32": [
+      { "key": "GCP", "value": "GCP" },
+      { "key": "GWS", "value": "GWS" }
+    ],
+    "f33": [
+      { "key": "Existing", "value": "Existing" },
+      { "key": "Greenfield", "value": "Greenfield" }
+    ],
+    "f34": [
+      { "key": "AI", "value": "AI" },
+      { "key": "Core", "value": "Core" }
+    ],
+    "f35": [
+      { "key": "Yes", "value": true },
+      { "key": "No", "value": false }
+    ],
+    "f36": {
+      "true": [
+        { "key": "Adopt: Full adoption", "value": "Adopt" },
+        { "key": "Adapt: Partial adaptation", "value": "Adapt" }
+      ],
+      "false": [
+        { "key": "Invent: New invention", "value": "Invent" }
+      ]
+    }
+  }
+}
